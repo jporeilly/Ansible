@@ -15,7 +15,7 @@ In this lab we're going to:
 #### <font color='red'>Pre-requisties</font> 
 The following pre-requisties have to be installed for Ansible Controller on CentOS 7:
 * Python 3.8+
-* Git / Bash in VSC
+* check SSH
 
 
 **Python 3**
@@ -45,24 +45,14 @@ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.r
 ```
 Note: this may have  already be done with the upgrade to CentOS 7.9
 
+**SSH**
+check if SSH is running:
 
-**Git**
-switch to root:
-```
-sudo -i
-```
-make sure everything is up-to-date:
-```
-yum update -y
-```
-install git:
-```
-yum install git
-```
-verify:
-```
-git --version
-```
+ps aux | grep sshd
+
+check if listening on port 22:
+
+netstat -plant | grep :22
 
 ---
 
@@ -101,12 +91,7 @@ Note: these are the config files.
 
 ---
 
-
-
-
-
-#### <font color='red'>Ansible Configuration</font>
-
+#### <font color='red'>Ansible Controller Configuration</font>
 * add an ansadmin user to ansible controller
 
 ensure you're root:
@@ -123,7 +108,8 @@ passwd ansadmin
 new password: ansadmin123
 ```
 
-
-
-
 ---
+
+#### <font color='red'>Ansible Node Configuration</font>
+* add ansadmin to node
+* ensure it has root
