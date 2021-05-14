@@ -1,4 +1,4 @@
-## <font color ='red'>CI-CD</font>
-CI/CD is a method to frequently deliver apps to customers by introducing automation into the stages of app development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment. CI/CD is a solution to the problems integrating new code can cause for development and operations teams (AKA "integration hell").
+## <font color ='red'>Ansible</font>
+Ansible is an open-source IT automation engine, which can remove drudgery from your work life, and will also dramatically improve the scalability, consistency, and reliability of your IT environment.
 
-<span style="display:block;text-align:center">![CI-CD](Assets/CI-CD.png)</span>
+<span style="display:block;text-align:center">![Ansible](Assets/Ansible.jpg)</span>
