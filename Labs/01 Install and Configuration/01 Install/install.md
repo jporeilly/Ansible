@@ -216,6 +216,12 @@ ansible all -m ping
 ```
 look for ping pong..  & check for python
 
+for a specfic node(s):
+```
+ansible 10.0.0.2 -m ping
+ansible 10.0.0.2:10.0.0.3 -m ping # just to illustrate
+```
+
 ---
 
 #### <font color='red'>Ansible Node Configuration</font>
