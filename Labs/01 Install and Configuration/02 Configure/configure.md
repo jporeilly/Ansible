@@ -91,12 +91,15 @@ Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
 copy key over to node:
 ```
 ssh-copy-id 10.0.0.2
+ssh-copy-id 10.0.0.3
 ```
 password: ansadmin123
+Only the public key is copied to the server. The private key should never be copied to another machine.
 
 now check you can log in:
 ```
 ssh 10.0.0.2
+ssh 10.0.0.3
 ```
 Note: passwordless authenticated connection.
 </br>
@@ -111,7 +114,7 @@ edit hosts file:
 ```
 sudo nano hosts
 ```
-add the node IP: 10.0.0.2 to the top of the file
+add the node IP: 10.0.0.2 & 10.0.0.3 to the top of the file
 check its been added:
 ```
 cat hosts | head -10
@@ -125,7 +128,7 @@ look for ping pong..  & check for python
 for a specfic node(s):
 ```
 ansible 10.0.0.2 -m ping
-ansible 10.0.0.2:10.0.0.3 -m ping # just to illustrate
+ansible 10.0.0.2:10.0.0.3 -m ping
 ```
 
 ---
@@ -135,6 +138,7 @@ ansible 10.0.0.2:10.0.0.3 -m ping # just to illustrate
 * ensure it has root priviledges
 
 * set PasswordAuthentication yes
+</br>
 
 **add ansadmin**  
 SSH into ansible node from controller:
@@ -156,6 +160,7 @@ change password:
 passwd ansadmin
 new password: ansadmin123
 ```
+</br>
 
 **root priviledges**  
 ensure ansadmin has root priviledges :
@@ -183,5 +188,7 @@ restart service:
 ```
 service sshd restart
 ```
+
+repeat for all nodes
 
 ---

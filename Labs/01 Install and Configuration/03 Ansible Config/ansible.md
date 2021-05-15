@@ -3,17 +3,20 @@ Ansible is an open source IT Configuration Management, Deployment & Orchestratio
 
 
 In this lab we're going to:
-
 * change working directories
 
-* disable HOST checking
+* disable HOSTS checking
 
 ---
 
 #### <font color='red'>Ansible Directories</font>
-* host file
+* hosts file
 * working directory
 
+* disable HOSTS checking
+</br>
+
+**hosts**  
 tree the ansible directory:
 ```
 tree /etc/ansible
@@ -27,6 +30,21 @@ Note: the inventory file be called anything..  its referenced in the ansible.cfg
 cat /etc/ansible.cfg | head -20
 ```
 Note: paths to directories
+manually entering IPs or FQDNs can be a pain...  You can reference 'grouped' nodes..
+
+edit hosts - inventory - file:
+```
+nano /etc/hosts
+```
+
+
+
+
+
+
+</br>
+
+**working directories**  
 
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
