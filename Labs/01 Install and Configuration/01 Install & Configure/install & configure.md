@@ -17,12 +17,12 @@ The following pre-requisties have to be installed for Ansible Controller on Cent
 * check SSH
 
 
-**Python 3**
+**Python 3**  
 check python version:
 ```
 python --version
 ```
-install python3 for ansible versions +
+install python3 for ansible versions 3.5+..
 
 switch to root:
 ```
@@ -51,7 +51,7 @@ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.r
 Note: this may have  already be done with the upgrade to CentOS 7.9
 
 
-**SSH**
+**SSH**  
 check if SSH is running:
 ```
 ps aux | grep sshd
@@ -66,15 +66,13 @@ sudo systemctl status sshd
 ```
 
 
-**Ansible Nodes**
-Ensure you have the following information:
+**Ansible Nodes**  
+ensure you have the following information:
 * Ansible Node IP address - 10.0.0.2
 * account credentials to SSH
 * Python 2.7+ / 3.5+ is installed on Node
 
-
 ---
-
 
 #### <font color='red'>Install Ansible Controller</font>
 The next step is to install Ansible controller: 
@@ -192,7 +190,7 @@ ssh 10.0.0.2
 ```
 Note: passwordless authenticated connection.
 
-**update Inventory file**
+**update Inventory file**  
 change directory:
 ```
 cd /etc/ansible
@@ -221,7 +219,7 @@ look for ping pong..  & check for python
 
 * set PasswordAuthentication yes
 
-
+**add ansadmin**  
 SSH into ansible node from controller:
 ```
 ssh 10.0.0.2
@@ -241,6 +239,8 @@ change password:
 passwd ansadmin
 new password: ansadmin123
 ```
+
+**root priviledges**  
 ensure ansadmin has root priviledges :
 ```
 visudo
@@ -254,19 +254,20 @@ add the following line to bottom of the file:
 ansadmin  ALL=(ALL)     NOPASSWD: ALL
 ```
 save..
+
+**PasswordAuthentication**  
 implement password authentication across the nodes:
 ```
 nano /etc/ssh/sshd_config
 ```
 uncomment PasswordAuthentication yes
-```
+
 restart service:
 ```
 service sshd restart
 ```
 
 ---
-
 
 #### <font color='red'>Ansible Directory</font>
 The next step is to create Kubernetes cluster: 
