@@ -19,6 +19,7 @@ In this lab we're going to:
 * switch to ansadmin user to generate ssh keys
 
 * update inventory file with IPs on nodes
+
 </br>
 
 **add ansadmin**  
@@ -35,6 +36,7 @@ change password:
 passwd ansadmin
 new password: ansadmin123
 ```
+
 </br>
 
 **root priviledges**  
@@ -51,6 +53,7 @@ add the following line to bottom of the file:
 ansadmin  ALL=(ALL)     NOPASSWD: ALL
 ```
 save..
+
 </br>
 
 **PasswordAuthentication**  
@@ -64,6 +67,7 @@ restart service:
 ```
 service sshd restart
 ```
+
 </br>
 
 **generate ssh keys**  
@@ -102,6 +106,7 @@ ssh 10.0.0.2
 ssh 10.0.0.3
 ```
 Note: passwordless authenticated connection.
+
 </br>
 
 **update Inventory file**  
@@ -138,6 +143,7 @@ ansible 10.0.0.2:10.0.0.3 -m ping
 * ensure it has root priviledges
 
 * set PasswordAuthentication yes
+
 </br>
 
 **add ansadmin**  
@@ -160,6 +166,7 @@ change password:
 passwd ansadmin
 new password: ansadmin123
 ```
+
 </br>
 
 **root priviledges**  
@@ -176,6 +183,8 @@ add the following line to bottom of the file:
 ansadmin  ALL=(ALL)     NOPASSWD: ALL
 ```
 save..
+
+</br>
 
 **PasswordAuthentication**  
 implement password authentication across the nodes:
