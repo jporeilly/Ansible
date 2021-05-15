@@ -1,4 +1,4 @@
-## <font color='red'>2.1 Ansible Directory</font>
+## <font color='red'> 1.1 Kustomize </font>
 Kustomize lets you lets you create an entire Kubernetes application out of individual pieces — without touching the YAML configuration filesfor the individual components.  For example, you can combine pieces from different sources, keep your customizations — or kustomizations, as the case may be — in source control, and create overlays for specific situations. 
 
 
@@ -28,46 +28,20 @@ minikube delete
 ---
 
 
-#### <font color='red'>Ansible Directory</font>
+#### <font color='red'> 1.1.1 K8s Cluster </font>
 The next step is to create Kubernetes cluster: 
-* host file
-* working directory
+* install minikube
+* check kustomize
 * deploy nginx app with kubectl
 
-tree the ansible directory:
+start minikube:
 ```
-tree /etc/ansible
+minikube start
 ```
-ping your host:
+minikube tunnel:
 ```
-ansible all -m ping
+minikube tunnel
 ```
-Note: the inventory file be called anything..  its referenced in the ansible.cfg
-```
-cat /etc/ansible.cfg | head -20
-```
-Note: paths to directories
-
-lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
-```
-mkdir projects/demo
-```
-change to projects/demo directory:
-```
-cd projects/demo
-```
-now copy over ansible directory:
-```
-cp -rpP /etc/ansible/* .
-```
-Note: now flexibile on refencing different node IPs for different projects..
-
-
-
-
-
-
-
 verify kustomize:
 ```
 kustomize version

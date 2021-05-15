@@ -1,14 +1,13 @@
-## <font color='red'> 1.1 Installation of Ansible </font>
-Kustomize lets you lets you create an entire Kubernetes application out of individual pieces — without touching the YAML configuration filesfor the individual components.  For example, you can combine pieces from different sources, keep your customizations — or kustomizations, as the case may be — in source control, and create overlays for specific situations. 
+## <font color='red'> 1.1 Installation & Configeration of Ansible</font>
+Ansible is an open source IT Configuration Management, Deployment & Orchestration tool. It aims to provide large productivity gains to a wide variety of automation challenges. This tool is very simple to use yet powerful enough to automate complex multi-tier IT application environments. 
 
-
-And it is part of Kubernetes 1.14 or later. Kustomize enables you to do that by creating a file that ties everything together, or optionally includes “overrides” for individual parameters.
 
 In this lab we're going to:
-* install minikube
-* check kustomize
-* deploy nginx app with kubectl
-* deploy app with kustomize
+* install ansible controller
+* configure ansible controller
+* configure ansible node
+* configure PasswordAuthentication
+* create SSH-keys
 
 ---
 
@@ -19,6 +18,12 @@ The following pre-requisties have to be installed for Ansible Controller on Cent
 
 
 **Python 3**
+check python version:
+```
+python --version
+```
+install python3 for ansible versions +
+
 switch to root:
 ```
 sudo -i
@@ -45,23 +50,34 @@ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.r
 ```
 Note: this may have  already be done with the upgrade to CentOS 7.9
 
+
 **SSH**
 check if SSH is running:
-
+```
 ps aux | grep sshd
-
+```
 check if listening on port 22:
-
+```
 netstat -plant | grep :22
+```
+or check service:
+```
+sudo systemctl status sshd
+```
+
+
+**Ansible Nodes**
+Ensure you have the following information:
+* Ansible Node IP address - 10.0.0.2
+* account credentials to SSH
+* Python 2.7+ / 3.5+ is installed on Node
+
 
 ---
 
 
 #### <font color='red'>Install Ansible Controller</font>
-The next step is to create Kubernetes cluster: 
-* install minikube
-* check kustomize
-* deploy nginx app with kubectl
+The next step is to install Ansible controller: 
 
 ensure you're root:
 ```
@@ -93,12 +109,19 @@ Note: these are the config files.
 
 #### <font color='red'>Ansible Controller Configuration</font>
 * add an ansadmin user to ansible controller
+* ensure it has root priviledges
 
+* set PasswordAuthentication yes
+* switch to ansadmin user to generate ssh keys
+
+* update inventory file with IPs on nodes
+
+**add ansadmin**  
 ensure you're root:
 ```
 sudo su -
 ```
-create ansadmin user:
+add ansadmin account:
 ```
 useradd ansadmin
 ```
@@ -108,8 +131,175 @@ passwd ansadmin
 new password: ansadmin123
 ```
 
+**root priviledges**  
+ensure ansadmin has root priviledges :
+```
+visudo
+```
+or
+```
+nano /etc/sudoers
+```
+add the following line to bottom of the file:
+```
+ansadmin  ALL=(ALL)     NOPASSWD: ALL
+```
+save..
+
+**PasswordAuthentication**  
+implement password authentication across the nodes:
+```
+nano /etc/ssh/sshd_config
+```
+uncomment PasswordAuthentication yes
+
+restart service:
+```
+service sshd restart
+```
+
+**generate ssh keys**  
+switch to ansadmin user:
+```
+sudo su ansadmin
+cd
+```
+create keys:
+```
+ssh-keygen
+```
+just hit enter...
+check ssh key:
+```
+ls -al
+```
+Note: now have a .ssh
+change directory to .ssh
+```
+cd .ssh
+ls -lrt
+```
+Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
+copy key over to node:
+```
+ssh-copy-id 10.0.0.2
+```
+password: ansadmin123
+
+now check you can log in:
+```
+ssh 10.0.0.2
+```
+Note: passwordless authenticated connection.
+
+**update Inventory file**
+change directory:
+```
+cd /etc/ansible
+ls -al
+```
+edit hosts file:
+```
+sudo nano hosts
+```
+add the node IP: 10.0.0.2 to the top of the file
+check its been added:
+```
+cat hosts | head -10
+```
+check connectivity:
+```
+ansible all -m ping
+```
+look for ping pong..  & check for python
+
 ---
 
 #### <font color='red'>Ansible Node Configuration</font>
 * add ansadmin to node
-* ensure it has root
+* ensure it has root priviledges
+
+* set PasswordAuthentication yes
+
+
+SSH into ansible node from controller:
+```
+ssh 10.0.0.2
+username: centos
+password: centos
+```
+ensure you're root:
+```
+sudo su -
+```
+add ansadmin account:
+```
+useradd ansadmin
+```
+change password:
+```
+passwd ansadmin
+new password: ansadmin123
+```
+ensure ansadmin has root priviledges :
+```
+visudo
+```
+or
+```
+nano /etc/sudoers
+```
+add the following line to bottom of the file:
+```
+ansadmin  ALL=(ALL)     NOPASSWD: ALL
+```
+save..
+implement password authentication across the nodes:
+```
+nano /etc/ssh/sshd_config
+```
+uncomment PasswordAuthentication yes
+```
+restart service:
+```
+service sshd restart
+```
+
+---
+
+
+#### <font color='red'>Ansible Directory</font>
+The next step is to create Kubernetes cluster: 
+* host file
+* working directory
+* deploy nginx app with kubectl
+
+tree the ansible directory:
+```
+tree /etc/ansible
+```
+ping your host:
+```
+ansible all -m ping
+```
+Note: the inventory file be called anything..  its referenced in the ansible.cfg
+```
+cat /etc/ansible.cfg | head -20
+```
+Note: paths to directories
+
+lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
+```
+mkdir projects/demo
+```
+change to projects/demo directory:
+```
+cd projects/demo
+```
+now copy over ansible directory:
+```
+cp -rpP /etc/ansible/* .
+```
+Note: now flexibile on refencing different node IPs for different projects..
+
+---
