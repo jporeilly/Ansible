@@ -101,4 +101,9 @@ Note: these are the configuration files.
 
   > for further information: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#
 
+clean up:
+```
+sudo yum remove ansible -y
+```
+
 ---
