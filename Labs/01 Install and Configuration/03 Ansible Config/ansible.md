@@ -14,6 +14,7 @@ In this lab we're going to:
 * working directory
 
 * disable HOSTS checking
+
 </br>
 
 **hosts**  
@@ -21,7 +22,7 @@ tree the ansible directory:
 ```
 tree /etc/ansible
 ```
-ping your host:
+ping your nodes:
 ```
 ansible all -m ping
 ```
@@ -36,9 +37,25 @@ edit hosts - inventory - file:
 ```
 nano /etc/hosts
 ```
+you can 'group' the nodes to you're required configuration:
+```
+10.0.0.2
+10.0.0.3
+
+[group1]
+10.0.0.2
+
+[group2]
+10.0.0.3
+```
+save..
+ping your node(s):
+```
+ansible all -m ping
+```
 
 
-
+---
 
 
 
@@ -74,6 +91,7 @@ ansible all -m ping -i inventory # references renamed inventory file.
 ---
 
 #### <font color='red'>Disable Host checking</font>
+This will help automate the process of logging authenticated users onto the nodes.  
 * temporary disable 
 * uncomment host_key_checking in ansible.cfg
 
