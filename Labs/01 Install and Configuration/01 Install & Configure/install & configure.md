@@ -6,8 +6,13 @@ In this lab we're going to:
 * install ansible controller
 * configure ansible controller
 * configure ansible node
+
 * configure PasswordAuthentication
 * create SSH-keys
+
+* change working directories
+
+*disable HOST checking
 
 ---
 
@@ -270,10 +275,8 @@ service sshd restart
 ---
 
 #### <font color='red'>Ansible Directory</font>
-The next step is to create Kubernetes cluster: 
 * host file
 * working directory
-* deploy nginx app with kubectl
 
 tree the ansible directory:
 ```
@@ -291,16 +294,53 @@ Note: paths to directories
 
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
-mkdir projects/demo
+mkdir ansible_projects/demo
 ```
-change to projects/demo directory:
+change to ansible_projects/demo directory:
 ```
-cd projects/demo
+cd ansible_projects/demo
 ```
 now copy over ansible directory:
 ```
 cp -rpP /etc/ansible/* .
 ```
 Note: now flexibile on refencing different node IPs for different projects..
+```
+ls -lrt
+```
+take ownership of files:
+```
+chown -R ansadmin *
+```
+if you different 'inventory' files then you can run:
+```
+ansible all -m ping -i inventory # references renamed inventory file.
+```
 
 ---
+
+#### <font color='red'>Disable Host checking</font>
+* temporary disable 
+* uncomment host_key_checking in ansible.cfg
+
+ensure you're in the ansible_projects/demo directory:
+```
+cd ansible_projects/demo
+ls -lrt
+```
+to temporary disable HOST checking:
+```
+export ANSIBLE_HOST_KEY_CHECKING=False
+```
+edit ansible.cfg:
+```
+cat ansible.cfg | grep -i host_key_
+nano ansible.cfg
+```
+uncomment: host_key_checking = False
+
+check results:
+
+ansible all -m ping
+
+Note: doesnt ask whether you want to connect..
