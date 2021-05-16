@@ -109,6 +109,25 @@ Note: passwordless authenticated connection.
 
 </br>
 
+if you wish to include localhost in your list of managed nodes:
+
+remove authorized keys:
+```
+cd  .ssh/
+ls -l
+rm -rf authorized_keys
+```
+connect to localhost:
+```
+ssh localhost
+```
+copy key
+```
+ssh-copy-id localhost
+```
+
+</br>
+
 **update Inventory file**  
 change directory:
 ```

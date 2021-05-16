@@ -54,10 +54,7 @@ ping your node(s):
 ansible all -m ping
 ```
 
-
 ---
-
-
 
 </br>
 
