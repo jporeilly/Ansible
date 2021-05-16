@@ -116,3 +116,5 @@ check results:
 ansible all -m ping
 
 Note: doesnt ask whether you want to connect..
+
+---
