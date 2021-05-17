@@ -13,7 +13,8 @@ In this lab we're going to:
 * ansible.cfg - Fork
 
 * transfer a file
-
+* create / delete files & directories on Nodes
+* root priviledges
 
 </br>
 
@@ -74,13 +75,18 @@ edit ansible.cfg:
 sudo nano projects/demo/ansible.cfg
 ```
 The default value: Fork=5. If you change to 1 then executes in sequentially according to hosts file.
+you can also add as an argument:
+```
+ansible [Group] -a "/sbin/reboot" -f 12
+```
+Note: will overide default and reboot 12 [Group] servers at a time..
 
 ---
 
 #### <font color='red'>Download file from Node to Controller</font>
 Transfer a file using ansible ad-hoc commands.
 
-Syntax: ansible [-i inventory file] <servers> -m fetch -a "src=/souce/file/path  dest=/dest/location"
+Syntax: ansible [-i inventory file] <servers> -m fetch -a "src=/souce/file/path  dest=/dest/location arguments"
 
 On our Node1:
 ```
@@ -90,8 +96,9 @@ cat transfer_file.txt
 ```
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
+ansible 10.0.0.2 -m fetch -a "src=/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
 ```
+Note: look at the response
 on the ansible controller:
 ```
 tree downloads/
@@ -104,12 +111,59 @@ ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt
 ```
 but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
 
-on the ansible controller:
+lets delete folder on ansible controller:
+```
+rm -rf downloads
 ```
 
-ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}} flat=yes"
+on the ansible controller:
+```
+ansible all -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}}_transfer_file.txt flat=yes"
 ```
 on the ansible controller:
 ```
 tree downloads/
 ```
+
+---
+
+#### <font color='red'>Create / Delete files / directory on Nodes</font>
+Create / delete files / directories on Node.
+
+</br>
+
+**create**
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to/file/file.txt state=touch"
+
+on the ansible controller:
+```
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+```
+Note: look at the response..  
+can also set the mode, owner, etc..  any of the arguments:
+```
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/new_hello.txt state=touch mode=777"
+```
+Note: look at the response.. mode changed
+
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/directory/sub/ state=directory"
+
+
+If you require root priviledges:
+
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to/file/file.txt state=touch" -b
+
+</br>
+
+**delete**
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.txt state=absent"
+
+on the ansible controller:
+```
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+```
+Note: look at the response..
+
+  > for further information: https://docs.ansible.com/ansible/2.8/modules/list_of_files_modules.html#
+
