@@ -10,7 +10,7 @@ In this lab we're going to:
 #### <font color='red'>Ansible Ad-hoc Commands</font>
 * modules / tasks
 * node directories
-* fork setting in ansible.cfg
+* ansible.cfg - Fork
 
 * transfer a file
 
@@ -77,5 +77,39 @@ The default value: Fork=5. If you change to 1 then executes in sequentially acco
 
 ---
 
-#### <font color='red'>Execute commands in Parallel v Serial</font>
+#### <font color='red'>Download file from Node to Controller</font>
 Transfer a file using ansible ad-hoc commands.
+
+Syntax: ansible [-i inventory file] <servers> -m fetch -a "src=/souce/file/path  dest=/dest/location"
+
+On our Node1:
+```
+cd ansible_assets
+ls -l
+cat transfer_file.txt
+```
+on the ansible controller:
+```
+ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
+```
+on the ansible controller:
+```
+tree downloads/
+```
+Notice that it replicates the Node directory structure under its IP.
+to flatten the directory run the command:
+on the ansible controller:
+```
+ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+```
+but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
+
+on the ansible controller:
+```
+
+ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}} flat=yes"
+```
+on the ansible controller:
+```
+tree downloads/
+```
