@@ -170,3 +170,29 @@ Note: look at the response..
 ---
 
 #### <font color='red'>Managing Packages</font>
+The Ad-hoc commands are available for yum and apt.
+
+Syntax: ansible [-i inventory file] <servers> -m [package_manager] -a "name=[package] state=present"
+
+on the ansible controller:
+```
+ansible 10.0.0.2 -m yum -a "name=git state=present" -b
+```
+Note: Command checks if git package is installed or not, but does not update it.  You need to have root privildeges. If you wish to update: state=latest
+
+check on Node1:
+```
+git --version
+```
+to remove git:
+on the ansible controller:
+```
+ansible 10.0.0.2 -m yum -a "name=git state=absent" -b
+```
+check on Node1:
+```
+git --version
+```
+  > checkout yum package manager options: https://docs.ansible.com/ansible/2.3/yum_module.html  
+
+  > checkout apt package manager options: https://docs.ansible.com/ansible/2.3/apt_module.html
