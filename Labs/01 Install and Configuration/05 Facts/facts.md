@@ -1,77 +1,34 @@
-## <font color='red'>1.3 Ansible Configuration</font>
-Ansible is an open source IT Configuration Management, Deployment & Orchestration tool. It aims to provide large productivity gains to a wide variety of automation challenges. This tool is very simple to use yet powerful enough to automate complex multi-tier IT application environments. 
+## <font color='red'>1.4 Ansible Facts</font>
+Ansible facts are the host-specific system data and properties to which you connect. A fact can be the IP address, BIOS information, a system's software information, and even hardware information. Ansible facts help the admin to manage the hosts based on their current condition rather than taking the actions directly without having any info about the system's health.
 
 
 In this lab we're going to:
-* change working directories
-
-* disable HOSTS checking
+* default Facts
+* custom Facts
 
 ---
 
-#### <font color='red'>Ansible Directories</font>
-* hosts file
-* working directory
+#### <font color='red'>Ansible Default Facts</font>
+You can gather Facts using the setup command.
 
-* disable HOSTS checking
 
-</br>
+Syntax: ansible [-i inventory file] <servers> -m setup -a "filter=[value]"
 
-**hosts**  
-tree the ansible directory:
+on the ansible controller:
 ```
-tree /etc/ansible
+ansible 10.0.0.2 -m setup
 ```
-ping your nodes:
-```
-ansible all -m ping
-```
-Note: the inventory file be called anything..  its referenced in the ansible.cfg
-```
-cat /etc/ansible.cfg | head -20
-```
-Note: paths to directories
-manually entering IPs or FQDNs can be a pain...  You can reference 'grouped' nodes..
+Note: returns all the facts about Node1..
 
-edit hosts - inventory - file:
+to return Facts just on mounts:
 ```
-nano /etc/hosts
-```
-you can 'group' the nodes to you're required configuration:
-```
-10.0.0.2
-10.0.0.3
-
-[group1]
-localhost
-10.0.0.2
-
-[group2]
-10.0.0.3
-
-[group3]
-group1
-group2
-```
-save..
-ping your group node(s):
-```
-ansible group2 -m ping
-```
-could also reference groups:
-```
-ansible group1:group2 -m ping
-```
-can also group groups:
-```
-ansible group3 -m ping
+ansible 10.0.0.2 -m setp -a "filter=ansible_mounts"
 ```
 
 ---
 
-</br>
+#### <font color='red'>Ansible Custom Facts</font>
 
-**working directories**  
 
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
