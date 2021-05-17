@@ -28,66 +28,45 @@ ansible 10.0.0.2 -m setp -a "filter=ansible_mounts"
 ---
 
 #### <font color='red'>Ansible Custom Facts</font>
+You can define three types of custom facts in Ansible.
+* Global facts: These facts are accessible from every host in your inventory file.
+* Group facts: These facts are only accessible from a specific set of hosts or a host group.
+* Host facts: These facts are only accessible from a particular host.
 
 
-lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
+lets create a projects directory
 ```
-mkdir ansible_projects/demo
+cd ansible_projects
+mkdir -pv custom_facts/{playbooks,host_vars,group_vars}
 ```
-change to ansible_projects/demo directory:
+change to ansible_projects/custom_facts directory:
 ```
-cd ansible_projects/demo
+cd ansible_projects/custom_facts
 ```
-now copy over ansible directory:
+create an ansible.cfg:
 ```
-cp -rpP /etc/ansible/* .
-```
-Note: now flexibile on refencing different node IPs for different projects..
-The projects could have different ansible.cfg files..  as there are several ansible.cfg files, there's a priority.
-* ANSIBLE_CONFIG - env variable
-* ./ansible.cfg - current directory
-* ~./ansible.cfg - home directory
-* /etc/ansible.cfg - default directory
-```
-ls -lrt
-```
-take ownership of files:
-```
-chown -R ansadmin *
-```
-if you've renamed - hosts - 'inventory' files then you can run:
-```
-ansible all -m ping -i inventory # references renamed inventory file.
-```
-
-
----
-
-#### <font color='red'>Disable Host checking</font>
-This will help automate the process of logging authenticated users onto the nodes.  
-* temporary disable 
-* uncomment host_key_checking in ansible.cfg
-
-ensure you're in the ansible_projects/demo directory:
-```
-cd ansible_projects/demo
-ls -lrt
-```
-to temporary disable HOST checking:
-```
-export ANSIBLE_HOST_KEY_CHECKING=False
-```
-edit ansible.cfg:
-```
-cat ansible.cfg | grep -i host_key_
 nano ansible.cfg
 ```
-uncomment: host_key_checking = False
+type in the following lines your ansible.cfg file:
+```
+[defaults]
+inventory           = hosts
+host_key_checking   = False
+```
+create an Ansible inventory file hosts:
+```
+nano hosts
+```
+add the Nodes:
+```
+10.0.0.2
+10.0.0.3
 
-check results:
+[all:vars]
+web_url=https://learning.lumada.hitachivantara.com/
 ```
-ansible all -m ping
+save..
+
 ```
-Note: doesnt ask whether you want to connect..
 
 ---
