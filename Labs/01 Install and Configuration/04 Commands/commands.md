@@ -196,3 +196,23 @@ git --version
   > checkout yum package manager options: https://docs.ansible.com/ansible/2.3/yum_module.html  
 
   > checkout apt package manager options: https://docs.ansible.com/ansible/2.3/apt_module.html
+
+  ---
+
+#### <font color='red'>Command Module</font>
+If you forget to include a module the default is command.
+
+on the ansible controller:
+```
+ansible all -a "uptime"
+```
+If you use command, you cant use some variables and operators.  The command is not executed through a shell.
+on the ansible controller:
+```
+ansible 10.0.0.2 -m -a "ls > test.txt"
+```
+Note: it will fail..  but..
+on the ansible controller:
+```
+ansible 10.0.0.2 -m shell -a "ls > test.txt"
+```
