@@ -12,7 +12,7 @@ In this lab we're going to:
 * node directories
 * ansible.cfg - Fork
 
-* transfer a file
+* transfer copy a file
 * create / delete files & directories on Nodes
 * root priviledges
 
@@ -83,10 +83,10 @@ Note: will overide default and reboot 12 [Group] servers at a time..
 
 ---
 
-#### <font color='red'>Download file from Node to Controller</font>
-Transfer a file using ansible ad-hoc commands.
+#### <font color='red'>Download / Copy file from Node to Controller</font>
+Transfer a file using ansible ad-hoc commands. Copy uses SCP (Secure Copy Protocol) to copy files to multiple nodes in parallel.
 
-Syntax: ansible [-i inventory file] <servers> -m fetch -a "src=/souce/file/path  dest=/dest/location arguments"
+Syntax: ansible [-i inventory file] <servers> -m -a fetch / copy "src=/souce/file/path  dest=/dest/location arguments"
 
 On our Node1:
 ```
@@ -96,7 +96,7 @@ cat transfer_file.txt
 ```
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src=/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
+ansible 10.0.0.2 -m -a fetch "src=/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
 ```
 Note: look at the response
 on the ansible controller:
@@ -107,7 +107,7 @@ Notice that it replicates the Node directory structure under its IP.
 to flatten the directory run the command:
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+ansible 10.0.0.2 -m -a fetch "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
 ```
 but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
 
@@ -118,8 +118,8 @@ rm -rf downloads
 
 on the ansible controller:
 ```
-ansible all -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
-ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}}_transfer_file.txt flat=yes"
+ansible all -m -a fetch "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+ansible 10.0.0.2 -m -a fetch  "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}}_transfer_file.txt flat=yes"
 ```
 on the ansible controller:
 ```
@@ -134,36 +134,39 @@ Create / delete files / directories on Node.
 </br>
 
 **create**
-Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to/file/file.txt state=touch"
+Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt state=touch"
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+ansible 10.0.0.2 -m -a file "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
 ```
 Note: look at the response..  
 can also set the mode, owner, etc..  any of the arguments:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/new_hello.txt state=touch mode=777"
+ansible 10.0.0.2 -m -a file "path=/home/ansadmin/ansible_assets/new_hello.txt state=touch mode=777"
 ```
 Note: look at the response.. mode changed
 
-Syntax: ansible [-i inventory file] <servers> -m file -a "path=/directory/sub/ state=directory"
+Syntax: ansible [-i inventory file] <servers> -m -a file "path=/directory/sub/ state=directory"
 
 
 If you require root priviledges:
 
-Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to/file/file.txt state=touch" -b
+Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt state=touch" -b
 
 </br>
 
 **delete**
-Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.txt state=absent"
+Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to /file/file.txt state=absent"
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+ansible 10.0.0.2 -m -a file "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
 ```
 Note: look at the response..
 
   > for further information: https://docs.ansible.com/ansible/2.8/modules/list_of_files_modules.html#
 
+---
+
+#### <font color='red'>Managing Packages</font>

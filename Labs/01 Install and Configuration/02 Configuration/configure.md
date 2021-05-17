@@ -154,7 +154,10 @@ for a specfic node(s):
 ansible 10.0.0.2 -m ping
 ansible 10.0.0.2:10.0.0.3 -m ping
 ```
-
+if you want to list your Nodes:
+```
+ansible group3 -m ping --list-hosts
+```
 ---
 
 #### <font color='red'>Ansible Node Configuration</font>
