@@ -80,12 +80,12 @@ create keys:
 ```
 ssh-keygen
 ```
-just hit enter...
+just hit enter...  
 check ssh key:
 ```
 ls -al
 ```
-Note: now have a .ssh
+Note: now have a .ssh  
 change directory to .ssh
 ```
 cd .ssh
@@ -97,7 +97,7 @@ copy key over to node:
 ssh-copy-id 10.0.0.2
 ssh-copy-id 10.0.0.3
 ```
-password: ansadmin123
+password: ansadmin123  
 Only the public key is copied to the server. The private key should never be copied to another machine.
 
 now check you can log in:
