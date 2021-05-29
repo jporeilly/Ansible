@@ -9,10 +9,19 @@ In this lab we're going to:
 
 #### <font color='red'>Pre-requisties</font> 
 The following pre-requisties have to be installed for Ansible Controller on CentOS 7:
+* Developent Tools
 * Python 3.8+
 * check SSH
 
 </br>
+
+**Development Tools**
+not really required but useful:
+need to be root:
+```
+yum groupinstall -y "Development Tools" && yum install gcc openssl-devel bzip2-devel libffi-devel -y
+```
+
 
 **Python 3**  
 check python version:
@@ -32,6 +41,12 @@ yum update -y
 install python:
 ```
 yum install -y python3
+```
+set as default:
+```
+alternatives --install /usr/bin/python python /usr/bin/python2 50
+alternatives --install /usr/bin/python python /usr/bin/python3.6 60
+alternatives --config python
 ```
 verify:
 ```
@@ -100,6 +115,7 @@ Note: these are the configuration files.
 * ansible.cfg
 
   > for further information: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#
+
 
 clean up:
 ```

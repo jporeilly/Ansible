@@ -61,7 +61,7 @@ implement password authentication across the nodes:
 ```
 nano /etc/ssh/sshd_config
 ```
-uncomment PasswordAuthentication yes
+uncomment: PasswordAuthentication yes
 
 restart service:
 ```
@@ -98,7 +98,7 @@ ssh-copy-id 10.0.0.2
 ssh-copy-id 10.0.0.3
 ```
 password: ansadmin123  
-Only the public key is copied to the server. The private key should never be copied to another machine.
+only the public key is copied to the server. The private key should never be copied to another machine.
 
 now check you can log in:
 ```
