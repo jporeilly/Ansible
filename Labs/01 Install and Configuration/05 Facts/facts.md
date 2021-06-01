@@ -9,7 +9,7 @@ In this lab we're going to:
 ---
 
 #### <font color='red'>Ansible Default Facts</font>
-You can gather Facts using the setup command.
+You can gather Facts using the setup command - run as default with Playbooks.
 
 
 Syntax: ansible [-i inventory file] <servers> -m setup -a "filter=[value]"
@@ -47,12 +47,14 @@ create an ansible.cfg:
 ```
 nano ansible.cfg
 ```
-type in the following lines your ansible.cfg file:
+copy the following lines your ansible.cfg file:
 ```
 [defaults]
 inventory           = hosts
 host_key_checking   = False
 ```
+
+**Global Facts**
 create an Ansible inventory file hosts:
 ```
 nano hosts
@@ -67,6 +69,54 @@ web_url=https://learning.lumada.hitachivantara.com/
 ```
 save..
 
+create a new playbook:
 ```
+nano playbooks/print_global_fact.yaml
+```
+copy the following lines:
+```
+- hosts: all
+  user: ansible
+  tasks:
+    - name: Print the value of global fact 'web_url'
+      debug:
+        msg: 'Web URL: {{web_url}}'
+```
+save..
+
+run playbook:
+```
+ansible-playbook playbooks/print_global_fact.yaml
+```
+Note: all the hosts in my inventory file can access the global fact web_url. Best practice is to add global facts in a separate file. This way, you can keep the inventory file clean.
+
+remove the global facts from the host’s inventory file:
+```
+nano hosts
+```
+then remove:
+```
+[all:vars]
+web_url=https://learning.lumada.hitachivantara.com/
+```
+save..
+
+create a new file all in the group_vars/ directory:
+```
+nano group_vars/all
+```
+add the global fact web_url, type in the following line in the group_vars/all file:
+```
+web_url: https://learning.lumada.hitachivantara.com/
+```
+save..
+
+run playbook:
+```
+ansible-playbook playbooks/print_global_fact.yaml
+```
+
+
+
 
 ---

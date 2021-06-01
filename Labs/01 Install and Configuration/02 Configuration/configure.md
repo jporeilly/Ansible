@@ -4,7 +4,7 @@ Ansible is an open source IT Configuration Management, Deployment & Orchestratio
 
 In this lab we're going to:
 * configure ansible controller
-* configure ansible node
+* configure ansible nodes
 
 * configure PasswordAuthentication
 * create SSH-keys
@@ -160,8 +160,8 @@ ansible group3 -m ping --list-hosts
 ```
 ---
 
-#### <font color='red'>Ansible Node Configuration</font>
-* add ansadmin to node
+#### <font color='red'>Ansible Node(s) Configuration</font>
+* add ansadmin to nodes
 * ensure it has root priviledges
 
 * set PasswordAuthentication yes
