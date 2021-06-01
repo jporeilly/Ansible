@@ -1,4 +1,4 @@
-## <font color='red'>1.4 Ansible Facts</font>
+## <font color='red'>1.5 Ansible Facts</font>
 Ansible facts are the host-specific system data and properties to which you connect. A fact can be the IP address, BIOS information, a system's software information, and even hardware information. Ansible facts help the admin to manage the hosts based on their current condition rather than taking the actions directly without having any info about the system's health.
 
 
@@ -8,8 +8,8 @@ In this lab we're going to:
 
 ---
 
-#### <font color='red'>Ansible Default Facts</font>
-You can gather Facts using the setup command - run as default with Playbooks.
+#### <font color='red'>Ansible Default Facts & Variables</font>
+You can gather Variables / Facts using the setup command - run as default with Playbooks.
 
 
 Syntax: ansible [-i inventory file] <servers> -m setup -a "filter=[value]"
@@ -20,9 +20,18 @@ ansible 10.0.0.2 -m setup
 ```
 Note: returns all the facts about Node1..
 
-to return Facts just on mounts:
+to return Variable / Facts just on mounts:
 ```
 ansible 10.0.0.2 -m setp -a "filter=ansible_mounts"
+```
+you can also display the variable value:
+```
+ansible all -m debug -a "var=inventory_hostname"
+```
+can also list groups:
+```
+ansible localhost -m debug -a "var=groups"
+ansible localhost -m debug -a "var=groups.keys()" # returns just group name
 ```
 
 ---
