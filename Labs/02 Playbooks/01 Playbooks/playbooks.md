@@ -23,23 +23,24 @@ A playbook runs in order from top to bottom. Within each play, tasks also run in
 * the managed nodes to target, using a pattern
 * at least one task to execute
 
-create the following file and save in ansible_projects/playbooks as test.yaml:
+create the following file and save in ansible_projects/playbooks as wget.yaml:
 ```
-   name: install and configure DB
-   hosts: testServer
-   become: yes
+nano test.yaml
+```
+copy the following:
+```
+---
+ - hosts: all
+   become: true
+   name: install wget
 
-   vars: 
-      oracle_db_port_value : 1521
-   
    tasks:
-   -name: Install the Oracle DB
-      yum: <code to install the DB>
-    
-   -name: Ensure the installed service is enabled and running
-   service:
-      name: <your service name>
+   -name: install wget
+      yum: name=wget state=present
 ```
+save..
+
+
 **name**  
 This tag specifies the name of the Ansible playbook. As in what this playbook will be doing. Any logical name can be given to the playbook.
 
@@ -55,6 +56,67 @@ Vars tag lets you define the variables which you can use in your playbook. Usage
 **tasks**  
 All playbooks should contain tasks or a list of tasks to be executed. Tasks are a list of actions one needs to perform. A tasks field contains the name of the task. This works as the help text for the user. It is not mandatory but proves useful in debugging the playbook. Each task internally links to a piece of code called a module. A module that should be executed, and arguments that are required for the module you want to execute.
 
+to run the playbook:
+```
+ansible-playbook wget.yaml
+```
+can also run multiple tasks against different hosts:
+```
+nano wget.yaml
+```
+copy the following:
+```
+---
+ - hosts: 10.0.0.2
+   become: true
+   name: install httpd
 
+   tasks:
+   -name: install httpd
+      yum: name=httpd state=present 
+ 
+ - hosts: 10.0.0.3
+   become: true
+   name: install wget
+
+   tasks:
+   -name: install wget
+      yum: name=wget state=present
+```
+save..
+
+to run the playbook:
+```
+ansible-playbook wget.yaml
+```
+lets clean up:
+```
+nano wget.yaml
+```
+copy the following:
+```
+---
+ - hosts: 10.0.0.2
+   become: true
+   name: install httpd
+
+   tasks:
+   -name: install httpd
+      yum: name=httpd state=absent 
+ 
+ - hosts: 10.0.0.3
+   become: true
+   name: install wget
+
+   tasks:
+   -name: install wget
+      yum: name=wget state=absent
+```
+save..
+
+to run the playbook:
+```
+ansible-playbook wget.yaml
+```
 
 ---
