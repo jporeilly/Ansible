@@ -167,7 +167,7 @@ can test yaml with a dry-run:
 ```
 if you need a verbose output:
 ```
-./wget.yaml -v #or -vv
+./wget.yaml -v #or just increase number of -v's for detailed logs
 ```
 
 ---
