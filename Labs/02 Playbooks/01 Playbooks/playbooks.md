@@ -9,6 +9,8 @@ Playbooks are designed to be human-readable and are developed in a basic text la
 
 In this lab we're going to:
 * create a simple playbook
+* add ansible-playbook path
+* syntax checking
 
 
   > Ansible Playbook examples: https://github.com/ansible/ansible-examples
@@ -47,8 +49,8 @@ This tag specifies the name of the Ansible playbook. As in what this playbook wi
 **hosts**  
 This tag specifies the lists of hosts or host group against which we want to run the task. The hosts field/tag is mandatory. It tells Ansible on which hosts to run the listed tasks. The tasks can be run on the same machine or on a remote machine. One can run the tasks on multiple machines and hence hosts tag can have a group of hosts’ entry as well.
 
-**become**
-Ansible allows you to ‘become’ another user, different from the user that logged into the machine (remote user).
+**become**  
+Ansible allows you to ‘become’ another user, different from the user that logged into the machine (remote user). Allows sudo priviledges.
 
 **vars**  
 Vars tag lets you define the variables which you can use in your playbook. Usage is similar to variables in any programming language.
@@ -72,7 +74,7 @@ copy the following:
    name: install httpd
 
    tasks:
-   -name: install httpd
+   - name: install httpd
       yum: name=httpd state=present 
  
  - hosts: 10.0.0.3
@@ -80,7 +82,7 @@ copy the following:
    name: install wget
 
    tasks:
-   -name: install wget
+   - name: install wget
       yum: name=wget state=present
 ```
 save..
@@ -117,6 +119,55 @@ save..
 to run the playbook:
 ```
 ansible-playbook wget.yaml
+```
+
+bit of a pain running command: ansible-playbook, so add command inside of playbook:
+```
+which ansible-playbook
+```
+Note: its something like.. /usr/bin/ansible-playbook
+```
+nano wget.yaml
+```
+copy the following:
+```
+#!/usr/bin/ansible-playbook
+ - hosts: 10.0.0.2
+   become: true
+   name: install httpd
+
+   tasks:
+   name: install httpd
+      yum: name=httpd state=latest
+```
+save..
+
+set permissions:
+```
+chmod +x wget.yaml
+```
+</br>
+
+**syntax-checker**  
+check the yaml syntax:
+```
+./wget.yaml --syntax-check
+```
+Note: the error and fix.
+
+run again:
+```
+./wget.yaml --syntax-check
+```
+Note: if the syntax is correct then the output: playbook: ./wget.yaml
+
+can test yaml with a dry-run:
+```
+./wget.yaml --check
+```
+if you need a verbose output:
+```
+./wget.yaml -v #or -vv
 ```
 
 ---
