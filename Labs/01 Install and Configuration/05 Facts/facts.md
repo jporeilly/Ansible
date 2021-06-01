@@ -115,8 +115,92 @@ run playbook:
 ```
 ansible-playbook playbooks/print_global_fact.yaml
 ```
+Note: all the hosts in my inventory file can access the global fact web_url.
 
 
+**Group Facts**
+open the host’s inventory file
+```
+nano hosts
+```
+add group facts/variables for that host group:
+```
+[web]
+10.0.0.2
+
+[web:vars]
+domain_name=web.learning.lumada.hitachivantara.com/
+database_backend=MySQL
+```
+create a new playbook print_group_facts.yaml in the playbooks/ directory:
+```
+nano playbooks/print_group_facts.yaml
+```
+add the following lines in your print_group_facts.yaml file:
+```
+- hosts: web
+  user: ansible
+  tasks:
+    - name: Print group facts
+      debug:
+        msg: 'Domain Name: {{domain_name}} Database Backend: {{database_backend}}'
+```
+save..
+
+run playbook:
+```
+ansible-playbook playbooks/print_group_fact.yaml
+```
+Note: he hosts in the web group can access the domain_name and database_backend group facts/variables.
+
+
+clean up the inventory file and see how to add group facts/variables in a separate file.
+remove the global facts from the host’s inventory file:
+```
+nano hosts
+```
+then remove:
+```
+[web:vars]
+domain_name=web.learning.lumada.hitachivantara.com/
+database_backend=MySQL
+```
+adding group variables for the web host group, create a new file web (same as the group name) in the group_vars directory:
+```
+nano group_vars/web
+```
+add the group facts domain_name and database_backend for the web host group, add the following lines in the group_vars/web file:
+```
+domain_name=web.learning.lumada.hitachivantara.com/
+database_backend=PgSQL
+```
+save..
+
+run playbook:
+```
+ansible-playbook playbooks/print_group_fact.yaml
+```
+Note: the hosts in the web group can access the domain_name and database_backend group facts/variables.
+
+
+**Hosts Facts**
+open the host’s inventory file
+```
+nano hosts
+```
+add hosts facts/variables for that host:
+```
+[web]
+10.0.0.2   domain_name=web1.learning.lumada.hitachivantara.com database_backend=MySQL
+10.0.0.3   domain_name=web2.learning.lumada.hitachivantara.com database_backend=PgSQL
+```
+save..
+
+run playbook:
+```
+ansible-playbook playbooks/print_group_fact.yaml
+```
+Note: The values are different for each host.
 
 
 ---
