@@ -54,7 +54,9 @@ inventory           = hosts
 host_key_checking   = False
 ```
 
-**Global Facts**
+</br>
+
+**Global Facts**  
 create an Ansible inventory file hosts:
 ```
 nano hosts
@@ -117,8 +119,9 @@ ansible-playbook playbooks/print_global_fact.yaml
 ```
 Note: all the hosts in my inventory file can access the global fact web_url.
 
+</br>
 
-**Group Facts**
+**Group Facts**  
 open the host’s inventory file
 ```
 nano hosts
@@ -182,8 +185,9 @@ ansible-playbook playbooks/print_group_fact.yaml
 ```
 Note: the hosts in the web group can access the domain_name and database_backend group facts/variables.
 
+</br>
 
-**Hosts Facts**
+**Hosts Facts**  
 open the host’s inventory file
 ```
 nano hosts
