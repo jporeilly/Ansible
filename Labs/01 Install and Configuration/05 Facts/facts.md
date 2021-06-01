@@ -200,7 +200,7 @@ run playbook:
 ```
 ansible-playbook playbooks/print_group_fact.yaml
 ```
-Note: The values are different for each host.
+Note: The values are different for each host. You can add host facts/variables in a separate file, as with the global and group facts/variables.
 
 
 ---
