@@ -73,3 +73,4 @@ ansible-playbook custom_variables.yaml
 ---
 
 #### <font color='red'>Data Collections</font>
+Data Collections are used to store multiple data / values.
