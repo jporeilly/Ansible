@@ -5,11 +5,12 @@ Ansible facts are the host-specific system data and properties to which you conn
 In this lab we're going to:
 * default Facts
 * custom Facts
+* introduce Variables
 
 ---
 
-#### <font color='red'>Ansible Default Facts & Variables</font>
-You can gather Variables / Facts using the setup command - run as default with Playbooks.
+#### <font color='red'>Ansible Default Facts</font>
+You can gather Facts / Variables using the setup command - run as default with Playbooks.
 
 
 Syntax: ansible [-i inventory file] <servers> -m setup -a "filter=[value]"
@@ -20,7 +21,7 @@ ansible 10.0.0.2 -m setup
 ```
 Note: returns all the facts about Node1..
 
-to return Variable / Facts just on mounts:
+to return Facts / Variable just on mounts:
 ```
 ansible 10.0.0.2 -m setp -a "filter=ansible_mounts"
 ```
@@ -87,12 +88,13 @@ nano playbooks/print_global_fact.yaml
 copy the following lines:
 ```
 - hosts: all
-  user: ansible
+  user: ansadmin
   tasks:
     - name: Print the value of global fact 'web_url'
       debug:
         msg: 'Web URL: {{web_url}}'
 ```
+Note: to print a message, use debug module with {{}}
 save..
 
 run playbook:
@@ -151,7 +153,7 @@ nano playbooks/print_group_facts.yaml
 add the following lines in your print_group_facts.yaml file:
 ```
 - hosts: web
-  user: ansible
+  user: ansadmin
   tasks:
     - name: Print group facts
       debug:

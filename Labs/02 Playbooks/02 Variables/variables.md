@@ -1,28 +1,18 @@
-## <font color='red'> 2.2 GitHub Actions </font>
-GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone creates a pull request for a repository, you can automatically run a command that executes a software testing script.
+## <font color='red'> 2.2 Variables </font>
+Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including lists and dictionaries. You can define these variables in your playbooks, in your inventory, in re-usable files or roles, or at the command line. You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
 
-  > For further information: https://docs.github.com/en/actions
+After you create variables, either by defining them in a file, passing them at the command line, or registering the return value or values of a task as a new variable, you can use those variables in module arguments, in conditional “when” statements, in templates, and in loops. The ansible-examples github repository contains many examples of using variables in Ansible.
+
+  > For further information: https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html
 
 In this lab we're going to:
 * create a simple GitHub Action
 
-  > MarketPlace for Actions: https://github.com/marketplace?type=actions
 
 
 ---
 
-
-**Pre-requisties:**
-* GitHub Account
-If you want to try these GitHub actions you will require a GitHub account.
-
-  > https://github.com/join
-
-Don't worry if you dont have access as the videos will guide you through the Workflows.
-
----
-
-#### <font color='red'>2.2.1 GitHub Actions</font>
+#### <font color='red'>Custom Variables</font>
 You can set up continuous integration for your project using a workflow template that matches the language and tooling you want to use.
 
 List of GitHub Actions:
