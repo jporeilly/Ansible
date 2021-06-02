@@ -50,7 +50,11 @@ This tag specifies the name of the Ansible playbook. As in what this playbook wi
 This tag specifies the lists of hosts or host group against which we want to run the task. The hosts field/tag is mandatory. It tells Ansible on which hosts to run the listed tasks. The tasks can be run on the same machine or on a remote machine. One can run the tasks on multiple machines and hence hosts tag can have a group of hosts’ entry as well.
 
 **become**  
+<<<<<<< Updated upstream
 Ansible allows you to ‘become’ another user, different from the user that logged into the machine (remote user). Allows sudo priviledges.
+=======
+Ansible allows you to ‘become’ another user, different from the user that logged into the machine (remote user).
+>>>>>>> Stashed changes
 
 **vars**  
 Vars tag lets you define the variables which you can use in your playbook. Usage is similar to variables in any programming language.
