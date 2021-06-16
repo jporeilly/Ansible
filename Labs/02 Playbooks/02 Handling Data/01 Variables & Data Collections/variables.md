@@ -8,15 +8,17 @@ After you create variables, either by defining them in a file, passing them at t
 In this lab we're going to:
 * custom variables
 * data collections
-
-
+* registers
+* prompts
+* read from files
+* magic variables
 
 ---
 
 #### <font color='red'>Custom Variables</font>
 Variables are represented as a key : value pair. The varaible must start with a letter.
 
-create a simple variable:
+create playbook:
 ```
 nano custom_variables.yaml
 ```
@@ -75,7 +77,7 @@ ansible-playbook custom_variables.yaml
 #### <font color='red'>Data Collections</font>
 Data Collections are used to store multiple data / values. The values are stored in a list or sequence [].
 
-create a simple variable to hold a list of values:
+create playbook to hold a list of values:
 ```
 nano data_collection.yaml
 ```
@@ -115,7 +117,7 @@ ansible-playbook data_collection.yaml
 #### <font color='red'>Registers</font>
 You can create variables from the output of an Ansible task with the task keyword register. You can use registered variables in any later tasks in your play.
 
-create a simple variable to hold in a registry:
+create playbook to hold in a registry:
 ```
 nano bash_version.yaml
 ```
@@ -145,7 +147,7 @@ ansible-playbook bash_version.yaml
 #### <font color='red'>Prompts</font>
 If you want your playbook to prompt the user for certain input, add a ‘vars_prompt’ section. Prompting the user for variables lets you avoid recording sensitive data like passwords. In addition to security, prompts support flexibility. For example, if you use one playbook across multiple software releases, you could prompt for the particular release version.
 
-create a some prompt variables:
+create playbook with prompt variables:
 ```
 nano prompts.yaml
 ```
@@ -192,7 +194,7 @@ server_name: localhost
 ```
 save..
 
-create a some file variables:
+create a playbook:
 ```
 nano file_values.yaml
 ```
@@ -212,3 +214,36 @@ run the playbook:
 ```
 ansible-playbook file_values.yaml
 ```
+
+---
+
+#### <font color='red'>Magic Variables</font>
+You can access information about Ansible operations, including the python version being used, the hosts and groups in inventory, and the directories for playbooks and roles, using “magic” variables.
+
+The most commonly used magic variables are hostvars, groups, group_names, and inventory_hostname. With hostvars, you can access variables defined for any host in the play, at any point in a playbook. You can access Ansible facts using the hostvars variable too, but only after you have gathered (or cached) facts.
+
+If you want to configure your database server using the value of a ‘fact’ from another node, or the value of an inventory variable assigned to another node, you can use hostvars in a template or on an action line.
+
+create a playbook:
+```
+nano hostvars.yaml
+```
+add the following:
+```
+---
+- hosts: 10.0.0.1
+  gather_facts: false
+  tasks:
+    - debug:
+        var=inventory_hostname
+        var=hostvars[inventory_hostname] # target server
+```
+
+save..
+run the playbook:
+```
+ansible-playbook hostvars.yaml
+```
+Note: inventory_hostname returns all the variables for all the servers.
+
+---
