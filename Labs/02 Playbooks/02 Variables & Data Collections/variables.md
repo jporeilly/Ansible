@@ -52,7 +52,7 @@ edit the custom_variables.yaml:
    vars:
     x: 23
     float_number: 45.67
-    string: "James OReilly""
+    string: "James OReilly"
     boolean: false
     
    gather_facts: false
