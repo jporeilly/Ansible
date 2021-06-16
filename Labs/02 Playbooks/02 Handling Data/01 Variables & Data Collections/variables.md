@@ -91,16 +91,16 @@ add the following:
     - 'nano'
     - 'httpd'
     - 'nginx'
-    #web_servers: {'Linux': 'httpd', 'ubuntu': 'apache2'}
+    #web_servers: {'CentOS': 'yum', 'Ubuntu': 'apt'}
     web_servers:
-     'Linux': 'httpd'
-     'ubuntu': 'apache2'
+     'CentOS': 'yum'
+     'Ubuntu': 'apt'
    gather_facts: false
    tasks:
    #- debug: var=pakgs[0]
    #- debug: var=web_servers.keys()
-   #- debug: var=web_servers['Linux']
-   #- debug: var=web_servers.get('Linux')
+   #- debug: var=web_servers['CentOS']
+   #- debug: var=web_servers.get('Ubuntu')
 ```
 Note: uncomment and comment some of the lines out so you can see how lists and sequences are resolved.  web_servers use a variable to select a value - a map or dictionary. You can also use an index to reference specific key:value pairs.
 
@@ -133,6 +133,12 @@ add the following:
 ```
 Note: bash_version is retrieved set as a register and then set as a fact (variable) with the stdout argument. split \n outputs as separate lines.  We just need line [0] and split again for line [3] ..  just the version.
 
+save..
+run the playbook:
+```
+ansible-playbook bash_version.yaml
+```
+
 ---
 
 
@@ -154,8 +160,18 @@ add the following:
     - name: password
       prompt: Enter your password 
       private: yes
+      unsafe: yes
    gather_facts: false
    tasks:
    - debug:
       msg: "The username is: {{user_name}} and password is: {{password}}" 
 ```
+Note: If you need to accept special characters, use the unsafe option.
+
+save..
+run the playbook:
+```
+ansible-playbook prompts.yaml
+```
+
+---
