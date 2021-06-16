@@ -152,7 +152,7 @@ nano prompts.yaml
 add the following:
 ```
 ---
- - hosts: localhost
+ - hosts: 10.0.0.1
    vars_prompt:
     - name: user_name
       prompt: Enter your user name 
@@ -175,3 +175,40 @@ ansible-playbook prompts.yaml
 ```
 
 ---
+
+#### <font color='red'>Read from files</font>
+When it comes to automation, you might need to read ifferent types of data and files such as csv, txt, etc..
+
+create a text file:
+```
+nano external_values.txt
+```
+add the following:
+```
+key_file: /etc/nginx/ssl/nginx.key
+cert_file: /etc/nginx/ssl/nginx.crt
+conf_file: /etc/nginx/sites-available/default
+server_name: localhost
+```
+save..
+
+create a some file variables:
+```
+nano file_values.yaml
+```
+add the following:
+```
+---
+ - hosts: localhost
+   vars_files: external_values.txt
+   gather_facts: false
+   tasks:
+   - debug:
+     var=server_name
+```
+
+save..
+run the playbook:
+```
+ansible-playbook file_values.yaml
+```
