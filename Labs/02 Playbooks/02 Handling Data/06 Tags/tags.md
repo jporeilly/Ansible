@@ -1,5 +1,5 @@
 ## <font color='red'> 2.6 Tags </font>
-
+If you have a large playbook, it may be useful to run only specific parts of it instead of running the entire playbook. 
 
 #### <font color='red'>Tags</font>
 
