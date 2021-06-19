@@ -74,8 +74,21 @@ service sshd restart
 switch to ansadmin user:
 ```
 sudo su ansadmin
-cd
 ```
+you have a choice here..!  if you have loads of screens then keep the Lab Guide open in centos account.  If you need to download the Lab Guide to the ansadmin account then:
+```
+mkdir Course-Materials
+cd Course-Materials
+sudo git clone http://github.com/jporeilly/Ansible.git Ansible
+sudo chown -R ansadmin Ansible
+```
+in the first Workspace 1, open a Terminal and enter:
+```
+code
+```
+select a color scheme and select Course-Materials/Ansible folder.
+
+
 create keys:
 ```
 ssh-keygen
