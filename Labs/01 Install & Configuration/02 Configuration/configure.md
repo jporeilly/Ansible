@@ -86,10 +86,10 @@ in the first Workspace 1, open a Terminal and enter:
 ```
 code
 ```
-select a color scheme and select Course-Materials/Ansible folder.
+select a color scheme and select Course-Materials/Ansible folder...  
 
 
-create keys:
+next create keys:
 ```
 ssh-keygen
 ```
@@ -105,6 +105,9 @@ cd .ssh
 ls -lrt
 ```
 Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
+
+#### <font color='red'>Configure the Nodes with ansadmin accounts - see next section</font>
+
 copy key over to node:
 ```
 ssh-copy-id 10.0.0.2
