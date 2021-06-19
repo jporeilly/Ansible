@@ -3,15 +3,17 @@ Ansible is an open source IT Configuration Management, Deployment & Orchestratio
 
 
 In this lab we're going to:
-* install ansible controller
+* Install ansible controller
+
+Note: Yum doesn't support Python3
 
 ---
 
 #### <font color='red'>Pre-requisties</font> 
 The following pre-requisties have to be installed for Ansible Controller on CentOS 7:
-* Developent Tools
-* Python 3.8+
-* check SSH
+* Development Tools
+* Python 3.5+
+* Check SSH
 
 </br>
 
@@ -84,7 +86,7 @@ sudo systemctl status sshd
 **Ansible Nodes**  
 ensure you have the following information:
 * Ansible Node IP address - 10.0.0.2 & 10.0.0.3
-* account credentials to SSH
+* Account credentials to SSH
 * Python 2.7+ / 3.5+ is installed on Node(s)
 
 ---

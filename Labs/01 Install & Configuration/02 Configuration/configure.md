@@ -97,7 +97,7 @@ copy key over to node:
 ssh-copy-id 10.0.0.2
 ssh-copy-id 10.0.0.3
 ```
-password: ansadmin123  
+password: ansadmin123 
 only the public key is copied to the server. The private key should never be copied to another machine.
 
 now check you can log in:
