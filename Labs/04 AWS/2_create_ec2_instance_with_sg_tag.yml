@@ -8,9 +8,9 @@
      ec2:
       instance_type: t1.micro
       image: ami-011b3ccf1bd6db744
-      count: 2
+      count: 2 # number of instances
       key_name: ansible_key
-      region: us-east-1
+      region: eu-west-2
       wait: yes 
       #group: DoWithPython
       #group_id: sg-00fe30710bcfff987

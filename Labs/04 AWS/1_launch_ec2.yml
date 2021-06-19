@@ -6,7 +6,7 @@
    tasks:
    - name: Launching EC2 instance with EC2 module 
      ec2:
-      instance_type: t2.micro
-      image: ami-011b3ccf1bd6db744
+      instance_type: t2.micro # select your compute
+      image: ami-011b3ccf1bd6db744 # select your environment
       key_name: ansible_key
       region: eu-west-2 # change the region to your account

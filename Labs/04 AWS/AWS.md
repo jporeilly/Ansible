@@ -2,8 +2,14 @@
 
 
 Pre-requisites:
+* Obtain SSH credentials from the AWS Console
 * Install AWS CLI 2
 * Set Credentials
+
+
+#### <font color='red'> Obtain SSH credentials from AWS Console </font>
+
+
 
 #### <font color='red'> Install & Configure AWS CLI version 2 </font>
 
