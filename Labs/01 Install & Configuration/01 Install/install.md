@@ -19,6 +19,8 @@ The following pre-requisties have to be installed for Ansible Controller on Cent
 not really required but useful:
 need to be root:
 ```
+yum update -y
+sudo -i
 yum groupinstall -y "Development Tools" && yum install gcc openssl-devel bzip2-devel libffi-devel -y
 ```
 
