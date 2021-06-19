@@ -1,11 +1,14 @@
 ## <font color='red'> 2.3 Operators </font>
+Programming languages typically support a set of operators: constructs which behave generally like functions, but which differ syntactically or semantically from usual functions. Common simple examples include arithmetic (addition with +), comparison (with >), and logical operations (such as AND or &&). More involved examples include assignment (usually = or :=), field access in a record or object (usually .), and the scope resolution operator (often ::). Languages usually define a set of built-in operators, and in some cases allow users to add new meanings to existing operators or even define completely new operators.
 
+As already referenced in the variables section, Ansible uses Jinja2 templating to enable dynamic expressions and access to variables. Ansible supports all the operators provided by Jinja2 like math, comparison, logical and other special Jinja2 operators.
 
-#### <font color='red'>Comparasion Operators</font>
+#### <font color='red'>Comparison Operators</font>
+Comparison operators are used to compare between two values.
 
 create playbook:
 ```
-nano comparasion_operators.yaml
+nano comparison_operators.yaml
 ```
 add the following:
 ```
@@ -37,6 +40,11 @@ add the following:
             - "q == r: {{ q == r }}"
 ```
 
+execute the playbook:
+```
+ansible-playbook comparison_operators.yaml
+```
+
 ---
 
 #### <font color='red'>Membership Operators</font>
@@ -62,6 +70,11 @@ add the following:
             - "10 in x: {{ 10 in x }}"
             - "20 not in x: {{ 20 not in x }}"
             - " y not x:  {{ y not in x }}"
+```
+
+execute the playbook:
+```
+ansible-playbook membership_operators.yaml
 ```
 
 ---
@@ -101,6 +114,81 @@ add the following:
             - "my_path is directory: {{my_path is directory}}"
             - "my_path is exists:   {{my_path is exists}}"
             - "my_link_path is link  {{my_link_path is link }}"
+```
+
+execute the playbook:
+```
+ansible-playbook test_operators.yaml
+```
+
+---
+
+#### <font color='red'>Logical Operators</font>
+Logical operators are used to perform logical operations like AND, OR etc.
+
+create playbook:
+```
+nano logical_operators.yaml
+```
+add the following:
+```
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Logical Operators
+    vars:
+      a: 12
+      b: 3
+      c: 5
+    debug:
+      msg: "{{ a }} is > than {{ b }} and {{ a }} is > than {{ c }}"
+    when: a > b and a > c
+```
+
+execute the playbook:
+```
+ansible-playbook logical_operators.yaml
+```
+
+---
+
+
+#### <font color='red'>Special Operators</font>
+Jinja2 provides a set of special operators like filter to perform special operations.
+
+# in : Perform a sequence / mapping containment test. Returns true if the left operand is contained in the right.
+# {{ 1 in [1, 2, 3] }} would, for example, return true.
+# is : Performs a test.
+# | : Applies a filter.
+# ~ : Converts all operands into strings and concatenates them.
+#     {{ "Hello " ~ name ~ "!" }} would return (assuming name is set to 'John') Hello John!.
+# () : Call a callable: {{ post.render() }}. Inside of the parentheses you can use positional arguments and
+#      keyword arguments like in Python: {{ post.render(user, full=true) }}.
+# . / []: Get an attribute of an object.
+
+create playbook:
+```
+nano special_operators.yaml
+```
+add the following:
+```
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Special Operators
+    vars:
+      a: ['bob','deb','alex']
+      b: 'bob'
+    debug:
+      msg: "{{ a ~ ' contains ' ~ b }}"
+    when: b in a
+```
+
+execute the playbook:
+```
+ansible-playbook special_operators.yaml
 ```
 
 ---
