@@ -80,6 +80,7 @@ ansible-playbook membership_operators.yaml
 ---
 
 #### <font color='red'>Test Operators</font>
+Tests in Jinja are a way of evaluating template expressions and returning True or False.
 
 create playbook:
 ```
@@ -157,15 +158,15 @@ ansible-playbook logical_operators.yaml
 #### <font color='red'>Special Operators</font>
 Jinja2 provides a set of special operators like filter to perform special operations.
 
-# in : Perform a sequence / mapping containment test. Returns true if the left operand is contained in the right.
-# {{ 1 in [1, 2, 3] }} would, for example, return true.
-# is : Performs a test.
-# | : Applies a filter.
-# ~ : Converts all operands into strings and concatenates them.
-#     {{ "Hello " ~ name ~ "!" }} would return (assuming name is set to 'John') Hello John!.
-# () : Call a callable: {{ post.render() }}. Inside of the parentheses you can use positional arguments and
-#      keyword arguments like in Python: {{ post.render(user, full=true) }}.
-# . / []: Get an attribute of an object.
+<b> in </b> : Perform a sequence / mapping containment test. Returns true if the left operand is contained in the right.  
+<b> {{ 1 in [1, 2, 3] }} </b>would, for example, return true.  
+<b> is </b>: Performs a test.  
+<b> |</b> : Applies a filter.  
+<b> ~ </b>: Converts all operands into strings and concatenates them.  
+<b> {{ "Hello " ~ name ~ "!" }} </b>would return (assuming name is set to 'John') Hello John!.  
+<b>() </b> : Call a callable: {{ post.render() }}. Inside of the parentheses you can use positional arguments and
+     keyword arguments like in Python: {{ post.render(user, full=true) }}.  
+<b> . / [ ] </b>: Get an attribute of an object.  
 
 create playbook:
 ```
