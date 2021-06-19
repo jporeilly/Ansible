@@ -6,7 +6,7 @@
    tasks:
    - name: Info about ec2 using ec2_instance_facts
      ec2_instance_facts:
-      region: us-east-1
+      region: eu-west-2
       filters:
        "tag:Env": test
      register: ec2_info
@@ -18,7 +18,7 @@
    - name: starting ec2 instance
      ec2:
       instance_ids: "{{item.instance_id}}"
-      region: us-east-1
+      region: eu-west-2
       state: running
       wait: yes
      tags:
@@ -28,7 +28,7 @@
    - name: stopping ec2 instance
      ec2:
       instance_ids: "{{item.instance_id}}"
-      region: us-east-1
+      region: eu-west-2
       state: stopped
       wait: yes
      tags:

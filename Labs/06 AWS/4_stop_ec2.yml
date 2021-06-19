@@ -7,6 +7,6 @@
    - name: starting ec2 instance
      ec2:
       instance_ids: i-006dafad18394c3cb
-      region: us-east-1
+      region: eu-west-2
       state: stopped
       wait: yes

@@ -7,7 +7,7 @@
    - name: starting ec2 instance
      ec2:
       instance_ids: i-0fcd22cda22795df2
-      region: us-east-1
+      region: eu-west-2
       state: running
       wait: yes
      tags:
@@ -16,7 +16,7 @@
    - name: stopping  ec2 instance
      ec2:
       instance_ids: i-0fcd22cda22795df2
-      region: us-east-1
+      region: eu-west-2
       state: stopped
       wait: yes
      tags:
@@ -25,7 +25,7 @@
    - name: terminating ec2 instance
      ec2:
       instance_ids: i-0fcd22cda22795df2
-      region: us-east-1
+      region: eu-west-2
       state: absent
       wait: yes
      tags:
