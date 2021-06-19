@@ -106,7 +106,11 @@ ls -lrt
 ```
 Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
 
-#### <font color='red'>Configure the Nodes with ansadmin accounts - see next section</font>
+</br>
+
+#### <font color='red'><b>Configure the Nodes with ansadmin accounts - see next section</b></font>  
+
+</br>
 
 copy key over to node:
 ```
