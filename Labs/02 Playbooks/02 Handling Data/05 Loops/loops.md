@@ -29,7 +29,11 @@ add the following:
       - yum:
          name: zlib-devel
          state: present
-
+```
+save..
+run the playbook:
+```
+ansible-playbook without_loops.yaml
 ```
 
 ---
@@ -56,6 +60,11 @@ add the following:
           - perl-CPAN
           - perl-devel
           - zlib-devel"
+```
+save..
+run the playbook:
+```
+ansible-playbook with_loops.yaml
 ```
 
 ---

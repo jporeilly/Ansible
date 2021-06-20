@@ -36,6 +36,8 @@ run the playbook:
 ```
 ansible-playbook custom_variables.yaml
 ```
+
+
 the playbook can also be formatted:
 ```
 ---

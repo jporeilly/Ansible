@@ -1,9 +1,9 @@
 ## <font color='red'> 2.2 Strings & Numbers </font>
-
+You can use arithmetic calculations in Ansible using the Jinja syntax. This is helpful in many situations where you have stored the output of an operation, and you need to manipulate that value. All usual operation like addition, subtraction, multiplication, division, and modulo are possible.
 
 create playbook:
 ```
-nano custom_variables.yaml
+nano strings_numbers.yaml
 ```
 add the following:
 ```
@@ -26,9 +26,20 @@ add the following:
        - "{{x}} / {{y}} = {{x/y}}"
        - "{{x}} % {{y}} = {{x%y}}"
 ```
+save..
+run the playbook:
+```
+ansible-playbook strings_numbers.yaml
+```
+
 
 #### <font color='red'>Arithmetic Operators</font>
 
+create playbook:
+```
+nano arithmetic.yaml
+```
+add the following:
 ```
 ---
  - name: Practice on Arithmetic Operators
@@ -43,7 +54,17 @@ add the following:
        - "The value of x is: {{x}}"
        - "The value of y is: {{y}}"
 ```
+save..
+run the playbook:
+```
+ansible-playbook arithmetic.yaml
+```
 
+create playbook:
+```
+nano practice_arithmetic.yaml
+```
+add the following:
 ```
 ---
  - name: Practice on Arithmetic Operators
@@ -66,25 +87,46 @@ add the following:
        - "THe additon of {{x}} and {{y}} is {{x|int +y|int}}"
        - "The {{a}} - {{y}} = {{a-y|int}}"
 ```
+save..
+run the playbook:
+```
+ansible-playbook practice_arithmetic.yaml
+```
 
+create playbook:
+```
+nano file_arithmetic.yaml
+```
+add the following:
 ```
 ---
  - name: Practice on Arithmetic Operators
    hosts: localhost
    gather_facts: false
    vars_files:
-    - my_vars.yml
+    - arithmetic.yml
    tasks:
    - debug:
        msg:
        - "The value of x is: {{x}}"
        - "The value of y is: {{y}}"
 ```
+save..
+run the playbook:
+```
+ansible-playbook file_arithmetic.yaml
+```
 
 ---
 
-#### <font color='red'>Methods</font>
+#### <font color='red'>Methods and Filters</font>
+Filters let you transform JSON data into YAML data, split a URL to extract the hostname, get the SHA1 hash of a string, add or multiply integers, and much more. You can use the Ansible-specific filters documented here to manipulate your data, or use any of the standard filters shipped with Jinja2.
 
+create playbook:
+```
+nano filters_arithmetic.yaml
+```
+add the following:
 ```
 ---
   - hosts: localhost
@@ -107,3 +149,10 @@ add the following:
             - "THe min from z is: {{z|min}}"
             - "{{x.split()}}"
 ```
+save..
+run the playbook:
+```
+ansible-playbook filters_arithmetic.yaml
+```
+
+---

@@ -22,7 +22,6 @@ add the following:
       p: 'hi'
       q: 'bye'
       r: 'bye'
-
     tasks:
       - debug:
           msg:
@@ -39,8 +38,8 @@ add the following:
             - "p != q: {{ p != q }}"
             - "q == r: {{ q == r }}"
 ```
-
-execute the playbook:
+save..
+run the playbook:
 ```
 ansible-playbook comparison_operators.yaml
 ```
@@ -71,8 +70,8 @@ add the following:
             - "20 not in x: {{ 20 not in x }}"
             - " y not x:  {{ y not in x }}"
 ```
-
-execute the playbook:
+save..
+run the playbook:
 ```
 ansible-playbook membership_operators.yaml
 ```
@@ -116,8 +115,8 @@ add the following:
             - "my_path is exists:   {{my_path is exists}}"
             - "my_link_path is link  {{my_link_path is link }}"
 ```
-
-execute the playbook:
+save..
+run the playbook:
 ```
 ansible-playbook test_operators.yaml
 ```
@@ -146,8 +145,8 @@ add the following:
       msg: "{{ a }} is > than {{ b }} and {{ a }} is > than {{ c }}"
     when: a > b and a > c
 ```
-
-execute the playbook:
+save..
+run the playbook:
 ```
 ansible-playbook logical_operators.yaml
 ```
@@ -186,8 +185,8 @@ add the following:
       msg: "{{ a ~ ' contains ' ~ b }}"
     when: b in a
 ```
-
-execute the playbook:
+save..
+run the playbook:
 ```
 ansible-playbook special_operators.yaml
 ```
