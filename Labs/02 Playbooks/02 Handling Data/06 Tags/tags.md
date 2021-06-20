@@ -41,7 +41,11 @@ add the following:
         tags:
           - fifth
           - never
-
+```
+save..
+run the playbook:
+```
+ansible-playbook tags.yaml
 ```
 
 ---
