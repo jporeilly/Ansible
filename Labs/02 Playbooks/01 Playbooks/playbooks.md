@@ -170,4 +170,6 @@ if you need a verbose output:
 ./wget.yaml -v #or just increase number of -v's for detailed logs. You can also set verbosity level as a value.
 ```
 
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
+
 ---

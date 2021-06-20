@@ -217,5 +217,6 @@ ansible-playbook playbooks/print_group_fact.yaml
 ```
 Note: The values are different for each host. You can add host facts/variables in a separate file, as with the global and group facts/variables.
 
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
 
 ---

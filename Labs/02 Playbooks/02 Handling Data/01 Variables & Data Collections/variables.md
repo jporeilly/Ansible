@@ -248,4 +248,6 @@ ansible-playbook hostvars.yaml
 ```
 Note: inventory_hostname returns all the variables for all the servers.
 
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html
+
 ---

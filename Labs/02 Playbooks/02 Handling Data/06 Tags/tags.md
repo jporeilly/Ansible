@@ -48,4 +48,6 @@ run the playbook:
 ansible-playbook tags.yaml
 ```
 
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+
 ---

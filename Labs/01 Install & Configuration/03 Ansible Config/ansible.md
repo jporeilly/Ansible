@@ -103,7 +103,6 @@ if you've renamed - hosts - 'inventory' files then you can run:
 ansible all -m ping -i inventory # references renamed inventory file.
 ```
 
-
 ---
 
 #### <font color='red'>Disable Host checking</font>
