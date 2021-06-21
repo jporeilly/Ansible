@@ -230,16 +230,32 @@ edit hosts file:
 ```
 sudo nano hosts
 ```
-add the node IP: 10.0.0.2 & 10.0.0.3 to the top of the file
-check its been added:
+add the node IP:
 ```
-cat hosts | head -10
+[all]
+10.0.0.2
+10.0.0.3
+
+[group1]
+10.0.0.2
+
+[group2]
+10.0.0.3
+
+[group3]
+localhost
+10.0.0.2
+10.0.0.3
+```
+check the inventory hosts file has been modified:
+```
+cat hosts | head -20
 ```
 check connectivity:
 ```
 ansible all -m ping
 ```
-look for ping pong..  & check for python
+look for ping pong..  & check for python ..  should be 2.7 for the moment.
 
 for a specfic node(s):
 ```
