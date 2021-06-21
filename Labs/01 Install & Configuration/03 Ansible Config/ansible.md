@@ -39,6 +39,7 @@ nano /etc/hosts
 ```
 you can 'group' the nodes to you're required configuration:
 ```
+[all]
 10.0.0.2
 10.0.0.3
 
@@ -71,11 +72,11 @@ ansible group3 -m ping
 
 </br>
 
-**working directories**  
+#### <font color='red'>Ansible Directories - Projects</font>  
 
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
-mkdir ansible_projects/demo
+sudo mkdir ansible_projects/demo
 ```
 change to ansible_projects/demo directory:
 ```
@@ -83,7 +84,7 @@ cd ansible_projects/demo
 ```
 now copy over ansible directory:
 ```
-cp -rpP /etc/ansible/* .
+sudo cp -rpP /etc/ansible/* .
 ```
 Note: now flexibile on refencing different node IPs for different projects..
 The projects could have different ansible.cfg files..  as there are several ansible.cfg files, there's a priority.
@@ -96,7 +97,7 @@ ls -lrt
 ```
 take ownership of files:
 ```
-chown -R ansadmin *
+sudo chown -R ansadmin *
 ```
 if you've renamed - hosts - 'inventory' files then you can run:
 ```
