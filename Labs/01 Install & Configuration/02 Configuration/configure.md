@@ -89,96 +89,8 @@ code
 select a color scheme and select Course-Materials/Ansible folder...  
 
 
-next create keys:
-```
-ssh-keygen
-```
-just hit enter...  
-check ssh key:
-```
-ls -al
-```
-Note: now have a .ssh  
-change directory to .ssh
-```
-cd .ssh
-ls -lrt
-```
-Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
-
 </br>
 
-#### <font color='red'><b>Configure the Nodes with ansadmin accounts - see next section</b></font>  
-
-</br>
-
-copy key over to node:
-```
-ssh-copy-id 10.0.0.2
-ssh-copy-id 10.0.0.3
-```
-password: ansadmin123 
-only the public key is copied to the server. The private key should never be copied to another machine.
-
-now check you can log in:
-```
-ssh 10.0.0.2
-ssh 10.0.0.3
-```
-Note: passwordless authenticated connection.
-
-</br>
-
-if you wish to include localhost in your list of managed nodes:
-
-remove authorized keys:
-```
-cd  .ssh/
-ls -l
-rm -rf authorized_keys
-```
-connect to localhost:
-```
-ssh localhost
-```
-copy key
-```
-ssh-copy-id localhost
-```
-
-</br>
-
-**update Inventory file**  
-change directory:
-```
-cd /etc/ansible
-ls -al
-```
-edit hosts file:
-```
-sudo nano hosts
-```
-add the node IP: 10.0.0.2 & 10.0.0.3 to the top of the file
-check its been added:
-```
-cat hosts | head -10
-```
-check connectivity:
-```
-ansible all -m ping
-```
-look for ping pong..  & check for python
-
-for a specfic node(s):
-```
-ansible 10.0.0.2 -m ping
-ansible 10.0.0.2:10.0.0.3 -m ping
-```
-if you want to list your Nodes:
-```
-ansible group3 -m ping --list-hosts
-```
----
 
 #### <font color='red'>Ansible Node(s) Configuration</font>
 * add ansadmin to nodes
@@ -189,6 +101,7 @@ ansible group3 -m ping --list-hosts
 </br>
 
 **add ansadmin**  
+ensure that you're logged with CentOS credentials.
 SSH into ansible node from controller:
 ```
 ssh 10.0.0.2
@@ -208,6 +121,7 @@ change password:
 passwd ansadmin
 new password: ansadmin123
 ```
+Note: ignore bad password message..  :)
 
 </br>
 
@@ -240,6 +154,101 @@ restart service:
 service sshd restart
 ```
 
-repeat for all nodes
+repeat for all nodes, i.e 10.0.0.3
+
+
+#### <font color='red'>Ansible Node(s) Configuration - Keys</font>
+ensure that you're logged with ansadmin credentials, on Ansible Controller.  
+
+next create keys:
+```
+ssh-keygen
+```
+just hit enter...  
+check ssh key:
+```
+ls -al
+```
+Note: now have a .ssh  
+change directory to .ssh
+```
+cd .ssh
+ls -lrt
+```
+Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
+
+
+copy key over to nodes:
+
+```
+ssh-copy-id 10.0.0.2
+ssh-copy-id 10.0.0.3
+```
+
+password: ansadmin123
+only the public key is copied to the server. The private key should never be copied to another machine.
+
+now check you can log in:
+
+```
+ssh 10.0.0.2
+ssh 10.0.0.3
+```
+
+Note: passwordless authenticated connection.
+
+</br>
+
+if you wish to include localhost in your list of managed nodes:
+
+remove authorized keys:
+
+```
+cd  .ssh/
+ls -l
+rm -rf authorized_keys
+```
+connect to localhost:
+```
+ssh localhost
+```
+copy key
+```
+ssh-copy-id localhost
+```
+
+</br>
+
+**update Inventory file**
+ensure that you're logged with ansadmin credentials, on Ansible Controller.  
+change directory:
+```
+cd /etc/ansible
+ls -al
+```
+edit hosts file:
+```
+sudo nano hosts
+```
+add the node IP: 10.0.0.2 & 10.0.0.3 to the top of the file
+check its been added:
+```
+cat hosts | head -10
+```
+check connectivity:
+```
+ansible all -m ping
+```
+look for ping pong..  & check for python
+
+for a specfic node(s):
+```
+ansible 10.0.0.2 -m ping
+ansible 10.0.0.2:10.0.0.3 -m ping
+```
+if you want to list your Nodes:
+```
+ansible group3 -m ping --list-hosts
+```
 
 ---
