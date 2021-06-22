@@ -1,7 +1,6 @@
 ## <font color='red'>1.5 Ansible Facts</font>
 Ansible facts are the host-specific system data and properties to which you connect. A fact can be the IP address, BIOS information, a system's software information, and even hardware information. Ansible facts help the admin to manage the hosts based on their current condition rather than taking the actions directly without having any info about the system's health.
 
-
 In this lab we're going to:
 * default Facts
 * custom Facts
@@ -25,7 +24,7 @@ to return Facts / Variable just on mounts:
 ```
 ansible 10.0.0.2 -m setp -a "filter=ansible_mounts"
 ```
-you can also display the variable value:
+you can also display a 'variable' value:
 ```
 ansible all -m debug -a "var=inventory_hostname"
 ```
@@ -43,8 +42,7 @@ You can define three types of custom facts in Ansible.
 * Group facts: These facts are only accessible from a specific set of hosts or a host group.
 * Host facts: These facts are only accessible from a particular host.
 
-
-lets create a projects directory
+in our ansible_projects directory:
 ```
 cd ansible_projects
 mkdir -pv custom_facts/{playbooks,host_vars,group_vars}
@@ -81,7 +79,7 @@ web_url=https://learning.lumada.hitachivantara.com/
 ```
 save..
 
-create a new playbook:
+create our first playbook:
 ```
 nano playbooks/print_global_fact.yaml
 ```
@@ -94,7 +92,7 @@ copy the following lines:
       debug:
         msg: 'Web URL: {{web_url}}'
 ```
-Note: to print a message, use debug module with {{}}
+Note: to print a message, use debug module with {{  }}
 save..
 
 run playbook:
