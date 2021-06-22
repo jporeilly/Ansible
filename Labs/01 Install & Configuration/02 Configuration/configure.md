@@ -236,16 +236,12 @@ add the node IP:
 10.0.0.2
 10.0.0.3
 
-[group1]
+[Group1]
 10.0.0.2
 
-[group2]
+[Group2]
 10.0.0.3
 
-[group3]
-localhost
-10.0.0.2
-10.0.0.3
 ```
 check the inventory hosts file has been modified:
 ```
@@ -264,7 +260,7 @@ ansible 10.0.0.2:10.0.0.3 -m ping
 ```
 if you want to list your Nodes:
 ```
-ansible group3 -m ping --list-hosts
+ansible Group2 -m ping --list-hosts
 ```
 
 ---

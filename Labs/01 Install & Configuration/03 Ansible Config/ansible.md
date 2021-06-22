@@ -10,69 +10,12 @@ In this lab we're going to:
 ---
 
 #### <font color='red'>Ansible Directories</font>
-* hosts file
 * working directory
-
+* hosts file
 * disable HOSTS checking
 
-</br>
 
-**hosts**  
-tree the ansible directory:
-```
-tree /etc/ansible
-```
-ping your nodes:
-```
-ansible all -m ping
-```
-Note: the inventory file be called anything..  its referenced in the ansible.cfg
-```
-cat /etc/ansible.cfg | head -20
-```
-Note: paths to directories
-manually entering IPs or FQDNs can be a pain...  You can reference 'grouped' nodes..
-
-edit hosts - inventory - file:
-```
-nano /etc/hosts
-```
-you can 'group' the nodes to you're required configuration:
-```
-[all]
-10.0.0.2
-10.0.0.3
-
-[group1]
-localhost
-10.0.0.2
-
-[group2]
-10.0.0.3
-
-[group3]
-group1
-group2
-```
-save..
-ping your group node(s):
-```
-ansible group2 -m ping
-```
-could also reference groups:
-```
-ansible group1:group2 -m ping
-```
-can also group groups:
-```
-ansible group3 -m ping
-```
-
----
-
-</br>
-
-#### <font color='red'>Ansible Directories - Projects</font>  
+**working directory** 
 
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
@@ -97,7 +40,8 @@ ls -lrt
 ```
 take ownership of files:
 ```
-sudo chown -R ansadmin *
+cd
+sudo chown -R ansadmin ansible_projects
 ```
 if you've renamed - hosts - 'inventory' files then you can run:
 ```
@@ -105,6 +49,73 @@ ansible all -m ping -i inventory # references renamed inventory file.
 ```
 
 ---
+
+</br>
+
+**hosts**  
+tree the ansible directory:
+```
+tree /ansible_projects
+```
+so first lets modify the ~/ansible_projects/demo/hosts
+```
+cd ansible_projects/demo
+```
+edit hosts - inventory - file:
+```
+sudo nano hosts
+```
+edit the hosts file:
+```
+[all]
+10.0.0.2
+10.0.0.3
+
+[Group1]
+10.0.0.2
+
+[Group2]
+10.0.0.3
+
+[Group3]
+Group1
+Group2
+```
+save..
+Note: the inventory file be called anything..  its referenced in the ansible.cfg  
+you can 'group' the nodes to you're required configuration.
+
+edit the ansible_projects/demo/ansible.cfg:
+```
+nano ansible.cfg
+```
+modify path to inventory: 
+```
+inventory   = ./hosts
+```
+Note: paths to directories
+save..
+
+ping your nodes:
+```
+ansible all -m ping
+```
+ping your Group node(s):
+```
+ansible Group2 -m ping
+```
+could also reference groups:
+```
+ansible Group1:Group2 -m ping
+```
+can also Group Groups:
+```
+ansible Group3 -m ping
+```
+
+---
+
+</br>
 
 #### <font color='red'>Disable Host checking</font>
 This will help automate the process of logging authenticated users onto the nodes.  
