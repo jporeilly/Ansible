@@ -1,4 +1,4 @@
-## <font color='red'> 4.1 Tomact </font>
+## <font color='red'> 4.1 Project - Tomcat </font>
 Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. Grouping content by roles also allows easy sharing of roles with other users.
 
 #### <font color='red'>Tomcat</font>
@@ -58,7 +58,6 @@ run the playbook:
 ```
 ansible-playbook tomcat.yaml
 ```
-
-  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
+Note: this approach can become complex and error prone.  Best practice is to install based on defined 'Roles', which you'll cover in the next section.
 
 ---
