@@ -30,6 +30,7 @@ ansible 10.0.0.2 -m shell -a "uptime"
 to list all the ansible modules:
 ```
 ansible-doc -l
+q # to quit
 ```
 to find a module:
 ```
@@ -46,24 +47,25 @@ ssh 10.0.0.2
 ```
 change directory:
 ```
-cd
+cd .ansible
 ls -al
-tree .ansible/
 ```
 Note: tmp folder is where modules are copied to..  then cleaned..
 If you want to keep remote file..
 
 execute command again on ansible controller:
 ```
-ANSIBLE_KEEP_REMOTE_FILES=1 ansible 10.0.0.2 -m shell "uptime"
+cd ansible_projects/demo
+ANSIBLE_KEEP_REMOTE_FILES=1 ansible 10.0.0.2 -m shell -a "uptime"
 ```
 back to Node 1 change directory:
 ```
-cd
+cd .ansible/tmp
 ls -al
-tree .ansible/
+cd ansible-tmp-xxxxxx
+ls -al
 ```
-Note: new python directory with the module..
+Note: new python directory with the module: AnsiballZ_command.py
 
 ---
 
@@ -72,7 +74,7 @@ By default Ansible will execute the modules / tasks in parallel.  The number of 
 
 edit ansible.cfg:
 ```
-sudo nano projects/demo/ansible.cfg
+sudo nano ansible_projects/demo/ansible.cfg
 ```
 The default value: Fork=5. If you change to 1 then executes in sequentially according to hosts file.
 you can also add as an argument:
@@ -86,50 +88,57 @@ Note: will overide default and reboot 12 [Group] servers at a time..
 #### <font color='red'>Download / Copy file from Node to Controller</font>
 Transfer a file using ansible ad-hoc commands. Copy uses SCP (Secure Copy Protocol) to copy files to multiple nodes in parallel.
 
-Syntax: ansible [-i inventory file] <servers> -m -a fetch / copy "src=/souce/file/path  dest=/dest/location arguments"
+Syntax: ansible [-i inventory file] <servers> -m fetch / copy -a "src=/souce/file/path  dest=/dest/location arguments"
 
-On our Node1:
+On Node1:
 ```
+mkdir ansible_assets
 cd ansible_assets
-ls -l
+touch transfer_file.txt
+nano tranfer.txt
+# just add some stuff to the file - hello
 cat transfer_file.txt
 ```
 on the ansible controller:
+ensure you're in the ansible_projects/demo directory:
 ```
-ansible 10.0.0.2 -m -a fetch "src=/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
+ansible 10.0.0.2 -m fetch -a "src=/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
 ```
-Note: look at the response
-on the ansible controller:
+Note: look at the response on the ansible controller:
 ```
-tree downloads/
+tree downloads
 ```
 Notice that it replicates the Node directory structure under its IP.
-to flatten the directory run the command:
-on the ansible controller:
+to flatten the directory run the command on the ansible controller:
 ```
-ansible 10.0.0.2 -m -a fetch "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
 ```
 but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
 
 lets delete folder on ansible controller:
 ```
 rm -rf downloads
+ls -l
 ```
 
 on the ansible controller:
 ```
-ansible all -m -a fetch "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
-ansible 10.0.0.2 -m -a fetch  "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}}_transfer_file.txt flat=yes"
+ansible all -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+```
+Note: the 10.0.0.3 will fail as there no transfer.txt
+```
+ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}}_transfer_file.txt flat=yes"
 ```
 on the ansible controller:
 ```
-tree downloads/
+tree downloads
 ```
+Note: now flattened and transfer.txt under the inventory hostname - 10.0.0.2
 
 ---
 
 #### <font color='red'>Create / Delete files / directory on Nodes</font>
-Create / delete files / directories on Node.
+Create / Delete files / directories on Node.
 
 </br>
 
@@ -138,30 +147,30 @@ Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m -a file "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
 ```
 Note: look at the response..  
 can also set the mode, owner, etc..  any of the arguments:
 ```
-ansible 10.0.0.2 -m -a file "path=/home/ansadmin/ansible_assets/new_hello.txt state=touch mode=777"
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/new_hello.txt state=touch mode=777"
 ```
 Note: look at the response.. mode changed
 
-Syntax: ansible [-i inventory file] <servers> -m -a file "path=/directory/sub/ state=directory"
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/directory/sub/ state=directory"
 
 
 If you require root priviledges:
 
-Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt state=touch" -b
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to/file/file.txt state=touch" -b
 
 </br>
 
 **delete**
-Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to /file/file.txt state=absent"
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.txt state=absent"
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m -a file "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
 ```
 Note: look at the response..
 
