@@ -47,30 +47,17 @@ in our ansible_projects directory:
 cd ansible_projects
 mkdir -pv custom_facts/{playbooks,host_vars,group_vars}
 ```
-change to ansible_projects/custom_facts directory:
-```
-cd ansible_projects/custom_facts
-```
-create an ansible.cfg:
-```
-nano ansible.cfg
-```
-copy the following lines your ansible.cfg file:
-```
-[defaults]
-inventory           = hosts
-host_key_checking   = False
-```
 
 </br>
 
 **Global Facts**  
-create an Ansible inventory file hosts:
+modify the Ansible inventory hosts file:
 ```
 nano hosts
 ```
-add the Nodes:
+add the following global variable:
 ```
+[all]
 10.0.0.2
 10.0.0.3
 
