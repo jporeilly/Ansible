@@ -7,13 +7,25 @@ Use the passwords with the ansible-vault command-line tool to create and view en
 
   > Ansible Vault: https://docs.ansible.com/ansible/latest/user_guide/vault.html#vault
 
-#### <font color='red'>Create a Role</font>
+#### <font color='red'>Create Encrypted File</font>
 
 on the ansible controller:
 ```
 cd ansible_projects/demo
-mkdir roles
+mkdir vault
+cd vault
 ```
+create a file to encrypt:
+```
+ansible-vault create test-vault.yml
+```
+Note: it will ask you to enter a password twice, then you can enter some text..
+
+password: lumada
+text: they're coming to take me away..
+
+
+
 create a role:
 ```
 ansible-galaxy init 
