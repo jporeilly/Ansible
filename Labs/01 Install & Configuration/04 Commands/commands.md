@@ -30,7 +30,7 @@ ansible 10.0.0.2 -m shell -a "uptime"
 to list all the ansible modules:
 ```
 ansible-doc -l
-q # to quit
+q
 ```
 to find a module:
 ```
@@ -221,8 +221,7 @@ on the ansible controller:
 ```
 ansible 10.0.0.2 -m -a "ls > test.txt"
 ```
-Note: it will fail..  but..
-on the ansible controller:
+Note: it will fail..  but.. on the ansible controller:
 ```
 ansible 10.0.0.2 -m shell -a "ls > test.txt"
 ```
