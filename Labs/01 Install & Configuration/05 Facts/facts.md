@@ -44,76 +44,38 @@ You can define three types of custom facts in Ansible.
 
 in our ansible_projects directory:
 ```
-cd ansible_projects
+cd ansible_projects/demo
 mkdir -pv custom_facts/{playbooks,host_vars,group_vars}
 ```
 
 </br>
 
 **Global Facts**  
-modify the Ansible inventory hosts file:
-```
-nano hosts
-```
-add the following global variable:
-```
-[all]
-10.0.0.2
-10.0.0.3
-
-[all:vars]
-web_url=https://learning.lumada.hitachivantara.com/
-```
-save..
-
+we're going to say allo to all our nodes..!
 create our first playbook:
 ```
-nano playbooks/print_global_fact.yaml
+cd custom_facts/playbooks
+nano print_global_fact.yaml
 ```
 copy the following lines:
 ```
 - hosts: all
-  user: ansadmin
+  vars:
+    greeting: allo...!
+
   tasks:
-    - name: Print the value of global fact 'web_url'
+    - name: Print the value of global fact 'greeting'
       debug:
-        msg: 'Web URL: {{web_url}}'
+        msg: '{{greeting}}'
 ```
-Note: to print a message, use debug module with {{  }}
+Note: to print a message, use debug module with '{{  }}'
 save..
 
 run playbook:
 ```
-ansible-playbook playbooks/print_global_fact.yaml
+ansible-playbook print_global_fact.yaml
 ```
-Note: all the hosts in my inventory file can access the global fact web_url. Best practice is to add global facts in a separate file. This way, you can keep the inventory file clean.
-
-remove the global facts from the host’s inventory file:
-```
-nano hosts
-```
-then remove:
-```
-[all:vars]
-web_url=https://learning.lumada.hitachivantara.com/
-```
-save..
-
-create a new file all in the group_vars/ directory:
-```
-nano group_vars/all
-```
-add the global fact web_url, type in the following line in the group_vars/all file:
-```
-web_url: https://learning.lumada.hitachivantara.com/
-```
-save..
-
-run playbook:
-```
-ansible-playbook playbooks/print_global_fact.yaml
-```
-Note: all the hosts in my inventory file can access the global fact web_url.
+Note: all the hosts in my inventory file can access the global fact greeting. Best practice is to add global facts in a separate file. 
 
 </br>
 
@@ -150,7 +112,7 @@ run playbook:
 ```
 ansible-playbook playbooks/print_group_fact.yaml
 ```
-Note: he hosts in the web group can access the domain_name and database_backend group facts/variables.
+Note: the hosts in the web group can access the domain_name and database_backend group facts/variables.
 
 
 clean up the inventory file and see how to add group facts/variables in a separate file.
