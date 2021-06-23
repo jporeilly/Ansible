@@ -156,8 +156,9 @@ ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/new_hello.txt st
 ```
 Note: look at the response.. mode changed
 
-Syntax: ansible [-i inventory file] <servers> -m file -a "path=/directory/sub/ state=directory"
+</br>
 
+Syntax: ansible [-i inventory file] <servers> -m file -a "path=/directory/sub/ state=directory"
 
 If you require root priviledges:
 
@@ -170,9 +171,9 @@ Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.tx
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=absent"
 ```
-Note: look at the response..
+Note: look at the response..  check that hello.txt has been deleted from 10.0.0.2
 
   > for further information: https://docs.ansible.com/ansible/2.8/modules/list_of_files_modules.html#
 
@@ -225,5 +226,6 @@ on the ansible controller:
 ```
 ansible 10.0.0.2 -m shell -a "ls > test.txt"
 ```
+check that test.txt has been created on 10.0.0.2
 
 ---
