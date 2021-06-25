@@ -1,4 +1,4 @@
-- hosts: master.example.com
+- hosts: m-k8s.example.com
   become: yes
   gather_facts: false
   tasks:
