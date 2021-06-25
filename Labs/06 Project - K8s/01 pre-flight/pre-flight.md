@@ -1,5 +1,5 @@
 ## <font color='red'>6.1 Pre-flight K8s</font>
-Here's the disclaimer..  this project is definately not intended for production, but to highlight the steps required to install and configure K8s on a 3 node cluster - 1 master node, 2 worker nodes. Before you can install K8s on the cluster a number of pre-flight checks / configurations ahve toi be completed.
+Here's the disclaimer..  this project is definately not intended for production, but to highlight the steps required to install and configure K8s on a 3 node cluster - 1 master node, 2 worker nodes. Before you can install K8s on the cluster a number of pre-flight checks / configurations have to be completed.
 
 **Supported OS**
 * CentOS 7
@@ -24,6 +24,16 @@ This role contains tasks to:
 - Configure Firewalld on Kubernetes Master and Worker nodes
 
 ---
+
+#### <font color='red'>Resolve Domain names</font>
+To ensure that each machine can communicate with each other, we need to modify their /etc/hosts file.  Ensure that all servers are up and running
+
+on the Ansible Controller:
+```
+sudo nano /etc/hosts
+```
+
+
 
 
 
