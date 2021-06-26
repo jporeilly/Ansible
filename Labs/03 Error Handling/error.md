@@ -20,11 +20,14 @@ add the following:
       - command: "ls /tmp"
         register: tmp_out
       - debug: var=tmp_out
-
+```
 save..
 run the playbook:
 ```
 ansible-playbook tags.yaml  
+```
+
+---
 
 #### <font color='red'>Error Handling - fail on return codes</font>
 create playbook:
@@ -53,6 +56,15 @@ run the playbook:
 ```
 ansible-playbook error_nginx.yaml
 ```
+
+---
+
+create playbook:
+```
+nano error_command.yaml
+```
+add the following:
+```
 ---
   - hosts: localhost
     gather_facts: false
@@ -63,7 +75,7 @@ ansible-playbook error_nginx.yaml
      - debug: var=out
 ``` 
 
-another way to fail the task.
+or another way to fail the task.
 
 ```
 ---
@@ -75,11 +87,11 @@ another way to fail the task.
      - fail:
         msg: "Failed because rc is 0"
         when: out.rc==0
- ```       
+```       
 save..
 run the playbook:
 ```
-ansible-playbook error_nginx.yaml
+ansible-playbook error_command.yaml
 ```
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
