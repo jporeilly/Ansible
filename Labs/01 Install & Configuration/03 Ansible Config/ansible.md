@@ -19,6 +19,7 @@ In this lab we're going to:
 
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
+cd
 sudo mkdir ansible_projects/demo
 ```
 change to ansible_projects/demo directory:
