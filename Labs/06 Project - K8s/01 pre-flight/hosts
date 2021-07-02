@@ -1,7 +1,6 @@
 [kubernetes_master_nodes]
 kubernetes-master ansible_host=10.0.0.2
 
-<<<<<<< HEAD
 [kubernetes_worker_nodes]
 kubernetes-worker1 ansible_host=10.0.0.3
 kubernetes-worker2 ansible_host=10.0.0.4
@@ -14,8 +13,3 @@ kubernetes_master_nodes
 [kubernetes:vars]
 ansible_password=ansadmin123
 ansible_ssh_user=ansadmin
-=======
-[workers]
-n1-k8s.example.com
-n2-k8s.example.com
->>>>>>> 9352bddef11de1128cc48dc90495a033f7e931c3

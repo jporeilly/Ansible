@@ -25,30 +25,9 @@ This role contains tasks to:
 
 ---
 
-<<<<<<< HEAD
 ## <font color='red'>Pre-requiste Configuration Steps</font>
 Ansible has already been installed with a projects/demo directory.   
 lets create another directory 
-=======
-#### <font color='red'>Resolve Domain names</font>
-To ensure that each machine can communicate with each other, we need to modify their /etc/hosts file.  Ensure that all servers are up and running
-
-on the Ansible Controller:
-```
-sudo nano /etc/hosts
-```
-
-
-
-
-
-## How to use this role
-
-- Clone the Project:
-
-```
-$ git clone https://github.com/jmutai/k8s-pre-bootstrap.git
->>>>>>> 9352bddef11de1128cc48dc90495a033f7e931c3
 ```
 cd
 sudo mkdir ansible-projects/k8s
