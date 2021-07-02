@@ -1,6 +1,10 @@
 ## <font color='red'> 3.1 Error Handling </font>
 When Ansible receives a non-zero return code from a command or a failure from a module, by default it stops executing on that host and continues on other hosts. However, in some circumstances you may want different behavior. Sometimes a non-zero return code indicates success. Sometimes you want a failure on one host to stop execution on all hosts. Ansible provides tools and settings to handle these situations and help you get the behavior, output, and reporting you want.
 
+In this lab were going to 
+
+
+
 #### <font color='red'>Error Handling</font>
 
 create playbook:
@@ -20,11 +24,14 @@ add the following:
       - command: "ls /tmp"
         register: tmp_out
       - debug: var=tmp_out
-
+```
 save..
 run the playbook:
 ```
 ansible-playbook tags.yaml  
+```
+
+---
 
 #### <font color='red'>Error Handling - fail on return codes</font>
 create playbook:
@@ -53,6 +60,15 @@ run the playbook:
 ```
 ansible-playbook error_nginx.yaml
 ```
+
+---
+
+create playbook:
+```
+nano error_command.yaml
+```
+add the following:
+```
 ---
   - hosts: localhost
     gather_facts: false
@@ -63,7 +79,7 @@ ansible-playbook error_nginx.yaml
      - debug: var=out
 ``` 
 
-another way to fail the task.
+or another way to fail the task.
 
 ```
 ---
@@ -75,11 +91,11 @@ another way to fail the task.
      - fail:
         msg: "Failed because rc is 0"
         when: out.rc==0
- ```       
+```       
 save..
 run the playbook:
 ```
-ansible-playbook error_nginx.yaml
+ansible-playbook error_command.yaml
 ```
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
