@@ -36,8 +36,31 @@ ansible localhost -m debug -a "var=groups.keys()" # returns just group name
 
 ---
 
+#### <font color='red'>Create Ansible Custom Facts</font>
+Its pretty easy to define your own custom facts.
+
+On Node 1 - 10.0.0.2 create the following directory: 
+```
+sudo mkdir -p /etc/ansible/facts.d
+```
+create the folling file:
+```
+cd facts.d
+nano custom_facts.facts
+```
+add the following:
+```
+[general]
+foo=bar
+```
+Note: this is just data. If you wish to execute a script then change the file permissions - chmod +x
+save file..
+
+
+
+
 #### <font color='red'>Ansible Custom Facts</font>
-You can define three types of custom facts in Ansible.
+You can set the scope of custom facts in Ansible.
 * Global facts: These facts are accessible from every host in your inventory file.
 * Group facts: These facts are only accessible from a specific set of hosts or a host group.
 * Host facts: These facts are only accessible from a particular host.
@@ -167,3 +190,4 @@ Note: The values are different for each host. You can add host facts/variables i
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
 
 ---
+
