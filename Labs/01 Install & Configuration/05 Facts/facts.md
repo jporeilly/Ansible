@@ -56,8 +56,44 @@ foo=bar
 Note: this is just data. If you wish to execute a script then change the file permissions - chmod +x
 save file..
 
+if you want to try a script:
+```
+nano date_time.fact
+```
+add the following:
+```
+#!/bin/bash
+DATE=`date`
+echo "{\"date\" : \"${DATE}\"}"
+```
+save..
 
+assign execute permissions:
+```
+chmod +x /etc/ansible/facts.d/date_time.fact
+```
+create a playbook on the Ansible Controller:
+```
+nano check_date.yml
+```
+add the following:
+```
+---
+- hosts: 10.0.0.2
 
+  tasks:
+   - name: Get custom facts
+     debug:
+      msg: The custom fact is {{ansible_local.date_time}}
+```
+Note: the Fact file is appended to the ansible_local variable, which stores all custom facts.
+
+run the playbook and observe Ansible retrieving information saved on the fact file:
+```
+ansible_playbook check_date.yml
+```
+
+---
 
 #### <font color='red'>Ansible Custom Facts</font>
 You can set the scope of custom facts in Ansible.
@@ -190,4 +226,3 @@ Note: The values are different for each host. You can add host facts/variables i
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
 
 ---
-
