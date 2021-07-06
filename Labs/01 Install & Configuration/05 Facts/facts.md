@@ -95,7 +95,6 @@ add the following:
 ```
 ---
 - hosts: 10.0.0.2
-
   tasks:
    - name: Get custom facts
      debug:
@@ -105,7 +104,7 @@ Note: the Fact file is appended to the ansible_local variable, which stores all 
 
 run the playbook and observe Ansible retrieving information saved on the fact file:
 ```
-ansible_playbook check_date.yml
+ansible-playbook check_date.yml
 ```
 
 ---
