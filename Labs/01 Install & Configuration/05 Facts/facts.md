@@ -109,6 +109,40 @@ ansible-playbook check_date.yml
 
 ---
 
+you may wish to dynamically add the custom fact.  
+```
+---
+- hosts: all
+  become: true
+  tasks:
+   - name: Create fact directory
+     file:
+       path: /etc/ansible/facts.d/
+       state: directory
+   - name: Create a static custom fact foo
+     copy:
+       content: '"bar"'
+       dest: /etc/ansible/facts.d/foo.fact
+   - name: Create a dynamic custom fact foobar
+     copy:
+       dest: /etc/ansible/facts.d/foobar.fact
+       mode: 0775
+       content: |
+         #!/usr/bin/python3
+         import json
+         def render_data(data):
+            return json.dumps(data)
+         arbitrary_data = {}
+         arbitrary_data["foobar"] = []
+         arbitrary_data["foobar"].append("foo")
+         if True:
+            arbitrary_data["foobar"].append("bar")
+         print(render_data(arbitrary_data["foobar"]))
+```
+
+---
+
+
 #### <font color='red'>Ansible Custom Facts</font>
 You can set the scope of custom facts in Ansible.
 * Global facts: These facts are accessible from every host in your inventory file.
