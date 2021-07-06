@@ -37,17 +37,23 @@ ansible localhost -m debug -a "var=groups.keys()" # returns just group name
 ---
 
 #### <font color='red'>Create Ansible Custom Facts</font>
-Its pretty easy to define your own custom facts.
+Its pretty easy to define your own custom facts. 
 
+from the Ansible Controller SSH into Node 1:
+```
+ssh 10.0.0.2
+```
 On Node 1 - 10.0.0.2 create the following directory: 
 ```
 sudo mkdir -p /etc/ansible/facts.d
 ```
-create the folling file:
+create the following file:
 ```
 cd facts.d
-nano custom_facts.facts
+sudo nano custom_facts.fact
 ```
+Note: Custom Facts file end with the extension .fact
+
 add the following:
 ```
 [general]
@@ -56,14 +62,23 @@ foo=bar
 Note: this is just data. If you wish to execute a script then change the file permissions - chmod +x
 save file..
 
+test the custom fact:
+```
+ansible 10.0.0.2 -m setup -a "filter=ansible_local"
+```
+Note: you may need to take ownership of the facts.d folder..
+
+
+**executable script**
+
 if you want to try a script:
 ```
-nano date_time.fact
+sudo nano date_time.fact
 ```
 add the following:
 ```
 #!/bin/bash
-DATE=`date`
+DATE='date'
 echo "{\"date\" : \"${DATE}\"}"
 ```
 save..
