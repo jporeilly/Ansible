@@ -9,6 +9,8 @@ In this lab we're going to:
 * configure PasswordAuthentication
 * create SSH-keys
 
+Node 3 & 4 are not required, so once configured..  suspend.
+
 ---
 
 #### <font color='red'>Ansible Controller Configuration</font>
@@ -82,7 +84,7 @@ cd Course-Materials
 sudo git clone http://github.com/jporeilly/Ansible.git Ansible
 sudo chown -R ansadmin Ansible
 ```
-in the first Workspace 1, open a Terminal and enter:
+in virtual Workspace 1, open a Terminal and enter:
 ```
 code
 ```
@@ -154,8 +156,9 @@ restart service:
 service sshd restart
 ```
 
-repeat for all nodes, i.e 10.0.0.3
+repeat for all nodes, i.e 10.0.0.3 & 10.0.0.4
 
+---
 
 #### <font color='red'>Ansible Node(s) Configuration - Keys</font>
 ensure that you're logged with ansadmin credentials, on Ansible Controller.  
@@ -177,22 +180,22 @@ ls -lrt
 ```
 Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
 
-
 copy key over to nodes:
 
 ```
 ssh-copy-id 10.0.0.2
 ssh-copy-id 10.0.0.3
+ssh-copy-id 10.0.0.4
 ```
 
 password: ansadmin123
 only the public key is copied to the server. The private key should never be copied to another machine.
 
 now check you can log in:
-
 ```
 ssh 10.0.0.2
 ssh 10.0.0.3
+ssh 10.0.0.4
 ```
 
 Note: passwordless authenticated connection.
@@ -220,7 +223,7 @@ ssh-copy-id localhost
 </br>
 
 **update Inventory file**
-ensure that you're logged with ansadmin credentials, on Ansible Controller.  
+ensure that you're logged with ansadmin credentials, on Ansible Controller.
 change directory:
 ```
 cd /etc/ansible
@@ -235,6 +238,7 @@ add the node IP:
 [all]
 10.0.0.2
 10.0.0.3
+10.0.0.4
 
 [Group1]
 10.0.0.2
