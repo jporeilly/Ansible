@@ -107,8 +107,6 @@ run the playbook and observe Ansible retrieving information saved on the fact fi
 ansible-playbook check_date.yml
 ```
 
----
-
 you may wish to dynamically add the custom fact.  
 ```
 ---
