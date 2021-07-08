@@ -85,7 +85,7 @@ sudo systemctl status sshd
 
 **Ansible Nodes**  
 ensure you have the following information:
-* Ansible Node IP address - 10.0.0.2 & 10.0.0.3
+* Ansible Node IP address - 10.0.0.2, 10.0.0.3, 10.0.0.4
 * Account credentials to SSH
 * Python 2.7+ / 3.5+ is installed on Node(s)
 
