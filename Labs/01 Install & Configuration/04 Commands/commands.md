@@ -88,7 +88,7 @@ Note: will overide default and reboot 12 [Group] servers at a time..
 #### <font color='red'>Download / Copy file from Node to Controller</font>
 Transfer a file using ansible ad-hoc commands. Copy uses SCP (Secure Copy Protocol) to copy files to multiple nodes in parallel.
 
-Syntax: ansible [-i inventory file] <servers> -m fetch / copy -a "src=/souce/file/path  dest=/dest/location arguments"
+Syntax: ansible [-i inventory file] <servers> -m ce/file/path  dest=/dest/location arguments"
 
 On Node1:
 ```
