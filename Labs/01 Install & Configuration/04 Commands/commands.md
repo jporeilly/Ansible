@@ -92,17 +92,18 @@ Syntax: ansible [-i inventory file] <servers> -m fetch / copy -a "src=/souce/fil
 
 On Node1:
 ```
-mkdir ansible_assets
-cd ansible_assets
+cd ansible_projects/demo
+mkdir source_files
+cd source_files
 touch transfer_file.txt
 nano tranfer.txt
-# just add some stuff to the file - hello
+# just add some stuff to the file - hello world ..!
 cat transfer_file.txt
 ```
 on the ansible controller:
 ensure you're in the ansible_projects/demo directory:
 ```
-ansible 10.0.0.2 -m fetch -a "src=/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/"
+ansible 10.0.0.2 -m fetch -a "src=/home/ansadmin/source_files/transfer_file.txt dest=./downloads/"
 ```
 Note: look at the response on the ansible controller:
 ```
