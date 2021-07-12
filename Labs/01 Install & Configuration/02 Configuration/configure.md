@@ -145,7 +145,7 @@ save..
 </br>
 
 **PasswordAuthentication**  
-implement password authentication across the nodes:
+implement password authentication across all the nodes:
 ```
 nano /etc/ssh/sshd_config
 ```
@@ -156,12 +156,13 @@ restart service:
 service sshd restart
 ```
 
-repeat for all nodes, i.e 10.0.0.3 & 10.0.0.4
+repeat workflow for all nodes, i.e 10.0.0.3 & 10.0.0.4
 
 ---
 
 #### <font color='red'>Ansible Node(s) Configuration - Keys</font>
-ensure that you're logged with ansadmin credentials, on Ansible Controller.  
+
+**ensure that you're logged with ansadmin credentials, on the Ansible Controller**  
 
 next create keys:
 ```
@@ -197,15 +198,12 @@ ssh 10.0.0.2
 ssh 10.0.0.3
 ssh 10.0.0.4
 ```
-
 Note: passwordless authenticated connection.
 
 </br>
 
 if you wish to include localhost in your list of managed nodes:
-
-remove authorized keys:
-
+remove authorized keys (only if present :)
 ```
 cd  .ssh/
 ls -l
@@ -264,7 +262,7 @@ ansible 10.0.0.2:10.0.0.3 -m ping
 ```
 if you want to list your Nodes:
 ```
-ansible Group2 -m ping --list-hosts
+ansible group1 -m ping --list-hosts
 ```
 
 ---
