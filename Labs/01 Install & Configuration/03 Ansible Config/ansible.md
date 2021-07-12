@@ -72,16 +72,13 @@ edit the hosts file:
 [all]
 10.0.0.2
 10.0.0.3
+10.0.0.4
 
-[Group1]
+[group1]
 10.0.0.2
 
-[Group2]
+[group2]
 10.0.0.3
-
-[Group3]
-Group1
-Group2
 ```
 save..
 Note: the inventory file be called anything..  its referenced in the ansible.cfg  
@@ -104,16 +101,14 @@ ansible all -m ping
 ```
 ping your Group node(s):
 ```
-ansible Group2 -m ping
+ansible group2 -m ping
 ```
 could also reference groups:
 ```
-ansible Group1:Group2 -m ping
+ansible group1:group2 -m ping
 ```
-can also Group Groups:
-```
-ansible Group3 -m ping
-```
+
+  > for further information: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#hosts-in-multiple-groups
 
 ---
 
@@ -121,8 +116,8 @@ ansible Group3 -m ping
 
 #### <font color='red'>Disable Host checking</font>
 This will help automate the process of logging authenticated users onto the nodes.  
-* temporary disable 
-* uncomment host_key_checking in ansible.cfg
+* temporary disable HOST checking
+  - uncomment host_key_checking in ansible.cfg
 
 ensure you're in the ansible_projects/demo directory:
 ```
