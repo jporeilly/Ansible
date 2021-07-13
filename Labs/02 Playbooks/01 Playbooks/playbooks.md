@@ -23,20 +23,22 @@ A playbook runs in order from top to bottom. Within each play, tasks also run in
 * the managed nodes to target, using a pattern
 * at least one task to execute
 
-create the following file and save in ansible_projects/playbooks as wget.yaml:
+create the following file and save in ansible_projects/playbooks as playbook.yaml:
 ```
-nano test.yaml
+nano playbook.yaml
 ```
 copy the following:
 ```
 ---
- - hosts: all
-   become: true
-   name: install wget
-
-   tasks:
-   -name: install wget
-      yum: name=wget state=present
+- hosts: 10.0.0.2
+  become: False
+  vars:
+    - username: ansadmin
+    - home: /home/ansadmin
+  tasks:
+    - name: print variables
+      debug:
+        msg: "Username: {{ username }}, Home dir: {{ home }}"
 ```
 save..
 
@@ -58,7 +60,7 @@ All playbooks should contain tasks or a list of tasks to be executed. Tasks are 
 
 to run the playbook:
 ```
-ansible-playbook wget.yaml
+ansible-playbook playbook.yaml
 ```
 can also run multiple tasks against different hosts:
 ```
