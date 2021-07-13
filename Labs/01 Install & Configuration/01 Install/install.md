@@ -17,12 +17,15 @@ The following pre-requisties have to be installed for Ansible Controller on Cent
 
 </br>
 
-**Development Tools**
-not really required but useful:
+**Development Tools**  
+not really required but useful:  
 need to be root:
 ```
-yum update -y
 sudo -i
+yum update -y
+```
+ensures that openssl is up-to-date:
+```
 yum groupinstall -y "Development Tools" && yum install gcc openssl-devel bzip2-devel libffi-devel -y
 ```
 
@@ -87,6 +90,8 @@ sudo systemctl status sshd
 ensure you have the following information:
 * Ansible Node IP address - 10.0.0.2, 10.0.0.3, 10.0.0.4
 * Account credentials to SSH
+  - user:centos
+  - password: centos
 * Python 2.7+ / 3.5+ is installed on Node(s)
 
 ---
@@ -102,6 +107,9 @@ install Ansible :
 ```
 yum install ansible
 ```
+Note: you will get a keyboard error if you have set Python 3.5+ as default. Switch back to Python 2 - see section 'Python 3' 
+(alternatives --config python).1
+
 verify ansible:
 ```
 ansible --version

@@ -1,10 +1,8 @@
 ## <font color='red'>1.3 Ansible Configuration</font>
 Ansible is an open source IT Configuration Management, Deployment & Orchestration tool. It aims to provide large productivity gains to a wide variety of automation challenges. This tool is very simple to use yet powerful enough to automate complex multi-tier IT application environments. 
 
-
 In this lab we're going to:
 * change working directories
-
 * disable HOSTS checking
 
 ---
@@ -20,7 +18,10 @@ In this lab we're going to:
 lets say there's a few of you using the Ansible controller and you need your own working directory for projects..
 ```
 cd
-sudo mkdir ansible_projects/demo
+mkdir ansible_projects
+cd ansible_projects
+mkdir demo
+/demo
 ```
 change to ansible_projects/demo directory:
 ```
@@ -56,7 +57,7 @@ ansible all -m ping -i inventory # references renamed inventory file.
 **hosts**  
 tree the ansible directory:
 ```
-tree /ansible_projects
+tree ansible_projects
 ```
 so first lets modify the ~/ansible_projects/demo/hosts
 ```
@@ -71,16 +72,13 @@ edit the hosts file:
 [all]
 10.0.0.2
 10.0.0.3
+10.0.0.4
 
-[Group1]
+[group1]
 10.0.0.2
 
-[Group2]
+[group2]
 10.0.0.3
-
-[Group3]
-Group1
-Group2
 ```
 save..
 Note: the inventory file be called anything..  its referenced in the ansible.cfg  
@@ -103,16 +101,14 @@ ansible all -m ping
 ```
 ping your Group node(s):
 ```
-ansible Group2 -m ping
+ansible group2 -m ping
 ```
 could also reference groups:
 ```
-ansible Group1:Group2 -m ping
+ansible group1:group2 -m ping
 ```
-can also Group Groups:
-```
-ansible Group3 -m ping
-```
+
+  > for further information: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#hosts-in-multiple-groups
 
 ---
 
@@ -120,8 +116,8 @@ ansible Group3 -m ping
 
 #### <font color='red'>Disable Host checking</font>
 This will help automate the process of logging authenticated users onto the nodes.  
-* temporary disable 
-* uncomment host_key_checking in ansible.cfg
+* temporary disable HOST checking
+  - uncomment host_key_checking in ansible.cfg
 
 ensure you're in the ansible_projects/demo directory:
 ```
