@@ -105,7 +105,7 @@ cat transfer_file.txt
 on the ansible controller:
 ensure you're in the ansible_projects/demo directory:
 ```
-ansible 10.0.0.2 -m copy -a "src=~/ansible_projects/demo/source_files/transfer_file.txt dest=~/dest_files/"
+ansible 10.0.0.2 -m copy -a "src=~/ansible_projects/demo/source_files/transfer_file.txt dest=~/ansible_assets/dest_files/"
 ```
 Note: look at the response on the Ansible Controller for Node1:
 check the dest_files directory on Node1:
@@ -118,22 +118,21 @@ cat transfer_file.txt
 on the ansible controller:
 ensure you're in the ansible_projects/demo directory:
 ```
-ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=~/ansible_projects/demo/dest_files"
+ansible 10.0.0.2 -m fetch -a "src=~/ansible_assets/dest_files/transfer_file.txt dest=./dest_files/"
 ```
 Notice that it replicates the Node directory structure under its IP:
 ```
-cd ..
 tree demo
 ```
 to flatten the directory run the command on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=~/ansible_projects/demo/dest_files flat=yes"
+ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=./dest_files flat=yes"
 ```
 but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=~/ansible_projects/demo/dest_files/{{inventory_hostname}}_transfer_file.txt flat=yes"
+ansible 10.0.0.2 -m fetch -a "src=~/ansible_assets/dest_files/transfer_file.txt dest=./dest_files/{{inventory_hostname}}_transfer_file.txt flat=yes"
 ```
 on the ansible controller:
 ```
@@ -151,7 +150,7 @@ Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=~/ansible_assets/source_files/hello.txt state=touch"
+ansible 10.0.0.2 -m file -a "path=~/ansible_assets/dest_files/hello.txt state=touch"
 ```
 Note: look at the response..  
 can also set the mode, owner, etc..  any of the arguments:
@@ -175,7 +174,7 @@ Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.tx
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=~/ansible_assets/source_files/hello.txt state=absent"
+ansible 10.0.0.2 -m file -a "path=~/ansible_assets/dest_files/hello.txt state=absent"
 ```
 Note: look at the response..  check that hello.txt has been deleted from 10.0.0.2
 
