@@ -12,9 +12,7 @@ In this lab we're going to:
 * add ansible-playbook path
 * syntax checking
 
-
   > Ansible Playbook examples: https://github.com/ansible/ansible-examples
-
 
 ---
 
