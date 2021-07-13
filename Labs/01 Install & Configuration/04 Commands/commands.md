@@ -87,7 +87,7 @@ Note: will overide default and reboot 12 [Group] servers at a time..
 
 #### <font color='red'>Download / Copy file from Node to Controller</font>
 Transfer a file using ansible ad-hoc commands. Copy uses SCP (Secure Copy Protocol) to copy files to multiple nodes in parallel.
-
+</br>
 Syntax: ansible [-i inventory file] <servers> -m ce/file/path  dest=/dest/location arguments"
 
 On Node1:
@@ -100,39 +100,44 @@ nano tranfer.txt
 # just add some stuff to the file - hello world ..!
 cat transfer_file.txt
 ```
+
+**copy**  
 on the ansible controller:
 ensure you're in the ansible_projects/demo directory:
 ```
-ansible 10.0.0.2 -m fetch -a "src=/home/ansadmin/source_files/transfer_file.txt dest=./downloads/"
+ansible 10.0.0.2 -m copy -a "src=~/ansible_projects/demo/source_files/transfer_file.txt dest=~/dest_files/"
 ```
-Note: look at the response on the ansible controller:
+Note: look at the response on the Ansible Controller for Node1:
+check the dest_files directory on Node1:
 ```
-tree downloads
+cd dest_files
+cat transfer_file.txt
 ```
-Notice that it replicates the Node directory structure under its IP.
+
+**fetch**  
+on the ansible controller:
+ensure you're in the ansible_projects/demo directory:
+```
+ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=~/ansible_projects/demo/dest_files"
+```
+Notice that it replicates the Node directory structure under its IP:
+```
+cd ..
+tree demo
+```
 to flatten the directory run the command on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
+ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=~/ansible_projects/demo/dest_files flat=yes"
 ```
 but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
 
-lets delete folder on ansible controller:
-```
-rm -rf downloads
-ls -l
-```
-
 on the ansible controller:
 ```
-ansible all -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/ flat=yes"
-```
-Note: the 10.0.0.3 will fail as there no transfer.txt
-```
-ansible 10.0.0.2 -m fetch -a "src/home/ansadmin/ansible_assets/transfer_file.txt dest=./downloads/{{inventory_hostname}}_transfer_file.txt flat=yes"
+ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=~/ansible_projects/demo/dest_files/{{inventory_hostname}}_transfer_file.txt flat=yes"
 ```
 on the ansible controller:
 ```
-tree downloads
+tree dest_files
 ```
 Note: now flattened and transfer.txt under the inventory hostname - 10.0.0.2
 
@@ -140,20 +145,18 @@ Note: now flattened and transfer.txt under the inventory hostname - 10.0.0.2
 
 #### <font color='red'>Create / Delete files / directory on Nodes</font>
 Create / Delete files / directories on Node.
-
 </br>
-
 **create**
 Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt state=touch"
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=touch"
+ansible 10.0.0.2 -m file -a "path=~/ansible_assets/source_files/hello.txt state=touch"
 ```
 Note: look at the response..  
 can also set the mode, owner, etc..  any of the arguments:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/new_hello.txt state=touch mode=777"
+ansible 10.0.0.2 -m file -a "path=~/ansible_assets/source_files/new_hello.txt state=touch mode=777"
 ```
 Note: look at the response.. mode changed
 
@@ -172,7 +175,7 @@ Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.tx
 
 on the ansible controller:
 ```
-ansible 10.0.0.2 -m file -a "path=/home/ansadmin/ansible_assets/hello.txt state=absent"
+ansible 10.0.0.2 -m file -a "path=~/ansible_assets/source_files/hello.txt state=absent"
 ```
 Note: look at the response..  check that hello.txt has been deleted from 10.0.0.2
 
@@ -217,7 +220,7 @@ on the ansible controller:
 ```
 ansible all -a "uptime"
 ```
-If you use command, you cant use some variables and operators.  The command is not executed through a shell.
+If you use command, you cant use some variables and operators as the command is not executed through a shell.
 on the ansible controller:
 ```
 ansible 10.0.0.2 -m -a "ls > test.txt"
