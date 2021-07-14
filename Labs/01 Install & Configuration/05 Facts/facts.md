@@ -126,10 +126,12 @@ you may wish to dynamically add the custom fact.
      copy:
        content: '"bar"'
        dest: /etc/ansible/facts.d/foo.fact
+       owner: ansadmin
    - name: Create a dynamic custom fact foobar
      copy:
        dest: /etc/ansible/facts.d/foobar.fact
        mode: 0775
+       owner: ansadmin
        content: |
          #!/usr/bin/python3
          import json
