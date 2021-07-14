@@ -152,12 +152,6 @@ You can set the scope of custom facts in Ansible.
 * Group facts: These facts are only accessible from a specific set of hosts or a host group.
 * Host facts: These facts are only accessible from a particular host.
 
-in our ansible_projects directory:
-```
-cd ansible_projects/demo
-mkdir -pv custom_facts/{playbooks,host_vars,group_vars}
-```
-
 </br>
 
 **Global Facts**  
@@ -171,7 +165,7 @@ copy the following lines:
 ```
 - hosts: all
   vars:
-    greeting: allo...!
+    greeting: a global allo...!
 
   tasks:
     - name: Print the value of global fact 'greeting'
@@ -190,7 +184,7 @@ Note: all the hosts in my inventory file can access the global fact greeting. Be
 </br>
 
 **Group Facts**  
-open the host’s inventory file
+edit the hosts inventory file:
 ```
 nano hosts
 ```
