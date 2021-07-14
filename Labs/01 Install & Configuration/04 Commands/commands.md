@@ -36,6 +36,10 @@ to find a module:
 ```
 ansible-doc -l | grep shell
 ```
+check disk space on our Nodes:
+```
+ansible multi -a "df -h"
+```
 
   > ansible module information: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
 
