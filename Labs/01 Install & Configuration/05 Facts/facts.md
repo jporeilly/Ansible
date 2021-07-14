@@ -159,7 +159,7 @@ we're going to say allo to all our nodes..!
 create our first playbook:
 ```
 cd demo/playbooks
-nano print_global_fact.yaml
+nano global_fact.yaml
 ```
 copy the following lines:
 ```
@@ -177,9 +177,11 @@ save..
 
 run playbook:
 ```
-ansible-playbook print_global_fact.yaml
+ansible-playbook global_fact.yaml
 ```
 Note: all the hosts in my inventory file can access the global fact greeting. Best practice is to add global facts in a separate file. 
+
+
 
 </br>
 
@@ -234,7 +236,7 @@ adding group variables for the web host group, create a new file web (same as th
 ```
 nano group_vars/web
 ```
-add the group facts domain_name and database_backend for the web host group, add the following lines in the group_vars/web file:
+add the group facts domain_name and database_backend for the web host group:
 ```
 domain_name=web.learning.lumada.hitachivantara.com/
 database_backend=PgSQL
