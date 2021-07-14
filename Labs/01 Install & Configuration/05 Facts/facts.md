@@ -158,7 +158,7 @@ You can set the scope of custom facts in Ansible.
 we're going to say allo to all our nodes..!
 create our first playbook:
 ```
-cd custom_facts/playbooks
+cd demo/playbooks
 nano print_global_fact.yaml
 ```
 copy the following lines:
