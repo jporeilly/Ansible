@@ -108,7 +108,7 @@ could also reference groups:
 ansible group1:group2 -m ping
 ```
 
-  > for further information: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#hosts-in-multiple-groups
+  > for further information: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 
 ---
 
