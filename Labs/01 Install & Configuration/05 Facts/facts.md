@@ -28,7 +28,7 @@ you can also display a 'variable' value:
 ```
 ansible all -m debug -a "var=inventory_hostname"
 ```
-can also list groups:
+can also list inventory groups:
 ```
 ansible localhost -m debug -a "var=groups"
 ansible localhost -m debug -a "var=groups.keys()" # returns just group name
