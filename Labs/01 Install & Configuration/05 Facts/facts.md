@@ -143,5 +143,6 @@ you may wish to dynamically add the custom fact.
          print(render_data(arbitrary_data["foobar"]))
 ```
 Note: a bit over engineer'd but you hopefully get the idea..!
+Also you will need to switch to Python3..
 
 ---
