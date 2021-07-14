@@ -131,7 +131,7 @@ you may wish to dynamically add the custom fact.
        dest: /etc/ansible/facts.d/foobar.fact
        mode: 0775
        content: |
-         #!/usr/bin/python3 #switched to python3
+         #!/usr/bin/python3
          import json
          def render_data(data):
             return json.dumps(data)
