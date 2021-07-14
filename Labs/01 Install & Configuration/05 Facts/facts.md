@@ -71,14 +71,19 @@ Note: you may need to take ownership of the facts.d folder..
 
 **executable script**
 
-if you want to try a script:
+from the Ansible Controller SSH into Node 1:
 ```
+ssh 10.0.0.2
+```
+create a script script to show adte & time:
+```
+cd /etc/ansible/facts.d
 sudo nano date_time.fact
 ```
 add the following:
 ```
 #!/bin/bash
-DATE='date'
+DATE=`date`
 echo "{\"date\" : \"${DATE}\"}"
 ```
 save..
@@ -96,7 +101,7 @@ add the following:
 ---
 - hosts: 10.0.0.2
   tasks:
-   - name: Get custom facts
+   - name: Get Custom Date Fact
      debug:
       msg: The custom fact is {{ansible_local.date_time}}
 ```
@@ -110,7 +115,7 @@ ansible-playbook check_date.yml
 you may wish to dynamically add the custom fact.  
 ```
 ---
-- hosts: all
+- hosts: 10.0.0.2
   become: true
   tasks:
    - name: Create fact directory
@@ -126,7 +131,7 @@ you may wish to dynamically add the custom fact.
        dest: /etc/ansible/facts.d/foobar.fact
        mode: 0775
        content: |
-         #!/usr/bin/python3
+         #!/usr/bin/python3 # switched to python3
          import json
          def render_data(data):
             return json.dumps(data)
@@ -140,7 +145,6 @@ you may wish to dynamically add the custom fact.
 Note: a bit over engineer'd but you hopefully get the idea..!
 
 ---
-
 
 #### <font color='red'>Ansible Custom Facts</font>
 You can set the scope of custom facts in Ansible.
