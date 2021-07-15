@@ -221,27 +221,28 @@ ansible-playbook file_values.yaml
 ---
 
 #### <font color='red'>Inventory Variables</font>
-You can set the scope of custom facts in Ansible.
-* Global facts: These facts are accessible from every host in your inventory file.
-* Group facts: These facts are only accessible from a specific set of hosts or a host group.
-* Host facts: These facts are only accessible from a particular host.
+You can set the scope of custom variables in Ansible.
+* Global variables: These facts are accessible from every host in your inventory file.
+* Group variables: These facts are only accessible from a specific set of hosts or a host group.
+* Host variables: These facts are only accessible from a particular host.
 
 </br>
 
-**Global Facts**  
+**Global Variables**  
 we're going to say allo to all our nodes..!
 create our first playbook:
 ```
-nano global_fact.yaml
+nano global_vars.yaml
 ```
 copy the following lines:
 ```
+---
 - hosts: all
   vars:
     greeting: a global allo...!
 
   tasks:
-    - name: Print the value of global fact 'greeting'
+    - name: Print the value of global variable 'greeting'
       debug:
         msg: '{{greeting}}'
 ```
@@ -250,38 +251,39 @@ save..
 
 run playbook:
 ```
-ansible-playbook global_fact.yaml
+ansible-playbook global_vars.yaml
 ```
-Note: all the hosts in my inventory file can access the global fact greeting. Best practice is to add global facts in a separate file. 
-
+Note: all the hosts in my inventory file can access the global variable greeting. Best practice is to reference global variables in a separate file. 
 
 
 </br>
 
-**Group Facts**  
+**Group Variables**  
 edit the hosts inventory file:
 ```
+cd ..
 nano hosts
 ```
-add group facts/variables for that host group:
+add group variables for that host group:
 ```
 [web]
-10.0.0.2
+localhost
 
 [web:vars]
 domain_name=web.learning.lumada.hitachivantara.com/
 database_backend=MySQL
 ```
-create a new playbook print_group_facts.yaml in the playbooks/ directory:
+create a new playbook group_vars.yaml in the playbooks directory:
 ```
-nano playbooks/print_group_facts.yaml
+cd playbooks
+nano group_vars.yaml
 ```
-add the following lines in your print_group_facts.yaml file:
+add the following lines in your group_vars.yaml file:
 ```
+---
 - hosts: web
-  user: ansadmin
   tasks:
-    - name: Print group facts
+    - name: Print Group Vars
       debug:
         msg: 'Domain Name: {{domain_name}} Database Backend: {{database_backend}}'
 ```
@@ -289,9 +291,9 @@ save..
 
 run playbook:
 ```
-ansible-playbook playbooks/print_group_fact.yaml
+ansible-playbook group_vars.yaml
 ```
-Note: the hosts in the web group can access the domain_name and database_backend group facts/variables.
+Note: the hosts in the web group can access the domain_name and database_backend group variables.
 
 
 clean up the inventory file and see how to add group facts/variables in a separate file.
