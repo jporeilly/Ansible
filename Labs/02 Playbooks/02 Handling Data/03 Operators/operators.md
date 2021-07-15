@@ -103,8 +103,8 @@ add the following:
     vars:
       x: 40
       my_name: 'ansible'
-      my_path: '/home/ansadmin/my_ansible_nprod/member_ship_op.yml'
-      my_link_path: '/home/ansadmin/my_ansible_nprod/operators.yml'
+      my_path: '/home/ansadmin/ansible_projects/demo/playbooks/membership_operators.yml'
+      my_link_path: '/home/ansadmin/ansible_projects/demo/playbooks/operators.yml'
     tasks:
       - debug:
           msg:
