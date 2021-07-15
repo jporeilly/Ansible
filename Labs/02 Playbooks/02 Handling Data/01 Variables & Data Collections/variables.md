@@ -296,8 +296,8 @@ ansible-playbook group_vars.yaml
 Note: the hosts in the web group can access the domain_name and database_backend group variables.
 
 
-clean up the inventory file and see how to add group facts/variables in a separate file.
-remove the global facts from the host’s inventory file:
+clean up the inventory file and see how to add group variables in a separate file.
+remove the global variables from the host’s inventory file:
 ```
 nano hosts
 ```
