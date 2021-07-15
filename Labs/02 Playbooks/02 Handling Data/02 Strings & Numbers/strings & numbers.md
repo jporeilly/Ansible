@@ -16,7 +16,7 @@ nano strings_numbers.yaml
 add the following:
 ```
 ---
- - name: Play for Arithmetic OPerators
+ - name: Play for Arithmetic Operators
    hosts: localhost
    gather_facts: false
    vars:
@@ -29,8 +29,8 @@ add the following:
        - "The value of x is: {{x}}"
        - "The value of y is: {{y}}"
        - "{{x}} + {{y}} = {{x+y}}"
-       - "{{x}} - {{y}} = {{y-x}}"
-       - "{{x}} * {{y}} = {{y*x}}"
+       - "{{x}} - {{y}} = {{x-y}}"
+       - "{{x}} * {{y}} = {{x*y}}"
        - "{{x}} / {{y}} = {{x/y}}"
        - "{{x}} % {{y}} = {{x%y}}"
 ```
