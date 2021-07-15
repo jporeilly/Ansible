@@ -3,6 +3,15 @@ Programming languages typically support a set of operators: constructs which beh
 
 As already referenced in the variables section, Ansible uses Jinja2 templating to enable dynamic expressions and access to variables. Ansible supports all the operators provided by Jinja2 like math, comparison, logical and other special Jinja2 operators.
 
+In these Labs we're going to cover:
+* Comparison Operators
+* Membership Operators
+* Test Operators
+* Logical Operators
+* Special Operators
+
+---
+
 #### <font color='red'>Comparison Operators</font>
 Comparison operators are used to compare between two values.
 
@@ -152,7 +161,6 @@ ansible-playbook logical_operators.yaml
 ```
 
 ---
-
 
 #### <font color='red'>Special Operators</font>
 Jinja2 provides a set of special operators like filter to perform special operations.
