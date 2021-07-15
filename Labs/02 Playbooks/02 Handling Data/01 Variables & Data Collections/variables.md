@@ -16,7 +16,7 @@ In this lab we're going to:
 
 ---
 
-#### <font color='red'>Custom Variables</font>
+#### <font color='red'>Playbook Custom Variables</font>
 Variables are represented as a key : value pair. The varaible must start with a letter.
 
 create playbook:
@@ -26,7 +26,7 @@ nano custom_variables.yaml
 add the following:
 ```
 ---
- - hosts: 10.0.0.1
+ - hosts: 10.0.0.2
    vars:
     x: 23
 
@@ -42,7 +42,7 @@ ansible-playbook custom_variables.yaml
 the playbook can also be formatted:
 ```
 ---
- - hosts: 10.0.0.1
+ - hosts: 10.0.0.2
    vars:
     x: 23
 
@@ -53,7 +53,7 @@ the playbook can also be formatted:
 edit the custom_variables.yaml:
 ```
 ---
- - hosts: 10.0.0.1
+ - hosts: 10.0.0.2
    vars:
     x: 23
     float_number: 45.67
@@ -127,7 +127,7 @@ nano bash_version.yaml
 add the following:
 ```
 ---
- - hosts: 10.0.0.1
+ - hosts: 10.0.0.2
    gather_facts: false
    tasks:
    - shell: "bash --version"
@@ -157,7 +157,7 @@ nano prompts.yaml
 add the following:
 ```
 ---
- - hosts: 10.0.0.1
+ - hosts: 10.0.0.2
    vars_prompt:
     - name: user_name
       prompt: Enter your user name 
@@ -209,9 +209,9 @@ add the following:
    gather_facts: false
    tasks:
    - debug:
-     var=server_name
+      var: key_file
 ```
-
+Note: you could point to any 
 save..
 run the playbook:
 ```
@@ -219,7 +219,6 @@ ansible-playbook file_values.yaml
 ```
 
 ---
-
 
 #### <font color='red'>Inventory Variables</font>
 You can set the scope of custom facts in Ansible.
@@ -233,7 +232,6 @@ You can set the scope of custom facts in Ansible.
 we're going to say allo to all our nodes..!
 create our first playbook:
 ```
-cd demo/playbooks
 nano global_fact.yaml
 ```
 copy the following lines:
