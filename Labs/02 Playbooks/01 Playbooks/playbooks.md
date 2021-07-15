@@ -75,7 +75,7 @@ copy the following:
 
    tasks:
    - name: install httpd
-      yum: name=httpd state=present 
+     yum: name=httpd state=present 
  
  - hosts: 10.0.0.3
    become: true
@@ -83,7 +83,7 @@ copy the following:
 
    tasks:
    - name: install wget
-      yum: name=wget state=present
+     yum: name=wget state=present
 ```
 save..
 
@@ -100,19 +100,19 @@ copy the following:
 ---
  - hosts: 10.0.0.2
    become: true
-   name: install httpd
+   name: uninstall httpd
 
    tasks:
-   -name: install httpd
-      yum: name=httpd state=absent 
+   -name: uninstall httpd
+    yum: name=httpd state=absent 
  
  - hosts: 10.0.0.3
    become: true
-   name: install wget
+   name: uninstall wget
 
    tasks:
-   -name: install wget
-      yum: name=wget state=absent
+   -name: uninstall wget
+    yum: name=wget state=absent
 ```
 save..
 
