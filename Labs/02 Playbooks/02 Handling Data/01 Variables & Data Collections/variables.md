@@ -11,6 +11,7 @@ In this lab we're going to:
 * registers
 * prompts
 * read from files
+* inventory variables
 * magic variables
 
 ---
