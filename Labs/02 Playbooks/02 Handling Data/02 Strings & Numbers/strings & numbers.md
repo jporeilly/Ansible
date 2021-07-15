@@ -1,6 +1,14 @@
 ## <font color='red'> 2.2 Strings & Numbers </font>
 You can use arithmetic calculations in Ansible using the Jinja syntax. This is helpful in many situations where you have stored the output of an operation, and you need to manipulate that value. All usual operation like addition, subtraction, multiplication, division, and modulo are possible.
 
+In this lab we're going to cover:
+* Numbers
+* Arithmetic Operators
+* Methods & Filters
+
+---
+
+#### <font color='red'>Arithmetic Operators</font>
 create playbook:
 ```
 nano strings_numbers.yaml
@@ -31,9 +39,6 @@ run the playbook:
 ```
 ansible-playbook strings_numbers.yaml
 ```
-
-
-#### <font color='red'>Arithmetic Operators</font>
 
 create playbook:
 ```
@@ -84,7 +89,7 @@ add the following:
        msg:
        - "The value of x is: {{x}}"
        - "The value of y is: {{y}}"
-       - "THe additon of {{x}} and {{y}} is {{x|int +y|int}}"
+       - "The additon of {{x}} and {{y}} is {{x|int +y|int}}"
        - "The {{a}} - {{y}} = {{a-y|int}}"
 ```
 save..
