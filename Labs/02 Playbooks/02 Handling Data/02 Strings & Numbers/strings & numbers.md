@@ -137,7 +137,7 @@ add the following:
   - hosts: localhost
     gather_facts: false
     vars:
-      x: "ThiS IS abOut Ansible FilTERS AND mETHODS"
+      x: "Ansible Filters and Methods"
       y: "56"
       z: [4,5,6,38,0]
 
