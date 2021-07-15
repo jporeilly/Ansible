@@ -138,7 +138,7 @@ copy the following:
 
    tasks:
    name: install httpd
-      yum: name=httpd state=latest
+   yum: name=httpd state=latest
 ```
 save..
 
@@ -153,7 +153,8 @@ check the yaml syntax:
 ```
 ./wget.yaml --syntax-check
 ```
-Note: the error and fix.
+Note: the error and fix.  
+Solution: Its the task name..  needs to be - name and the yum to be correctly indented.
 
 run again:
 ```
