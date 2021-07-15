@@ -198,6 +198,6 @@ run the playbook:
 ansible-playbook special_operators.yaml
 ```
 
-  > for further info: 
+  > for further info: https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
 
 ---
