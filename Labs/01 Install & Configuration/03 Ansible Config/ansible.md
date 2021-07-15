@@ -79,6 +79,7 @@ edit the hosts file:
 
 [group2]
 10.0.0.3
+10.0.0.4O
 
 [group:children]
 group1
