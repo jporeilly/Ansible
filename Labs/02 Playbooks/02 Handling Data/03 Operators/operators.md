@@ -114,7 +114,6 @@ add the following:
             - "my_name is lower: {{my_name is lower}}"
             - "my_name is upper: {{my_name is upper}}"
             - "my_name is string: {{my_name is string}}"
-            - "x is divisible 2: {{x is divisible 2}}"
             - "x is even: {{ x is even }}"
             - "x is odd: {{ x is odd }}"
             - "x is number: {{ x is number}}"
