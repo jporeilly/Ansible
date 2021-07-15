@@ -79,6 +79,10 @@ edit the hosts file:
 
 [group2]
 10.0.0.3
+
+[group:children]
+group1
+group2
 ```
 save..
 Note: the inventory file be called anything..  its referenced in the ansible.cfg  
@@ -106,6 +110,10 @@ ansible group2 -m ping
 could also reference groups:
 ```
 ansible group1:group2 -m ping
+```
+you can also use --list-hosts to check:
+```
+ansible --list-hosts group
 ```
 
   > for further information: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
