@@ -7,6 +7,11 @@ Use the passwords with the ansible-vault command-line tool to create and view en
 
   > Ansible Vault: https://docs.ansible.com/ansible/latest/user_guide/vault.html#vault
 
+In this Lab we're going to cover:
+* Vaults
+
+---
+
 #### <font color='red'>Create Encrypted File</font>
 
 on the ansible controller:
