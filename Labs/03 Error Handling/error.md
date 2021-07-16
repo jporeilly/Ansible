@@ -30,8 +30,9 @@ add the following:
 save..
 run the playbook:
 ```
-ansible-playbook tags.yaml  
+ansible-playbook error_spelling.yaml  
 ```
+Note: change the ignore_errors value to yes
 
 ---
 

@@ -2,6 +2,7 @@
 Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. Grouping content by roles also allows easy sharing of roles with other users.
 
 #### <font color='red'>Tomcat</font>
+You will need to create a templates folder
 
 create playbook:
 ```
@@ -10,7 +11,7 @@ nano tomcat.yaml
 add the following:
 ```
 ---
-  - name: Install and configure tomcat
+  - name: Install and Configure Tomcat
     hosts: 10.0.0.2
     gather_facts: false
     vars:
@@ -21,33 +22,33 @@ add the following:
       tomcat_port: 8090
     become: yes
     tasks:
-      - name: Updating repos
+      - name: Updating Repos
         yum:
           name: "*"
           state: latest
-      - name: Installing required java
+      - name: Installing required Java
         yum:
           name: "{{req_java}}"
           state: present
-      - name: Setting default java
+      - name: Setting default Java
         alternatives:
           name: java
           link: /usr/bin/java
           path: /usr/lib/jvm/{{set_java}}/bin/java
-      - name: Downloading required tomcat
+      - name: Downloading required Tomcat
         get_url:
           url: "{{tomcat_url}}"
           dest: /usr/local
-      - name: Extracting downloaded tomcat
+      - name: Extracting downloaded Tomcat
         unarchive:
           src: "/usr/local/apache-tomcat-{{req_tomcat_ver}}.tar.gz"
           dest: /usr/local
           remote_src: yes
-      - name: Renaming tocmcat home
+      - name: Renaming Tomcat home
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
       - name: Replacing default port with required port
         template:
-          src: server.xml.j2
+          src: server.xml
           dest: /usr/local/latest/conf/server.xml
       - name: Starting tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
