@@ -2,8 +2,13 @@
 Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. Grouping content by roles also allows easy sharing of roles with other users.
 
 #### <font color='red'>Tomcat</font>
-You will need to create a templates folder
+For added flexibility, we'll use a custom server.xml.
 
+copy the server.xml.j2 to the demo/playbooks directory:
+```
+cd Course-Materials/Labs/04 Project - Tomcat
+cp -rpP server.xml.j2 /home/ansadmin/ansible_projects/demo/playbooks
+```
 create playbook:
 ```
 nano tomcat.yaml
@@ -19,7 +24,7 @@ add the following:
       set_java: jre-1.8.0-openjdk
       req_tomcat_ver: 10.0.8
       tomcat_url: https://apache.mirrors.nublue.co.uk/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
-      tomcat_port: 8090
+      tomcat_http_port: 8090
     become: yes
     tasks:
       - name: Updating Repos
@@ -44,13 +49,13 @@ add the following:
           src: "/usr/local/apache-tomcat-{{req_tomcat_ver}}.tar.gz"
           dest: /usr/local
           remote_src: yes
-      - name: Renaming Tomcat home
+      - name: Renaming Tomcat Home
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
-      - name: Replacing default port with required port
+      - name: Replacing default Port with required Port
         template:
-          src: server.xml
+          src: server.xml.j2
           dest: /usr/local/latest/conf/server.xml
-      - name: Starting tomcat
+      - name: Starting Tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
 ```
 save in ansible_projects/demo/playbooks/tomcat.yaml
