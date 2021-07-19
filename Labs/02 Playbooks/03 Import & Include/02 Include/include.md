@@ -1,51 +1,25 @@
-## <font color='red'> 2.6 Tags </font>
+## <font color='red'> 3.2 Includes </font>
 If you have a large playbook, it may be useful to run only specific parts of it instead of running the entire playbook. 
 
-#### <font color='red'>Tags</font>
 
-create playbook:
-```
-nano tags.yaml
-```
-add the following:
-```
+#### <font color='red'>Includes</font>
+
 ---
-  - name: Play with 5 tasks
-    hosts: localhost
-    gather_facts: false
+  - name: Simple play to install multiple pkgs
+    hosts: web_servers
+    gather_facts: true
+    become: yes
     tasks:
-      - debug:
-          msg: "This is a first task"
-        tags:
-          - first
-          - common
-          - always
-      - debug:
-          msg: "This is a second task"
-        tags:
-          - second
-          - never
-      - debug:
-          msg: "This is a third task"
-        tags:
-          - third
-          - common
-          - never
-      - debug:
-          msg: "This is a fourth task"
-        tags:
-          - fourth
-          - never
-      - debug:
-          msg: "This is a fifth task"
-        tags:
-          - fifth
-          - never
-```
-save..
-run the playbook:
-```
-ansible-playbook tags.yaml
+      - include_tasks: install_webserver_{{ansible_os_family}}.yml
+      - include_tasks: install_java_{{ansible_os_family}}.yml
+
+
+
+
+
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+
+---
 ```
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
