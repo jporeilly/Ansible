@@ -94,25 +94,6 @@ can now just import the tasks, based on a fact:
 
 
 
-> for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
-
----
-
-#### <font color='red'>Includes</font>
-
----
-  - name: Simple play to install multiple pkgs
-    hosts: web_servers
-    gather_facts: true
-    become: yes
-    tasks:
-      - include_tasks: install_webserver_{{ansible_os_family}}.yml
-      - include_tasks: install_java_{{ansible_os_family}}.yml
-
-
-
-
-
-  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+> for further info: https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html
 
 ---

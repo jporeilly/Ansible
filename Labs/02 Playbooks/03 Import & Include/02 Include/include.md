@@ -17,11 +17,6 @@ If you have a large playbook, it may be useful to run only specific parts of it 
 
 
 
-  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
-
----
-```
-
-  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+  > for further info: https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html
 
 ---
