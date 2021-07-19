@@ -7,6 +7,8 @@ You can include playbooks inside other playbooks by using the import_playbook di
 In this Lab we're going to cover:
 * Imports
 
+---
+
 #### <font color='red'>Imports</font>
 The following playbook simply install a webserver based on OS..
 ```
@@ -91,8 +93,16 @@ can now just import the tasks, based on a fact:
       - include_tasks: install_java_debian.yml
         when: ansible_os_family=="Debian"
 ```
+These could then be wrapped up inside a master playbook:
+```
+--- 
+- name: install webserver
+  import_playbook: webservers.yml
 
-
+- name: install databases
+  import_playbook: databases.yml
+```
+Note: The plays and tasks in each playbook listed will be run in the order they are listed. If they need to executed based on API call, schedule, etc..  then Ansible Tower is the answer.
 
 > for further info: https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html
 
