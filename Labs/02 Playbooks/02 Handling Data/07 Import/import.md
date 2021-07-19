@@ -1,4 +1,4 @@
-## <font color='red'> 3.1 Import</font>
+## <font color='red'> 2.7 Import</font>
 You can include playbooks inside other playbooks by using the import_playbook directive. There are a number of reasons you might want to move playbooks into separate files when using Ansible:
 
 * Refactoring - chop up unfeasibly large playbooks to make the whole thing easier to read, or reduce repetition (DRY) by putting common plays into a file that can be imported by multiple playbooks.
@@ -93,6 +93,7 @@ can now just import the tasks, based on a fact:
       - include_tasks: install_java_debian.yml
         when: ansible_os_family=="Debian"
 ```
+Note: 
 These could then be wrapped up inside a master playbook:
 ```
 --- 
@@ -103,6 +104,12 @@ These could then be wrapped up inside a master playbook:
   import_playbook: databases.yml
 ```
 Note: The plays and tasks in each playbook listed will be run in the order they are listed. If they need to executed based on API call, schedule, etc..  then Ansible Tower is the answer.
+
+Include and import statements are very similar, however the Ansible executor engine treats them very differently.
+
+All import* statements are pre-processed at the time playbooks are parsed.
+
+All include* statements are processed as they are encountered during the execution of the playbook.
 
 > for further info: https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html
 
