@@ -37,6 +37,29 @@ ansible-vault view test-vault.yml
 ```
 Note: obviously you will need to enter the password.
 
+if you want to add extra data or remove the data from the encrypted file:
+```
+ansible-vault edit test-vault.yml
+```
+to remove encryption:
+```
+ansible-vault decrypt test-vault.yml
+```
+to change the vault password of encrypted files:
+```
+ansible-vault rekey test-vault.yml
+```
+
+---
+
+#### <font color='red'>Create Encrypted File</font>
+
+
+
+
+
+
+
 
 
 create playbook:
@@ -62,56 +85,8 @@ run the playbook:
 ```
 ansible-playbook tags.yaml  
 
-#### <font color='red'>Error Handling - fail on return codes</font>
-create playbook:
-```
-nano error_nginx.yaml
-```
-add the following:
-```
----
-  - hosts: localhost
-    gather_facts: fasle
-    become: yes
-    tasks:
-      - name: starting nginx
-        service:
-          name: nginx
-          state: started
-        ignore_errors: no      # change the value. If "yes" then will ignore error and execute the other tasks.
-      - name: starting httpd
-        service:
-          name: httpd
-          state: started
-```
-save..
-run the playbook:
-```
-ansible-playbook error_nginx.yaml
-```
----
-  - hosts: localhost
-    gather_facts: false
-    tasks:
-     - command: "ls /home"
-       register: out
-       failed_when: out.rc==0  # purposely fail the task..
-     - debug: var=out
-``` 
 
-another way to fail the task.
-
-```
----
-  - hosts: localhost
-    gather_facts: false
-    tasks:
-     - command: "ls /home"
-       register: out
-     - fail:
-        msg: "Failed because rc is 0"
-        when: out.rc==0
- ```       
+       
 save..
 run the playbook:
 ```
