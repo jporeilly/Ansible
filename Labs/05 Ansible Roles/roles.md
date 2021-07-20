@@ -1,4 +1,4 @@
-## <font color='red'> 5.1 Roles </font>
+## <font color='red'> 5.1 Roles & Galaxy </font>
 Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. Grouping content by roles also allows easy sharing of roles with other users.
 
 Roles can be dropped into Ansible PlayBooks and immediately put to work. You’ll find roles for provisioning infrastructure, deploying applications, and all of the tasks you do everyday. The new Collection format provides a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins.
@@ -10,9 +10,10 @@ Use Galaxy to jump-start your automation project with great content from the Ans
 In this Lab we're going to cover:
 * Roles
 * Galaxy
+
 ---  
 
-#### <font color='red'>Create a Role</font>
+#### <font color='red'>Tomcat Role</font>
 An Ansible role has a defined directory structure with eight main standard directories. You must include at least one of these directories in each role. You can omit any directories the role does not use.   
 
 on the ansible controller:
@@ -41,9 +42,9 @@ So lets set the scope..   we want to install Tomcat on CentOS, RedHat Debian and
 
 lets create a read.me for the role:
 
----
+-----------------------------------
 
-## <font color='red'>Role info</font>
+## <font color='red'>Role Info</font>
 > Ansible Role to Install Tomcat 9 on CentOS, Fedora, Debian and Ubuntu Linux.
 
 #### <font color='red'>Tested on the following operating systems</font>
@@ -53,7 +54,7 @@ lets create a read.me for the role:
 - Ubuntu 18.04
 - Debian 10
 
-#### <font color='red'>Tasks in the role</font>
+#### <font color='red'> Tasks in the Tomcat Role </font>
 This role contains tasks to:
 - Install basic packages required
 - Install Java
@@ -61,7 +62,7 @@ This role contains tasks to:
 - Download tomcat and install - configure systemd
 - Configure firewall
 
-#### <font color='red'>Instructions</font>
+#### <font color='red'> Instructions </font>
 - Clone the Project:
 
 ```
@@ -123,12 +124,17 @@ $ ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
 ```
 Execution should be successful without errors:
 
+-------------------------------
+
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
+
+
 ---
 
+#### <font color='red'> Galaxy </font>
+The idea behind Galaxy is to give greater visibility to one of Ansible’s most exciting features: reusable Roles for server configuration or application installation. Many people share roles on Ansible Galaxy.
+
+Ansible roles are consists of many playbooks which are way to group multiple tasks together into one container to do the automation in very effective manner with clean directory structures.
 
 
-
-
-  > for further info: https://galaxy.ansible.com/
-
----
+> for further info: https://galaxy.ansible.com/
