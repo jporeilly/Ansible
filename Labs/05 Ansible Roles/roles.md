@@ -23,7 +23,7 @@ mkdir roles
 ```
 create a role:
 ```
-ansible-galaxy init tomcat-ansible
+ansible-galaxy init tomcat
 ```
 Note: By default Ansible will look in each directory within a role for a main.yml file for relevant content (also main.yaml and main):
 lets take a look at the structure:
@@ -67,14 +67,14 @@ This role contains tasks to:
 
 ```
 cd tomcat-ansible
-git clone https://github.com/jporeilly/tomcat-ansible.git .
+git clone https://github.com/jporeilly/ansible-tomcat.git
 ```
 
 - Update your inventory, e.g:
 ```
 nano hosts
 [tomcat-nodes]
-10.0.0.2       # Node IP
+10.0.0.2       # Node1 IP
 ```
 
 - Update variables in playbook file - Set Tomcat version, remote user and Tomcat UI access credentials
@@ -104,25 +104,25 @@ become_method: sudo
 Once all values are updated, you can then run the playbook against your nodes.
 Playbook executed as <ansadmin> user - with ssh key:
 ```
-$ ansible-playbook -i hosts tomcat-setup.yml
+ansible-playbook -i hosts tomcat-setup.yml
 ```
-Playbook executed as root user - with password:
+Playbook executed as ansadmin user - with password:
 ```
-$ ansible-playbook -i hosts tomcat-setup.yml --ask-pass
+ansible-playbook -i hosts tomcat-setup.yml --ask-pass
 ```
 Playbook executed as sudo user - with password:
 ```
-$ ansible-playbook -i hosts tomcat-setup.yml --ask-pass --ask-become-pass
+ansible-playbook -i hosts tomcat-setup.yml --ask-pass --ask-become-pass
 ```
 Playbook executed as sudo user - with ssh key and sudo password:
 ```
-$ ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
+ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
 ```
 Playbook executed as sudo user - with ssh key and passwordless sudo:
 ```
-$ ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
+ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
 ```
-Execution should be successful without errors:
+Execution should be successful without errors :)
 
 -------------------------------
 
