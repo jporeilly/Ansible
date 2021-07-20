@@ -10,7 +10,7 @@ Roles can be dropped into Ansible PlayBooks and immediately put to work. You’l
   > Galaxy Hub: https://galaxy.ansible.com/
 
 In this Lab we're going to cover:
-
+* Roles
 
 ---  
 
