@@ -40,7 +40,7 @@ tree roles
 
 So lets set the scope..   we want to install Tomcat on CentOS, RedHat Debian and Ubuntu.
 
-lets create a read.me for the role:
+  > browse to: http://github.com/jporeilly/ansible-tomcat.git
 
 -----------------------------------
 
