@@ -5,8 +5,6 @@ To use Ansible Vault you need one or more passwords to encrypt and decrypt conte
 
 Use the passwords with the ansible-vault command-line tool to create and view encrypted variables, create encrypted files, encrypt existing files, or edit, re-key, or decrypt files. You can then place encrypted content under source control and share it more safely.
 
-  > Ansible Vault: https://docs.ansible.com/ansible/latest/user_guide/vault.html#vault
-
 In this Lab we're going to cover:
 * Vaults
 
@@ -29,14 +27,15 @@ Note: it will ask you to enter a password twice, then you can enter some text..
 password: lumada
 text: they're coming to take me away..
 
-
-
-create a role:
+to encrypt an existing file:
 ```
-ansible-galaxy init 
+ansible-vault encrypt test-vault.yml
 ```
-
-
+to display the contents of encrypted files:
+```
+ansible-vault view test-vault.yml
+```
+Note: obviously you will need to enter the password.
 
 
 
@@ -119,6 +118,6 @@ run the playbook:
 ansible-playbook error_nginx.yaml
 ```
 
-  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
+  > for further info: https://docs.ansible.com/ansible/latest/user_guide/vault.html
 
 ---
