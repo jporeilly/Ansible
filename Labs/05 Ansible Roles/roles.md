@@ -71,6 +71,8 @@ git clone https://github.com/jporeilly/ansible-tomcat.git
 cd .. (back up to roles)
 sudo chown -R ansadmin ansible-tomcat
 ```
+Note: important to take ownership otherwise the 'tomcat' group will have the incorrect inherited permissions.
+
 
 - Update your inventory, e.g:
 ```
@@ -127,6 +129,9 @@ ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
 Execution should be successful without errors :)
 
 -------------------------------
+
+
+  > to check the installation: http://localhost:8080  obviously on Node 1..!
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
 
