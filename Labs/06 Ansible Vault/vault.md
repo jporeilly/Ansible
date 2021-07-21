@@ -113,9 +113,6 @@ run the playbook:
 ```
 ansible-playbook -e @secrets_file.enc --ask-vault-pass vault_config.yml 
 
-
-
-
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/vault.html
 
 ---
