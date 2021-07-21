@@ -10,7 +10,7 @@ In this Lab we're going to cover:
 
 ---
 
-#### <font color='red'>Create Encrypted File</font>
+#### <font color='red'>Encrypted File</font>
 
 on the ansible controller:
 ```
