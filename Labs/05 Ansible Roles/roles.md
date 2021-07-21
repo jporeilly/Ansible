@@ -68,6 +68,7 @@ This role contains tasks to:
 ```
 cd tomcat-ansible
 git clone https://github.com/jporeilly/ansible-tomcat.git
+sudo chown -R ansadmin ansible-tomcat
 ```
 
 - Update your inventory, e.g:
