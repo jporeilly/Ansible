@@ -24,7 +24,7 @@ ansible-vault create test-vault.yml
 ```
 Note: it will ask you to enter a password twice, then you can enter some text..
 
-password: lumada
+password: lumada  
 text: they're coming to take me away..
 
 to encrypt an existing file:
