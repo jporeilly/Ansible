@@ -23,10 +23,11 @@ create a file to encrypt:
 ansible-vault create test-vault.yml
 ```
 Note: it will ask you to enter a password twice, then you can enter some text..
-
+```
 password: lumada  
 text: they're coming to take me away..
-
+:wq
+```
 to encrypt an existing file:
 ```
 ansible-vault encrypt test-vault.yml
@@ -92,8 +93,10 @@ save..
 
 now for the configuration file:
 ```
-cd vaults
+cd ..
+cd vault
 sudo nano secrets_file.enc
+sudo chown -R ansadmin secrets_file.enc
 ```
 add the following:
 ```
@@ -108,10 +111,11 @@ check the file has been encrypted:
 ```
 cat secrets_file.enc
 ```
-
 run the playbook:
 ```
-ansible-playbook -e @secrets_file.enc --ask-vault-pass vault_config.yml 
+ansible-playbook 10.0.0.2 -e @secrets_file.enc --ask-vault-pass vault_config.yml 
+```
+
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/vault.html
 
