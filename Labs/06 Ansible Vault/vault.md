@@ -127,6 +127,7 @@ ansible-playbook vault_config.yml -e vault/secrets_file.enc --ask-vault-pass
 ```
 Note:  you will first be promted for the file password: lumada then for the API_key: SuperSecretPassword
 
+Many organizations already have tools, such as HashiCorp Vault or Thycotic Secret Server. The Ansible community has written a number of custom modules for interacting with these types of systems.
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/vault.html
 
