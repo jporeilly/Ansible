@@ -6,8 +6,8 @@ To use Ansible Vault you need one or more passwords to encrypt and decrypt conte
 Use the passwords with the ansible-vault command-line tool to create and view encrypted variables, create encrypted files, encrypt existing files, or edit, re-key, or decrypt files. You can then place encrypted content under source control and share it more safely.
 
 In this Lab we're going to cover:
-* Vaults
-
+* Vault
+* Vault - playbook
 ---
 
 #### <font color='red'>Encrypted File</font>
@@ -62,45 +62,59 @@ ansible-vault encrypt_string 'string' --name 'variable_name'
 ---
 
 #### <font color='red'>Vault - Playbook</font>
-In this Lab we're going to 
-ansible-vault create mysecrets.yml
+In this Lab we're going to prompt for an API key..
+* the API key is going to be held in an encrpted file
+* pass the file as a regular variable into the prompt
 
-
-
-
-
-
-
+on the ansible controller:
+```
+cd ansible_projects/demo/playbooks
+```
 create playbook:
 ```
-nano error_spelling.yaml
+nano vault_config.yml
 ```
 add the following:
 ```
 ---
-  - hosts: localhost
-    gather_facts: false
-    tasks:
-      - command: "ls /homee"  # spelling mistake will generate error and stop playbook.
-        register: home_out
-        ignore_errors: no     # change the value. If "yes" then will ignore error and execute the other tasks.
-      - debug: var=home_out
-      - command: "ls /tmp"
-        register: tmp_out
-      - debug: var=tmp_out
-
+- hosts: 10.0.0.2
+  gather_facts: false
+  vars_prompt:
+    - name: api_key
+      prompt: Enter the API key
+  tasks:
+    - name: Ensure API key is present in config file
+      ansible.builtin.lineinfile:
+        path: /etc/app/configuration.ini
+        line: "API_KEY={{ api_key }}"
+```
 save..
+
+now for the configuration file:
+```
+cd vaults
+sudo nano secrets_file.enc
+```
+add the following:
+```
+api_key: SuperSecretPassword
+```
+lets encrypt:
+```
+ansible-vault encrypt secrets_file.enc
+```
+Note: enter a password.
+check the file has been encrypted:
+```
+cat secrets_file.enc
+```
+
 run the playbook:
 ```
-ansible-playbook tags.yaml  
+ansible-playbook -e @secrets_file.enc --ask-vault-pass vault_config.yml 
 
 
-       
-save..
-run the playbook:
-```
-ansible-playbook error_nginx.yaml
-```
+
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/vault.html
 
