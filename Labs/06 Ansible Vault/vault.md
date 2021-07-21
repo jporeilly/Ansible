@@ -49,12 +49,21 @@ to change the vault password of encrypted files:
 ```
 ansible-vault rekey test-vault.yml
 ```
+there may be a requirement to encrypt a specific variable:
+```
+ansible-vault encrypt_string
+```
+Note: Ansible vault will prompt you for the password and later require you to confirm it. Next, type the string value that you want to encrypt. Finally, press ctrl + d
+you can begin assigning the encrypted value in a playbook:
+```
+ansible-vault encrypt_string 'string' --name 'variable_name'
+```
 
 ---
 
-#### <font color='red'>Create Encrypted File</font>
-
-
+#### <font color='red'>Vault - Playbook</font>
+In this Lab we're going to 
+ansible-vault create mysecrets.yml
 
 
 
