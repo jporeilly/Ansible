@@ -68,6 +68,7 @@ This role contains tasks to:
 ```
 cd tomcat-ansible
 git clone https://github.com/jporeilly/ansible-tomcat.git
+cd .. (back up to roles)
 sudo chown -R ansadmin ansible-tomcat
 ```
 
