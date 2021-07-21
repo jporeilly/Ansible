@@ -111,10 +111,21 @@ check the file has been encrypted:
 ```
 cat secrets_file.enc
 ```
+before you execute the playbook, you will need to create the dest file, configuration.ini on Node 1 - 10.0.0.2:
+```
+cd /etc
+sudo mkdir app
+sudo chown -R ansadmin app
+touch configuration.ini
+```
+
 run the playbook:
 ```
-ansible-playbook 10.0.0.2 -e @secrets_file.enc --ask-vault-pass vault_config.yml 
+cd ..
+cd playbooks
+ansible-playbook vault_config.yml -e vault/secrets_file.enc --ask-vault-pass  
 ```
+Note:  you will first be promted for the file password: lumada then for the API_key: SuperSecretPassword
 
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/vault.html
