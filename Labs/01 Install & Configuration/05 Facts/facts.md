@@ -71,11 +71,11 @@ Note: you may need to take ownership of the facts.d folder..
 
 **executable script**
 
-from the Ansible Controller SSH into Node 1:
+from the Ansible Controller SSH into Node1:
 ```
 ssh 10.0.0.2
 ```
-create a script script to show adte & time:
+create a script script to show date & time:
 ```
 cd /etc/ansible/facts.d
 sudo nano date_time.fact
