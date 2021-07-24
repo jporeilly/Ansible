@@ -15,7 +15,7 @@ add the following:
     become: yes
     tasks:
       - yum:
-         name: gettext-devel
+         name: get text-devel
          state: present
       - yum:
          name: openssl-devel
