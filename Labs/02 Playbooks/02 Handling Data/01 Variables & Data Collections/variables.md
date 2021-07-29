@@ -18,6 +18,7 @@ In this lab we're going to:
 #### <font color='red'>Playbook Custom Variables</font>
 Variables are represented as a key : value pair. The varaible must start with a letter.
 
+Ensure that you're in the ansible_projects/demo/playbooks directory.
 create playbook:
 ```
 nano custom_variables.yaml
@@ -145,7 +146,6 @@ ansible-playbook bash_version.yaml
 
 ---
 
-
 #### <font color='red'>Prompts</font>
 If you want your playbook to prompt the user for certain input, add a ‘vars_prompt’ section. Prompting the user for variables lets you avoid recording sensitive data like passwords. In addition to security, prompts support flexibility. For example, if you use one playbook across multiple software releases, you could prompt for the particular release version.
 
@@ -210,7 +210,7 @@ add the following:
    - debug:
       var: key_file
 ```
-Note: you could point to any 
+Note: you could point to any referenced file.
 save..
 run the playbook:
 ```
