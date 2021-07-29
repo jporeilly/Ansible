@@ -149,7 +149,10 @@ you have a choice here..!  if you have loads of screens then keep the Lab Guide 
 ```
 mkdir Course-Materials
 cd Course-Materials
-sudo git clone http://github.com/jporeilly/Ansible.git
+git clone --filter=blob:none --sparse https://github.com/hv-support/customer-training.git
+cd customer-training
+git sparse-checkout add  dst/ansible
+mv 
 sudo chown -R ansadmin Ansible
 ```
 in virtual Workspace 1, open a Terminal and enter:
