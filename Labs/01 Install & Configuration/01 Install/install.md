@@ -13,6 +13,7 @@ Note: Yum doesn't support Python3
 The following pre-requisties have to be installed for Ansible Controller on CentOS 7:
 * Development Tools
 * Python 3.5+
+* Git 2.x
 * Check SSH
 
 </br>
@@ -68,6 +69,21 @@ install extra packages for enterprise linux (EPEL):
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 Note: this may have  already be done with the upgrade to CentOS 7.9
+
+</br>
+
+**Git 2.x**  
+Ensure you have Git version 2.x installed.
+check Git Version:
+```
+git --version
+```
+to install the latest version:
+```
+sudo yum -y remove git
+sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
+sudo yum install git
+```
 
 </br>
 

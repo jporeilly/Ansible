@@ -152,14 +152,15 @@ cd Course-Materials
 git clone --filter=blob:none --sparse https://github.com/hv-support/customer-training.git
 cd customer-training
 git sparse-checkout add  dst/ansible
-mv 
-sudo chown -R ansadmin Ansible
+cd dst
+mv ansible ~/Course-Materials
+
 ```
 in virtual Workspace 1, open a Terminal and enter:
 ```
 code
 ```
-select a color scheme and select Course-Materials/Ansible folder...  
+select a color scheme and select Course-Materials/ansible folder...  
 
 </br>
 
