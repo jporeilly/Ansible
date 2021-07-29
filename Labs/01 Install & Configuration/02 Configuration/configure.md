@@ -72,27 +72,6 @@ service sshd restart
 
 </br>
 
-**generate ssh keys**  
-switch to ansadmin user:
-```
-sudo su ansadmin
-```
-you have a choice here..!  if you have loads of screens then keep the Lab Guide open in centos account.  If you need to download the Lab Guide to the ansadmin account then:
-```
-mkdir Course-Materials
-cd Course-Materials
-sudo git clone http://github.com/jporeilly/Ansible.git
-sudo chown -R ansadmin Ansible
-```
-in virtual Workspace 1, open a Terminal and enter:
-```
-code
-```
-select a color scheme and select Course-Materials/Ansible folder...  
-
-
-</br>
-
 
 #### <font color='red'>Ansible Node(s) Configuration</font>
 * add ansadmin to nodes
@@ -164,6 +143,24 @@ repeat workflow for all nodes, i.e 10.0.0.3 & 10.0.0.4
 
 **ensure that you're logged with ansadmin credentials, on the Ansible Controller**  
 
+ 
+
+you have a choice here..!  if you have loads of screens then keep the Lab Guide open in centos account.  If you need to download the Lab Guide to the ansadmin account then:
+```
+mkdir Course-Materials
+cd Course-Materials
+sudo git clone http://github.com/jporeilly/Ansible.git
+sudo chown -R ansadmin Ansible
+```
+in virtual Workspace 1, open a Terminal and enter:
+```
+code
+```
+select a color scheme and select Course-Materials/Ansible folder...  
+
+</br>
+
+**generate ssh keys** 
 next create keys:
 ```
 ssh-keygen
