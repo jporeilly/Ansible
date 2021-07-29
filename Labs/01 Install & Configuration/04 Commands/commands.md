@@ -147,8 +147,10 @@ Note: now flattened and transfer.txt under the inventory hostname - 10.0.0.2
 ---
 
 #### <font color='red'>Create / Delete files / directory on Nodes</font>
-Create / Delete files / directories on Node.
+Managing files and directories. 
+
 </br>
+
 **create**
 Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt state=touch"
 
