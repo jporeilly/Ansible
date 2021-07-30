@@ -84,6 +84,9 @@ nano hosts
 - Update variables in playbook file - Set Tomcat version, remote user and Tomcat UI access credentials
 ```
 nano tomcat-setup.yml
+```
+```
+---
 - name: Tomcat deployment playbook
   hosts: tomcat-nodes       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
