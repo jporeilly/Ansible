@@ -40,7 +40,7 @@ tree roles
 
 So lets set the scope..   we want to install Tomcat on CentOS, RedHat Debian and Ubuntu.
 
-  > browse to: http://github.com/jporeilly/ansible-tomcat.git
+  > browse to: https://github.com/hv-support/customer-training/tree/master/dst/ansible-tomcat
 
 -----------------------------------
 
@@ -67,7 +67,7 @@ This role contains tasks to:
 
 ```
 cd tomcat-ansible
-git clone https://github.com/jporeilly/ansible-tomcat.git
+git clone https://github.com/hv-spport/customer-training.git
 cd .. (back up to roles)
 sudo chown -R ansadmin ansible-tomcat
 ```
