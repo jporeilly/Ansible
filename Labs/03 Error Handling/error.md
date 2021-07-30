@@ -11,7 +11,7 @@ In this lab were going to cover:
 
 create playbook:
 ```
-nano error_spelling.yaml
+nano ignore_errors.yaml
 ```
 add the following:
 ```
@@ -30,9 +30,9 @@ add the following:
 save..
 run the playbook:
 ```
-ansible-playbook error_spelling.yaml  
+ansible-playbook ignore_errors.yaml  
 ```
-Note: change the ignore_errors value to yes
+Note: change the ignore_errors value to: yes
 
 ---
 
@@ -68,7 +68,7 @@ ansible-playbook error_nginx.yaml
 
 create playbook:
 ```
-nano error_command.yaml
+nano error_return_code.yaml
 ```
 add the following:
 ```
@@ -98,7 +98,7 @@ or another way to fail the task.
 save..
 run the playbook:
 ```
-ansible-playbook error_command.yaml
+ansible-playbook error_return_code.yaml
 ```
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
