@@ -72,16 +72,15 @@ edit the hosts file:
 [all]
 10.0.0.2
 10.0.0.3
-10.0.0.4
 
-[group1]
+
+[Group1]
 10.0.0.2
 
-[group2]
+[Group2]
 10.0.0.3
-10.0.0.4O
 
-[group:children]
+[Group:children]
 group1
 group2
 ```
