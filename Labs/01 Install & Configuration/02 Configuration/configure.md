@@ -143,8 +143,6 @@ repeat workflow for all nodes, i.e 10.0.0.3 & 10.0.0.4
 
 **ensure that you're logged with ansadmin credentials, on the Ansible Controller**  
 
- 
-
 you have a choice here..!  if you have loads of screens then keep the Lab Guide open in centos account.  If you need to download the Lab Guide to the ansadmin account then:
 ```
 mkdir Course-Materials
@@ -154,7 +152,9 @@ cd customer-training
 git sparse-checkout add  dst/ansible
 cd dst
 mv ansible ~/Course-Materials
-
+cd ..
+cd ..
+rm -rf customer-training
 ```
 in virtual Workspace 1, open a Terminal and enter:
 ```
@@ -237,7 +237,6 @@ add the node IP:
 [all]
 10.0.0.2
 10.0.0.3
-10.0.0.4
 
 [Group1]
 10.0.0.2
