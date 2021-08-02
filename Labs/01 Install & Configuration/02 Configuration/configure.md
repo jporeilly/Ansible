@@ -182,7 +182,7 @@ ls -lrt
 ```
 Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
 
-copy key over to nodes:
+copy public key over to nodes:
 
 ```
 ssh-copy-id 10.0.0.2
