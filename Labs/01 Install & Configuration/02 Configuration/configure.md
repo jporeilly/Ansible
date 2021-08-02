@@ -260,7 +260,7 @@ ansible 10.0.0.2:10.0.0.3 -m ping
 ```
 if you want to list your Nodes:
 ```
-ansible group1 -m ping --list-hosts
+ansible Group1 -m ping --list-hosts
 ```
 
 ---
