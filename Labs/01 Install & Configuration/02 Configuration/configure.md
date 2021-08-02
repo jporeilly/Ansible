@@ -202,7 +202,7 @@ Note: passwordless authenticated connection.
 </br>
 
 if you wish to include localhost in your list of managed nodes:
-remove authorized keys (only if present :)
+remove authorized keys:
 ```
 cd  .ssh/
 ls -l
