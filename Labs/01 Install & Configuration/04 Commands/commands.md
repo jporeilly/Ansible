@@ -105,7 +105,7 @@ nano tranfer.txt
 cat transfer_file.txt
 ```
 
-**copy**  
+**copy**    
 on the ansible controller:
 ensure you're in the ansible_projects/demo directory:
 ```
@@ -118,7 +118,7 @@ cd dest_files
 cat transfer_file.txt
 ```
 
-**fetch**  
+**fetch**    
 on the ansible controller:
 ensure you're in the ansible_projects/demo directory:
 ```
@@ -147,9 +147,11 @@ Note: now flattened and transfer.txt under the inventory hostname - 10.0.0.2
 ---
 
 #### <font color='red'>Create / Delete files / directory on Nodes</font>
-Create / Delete files / directories on Node.
+Managing files and directories. 
+
 </br>
-**create**
+
+**create**  
 Syntax: ansible [-i inventory file] <servers> -m -a file "path=/to/file/file.txt state=touch"
 
 on the ansible controller:
@@ -173,7 +175,7 @@ Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to/file/file.txt
 
 </br>
 
-**delete**
+**delete**  
 Syntax: ansible [-i inventory file] <servers> -m file -a "path=/to /file/file.txt state=absent"
 
 on the ansible controller:

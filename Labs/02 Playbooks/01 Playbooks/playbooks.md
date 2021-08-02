@@ -23,8 +23,10 @@ A playbook runs in order from top to bottom. Within each play, tasks also run in
 * the managed nodes to target, using a pattern
 * at least one task to execute
 
-create the following file and save in ansible_projects/playbooks as playbook.yaml:
+create the following file and save in ansible_projects/demo/playbooks as playbook.yaml:
 ```
+mkdir ansible_projects/demo/playbooks
+cd playbooks
 nano playbook.yaml
 ```
 copy the following:
@@ -42,7 +44,11 @@ copy the following:
         msg: "Username: {{ username }}, Home dir: {{ home }}"
 ```
 save..
-
+```
+Ctrl+O
+return
+Ctrl+X
+```
 
 **name**  
 This tag specifies the name of the Ansible playbook. As in what this playbook will be doing. Any logical name can be given to the playbook.
