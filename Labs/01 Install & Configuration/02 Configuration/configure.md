@@ -187,7 +187,6 @@ copy key over to nodes:
 ```
 ssh-copy-id 10.0.0.2
 ssh-copy-id 10.0.0.3
-ssh-copy-id 10.0.0.4
 ```
 
 password: ansadmin123
@@ -197,7 +196,6 @@ now check you can log in:
 ```
 ssh 10.0.0.2
 ssh 10.0.0.3
-ssh 10.0.0.4
 ```
 Note: passwordless authenticated connection.
 
