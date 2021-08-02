@@ -70,7 +70,7 @@ restart service:
 service sshd restart
 ```
 
-</br>
+---
 
 
 #### <font color='red'>Ansible Node(s) Configuration</font>
