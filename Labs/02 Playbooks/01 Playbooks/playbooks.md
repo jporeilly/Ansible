@@ -23,10 +23,9 @@ A playbook runs in order from top to bottom. Within each play, tasks also run in
 * the managed nodes to target, using a pattern
 * at least one task to execute
 
-create the following file and save in ansible_projects/demo/playbooks as playbook.yaml:
+create a playbook on the Ansible Controller:
 ```
-mkdir ansible_projects/demo/playbooks
-cd playbooks
+cd ansible_projects/demo/playbooks
 nano playbook.yaml
 ```
 copy the following:
