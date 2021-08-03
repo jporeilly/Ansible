@@ -74,6 +74,7 @@ Note: new python directory with the module: AnsiballZ_command.py
 ---
 
 #### <font color='red'>Execute commands in Parallel v Serial</font>
+Ansible works by spinning off forks of itself and talking to many remote systems independently.
 By default Ansible will execute the modules / tasks in parallel.  The number of parallel executions is determined by the Forks value in the ansible.cfg.
 
 edit ansible.cfg:
