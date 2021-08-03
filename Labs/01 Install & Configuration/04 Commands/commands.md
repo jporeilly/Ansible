@@ -23,7 +23,7 @@ as you know there's a whole bunch of unix commands that perform a task:
 uptime #server uptime
 free -m #amount of free memory
 ```
-uptime on ansible controller:
+uptime on Node1:
 ```
 ansible 10.0.0.2 -m shell -a "uptime"
 ```
@@ -38,7 +38,7 @@ ansible-doc -l | grep shell
 ```
 check disk space on our Nodes:
 ```
-ansible multi -a "df -h"
+ansible all -a "df -h"
 ```
 
   > ansible module information: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
@@ -74,6 +74,7 @@ Note: new python directory with the module: AnsiballZ_command.py
 ---
 
 #### <font color='red'>Execute commands in Parallel v Serial</font>
+Ansible works by spinning off forks of itself and talking to many remote systems independently.
 By default Ansible will execute the modules / tasks in parallel.  The number of parallel executions is determined by the Forks value in the ansible.cfg.
 
 edit ansible.cfg:
