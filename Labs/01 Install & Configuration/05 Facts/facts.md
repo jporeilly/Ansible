@@ -211,6 +211,10 @@ verify custom facts:
 ```
 ansible 10.0.0.2 -m setup -a "filter=ansible_local"
 ```
+verify samba server’s service status:
+``` 
+ansible 10.0.0.2 -m command -a "systemctl status smb"
+``` 
 
 
 ---
