@@ -92,6 +92,17 @@ assign execute permissions:
 ```
 chmod +x /etc/ansible/facts.d/date_time.fact
 ```
+
+</br>
+
+create a playbook on the Ansible Controller:
+```
+mkdir ansible_projects/demo/playbooks
+cd playbooks
+nano check_date.yml
+```
+
+
 create a playbook on the Ansible Controller:
 ```
 nano check_date.yml
