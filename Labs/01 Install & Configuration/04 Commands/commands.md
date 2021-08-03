@@ -23,7 +23,7 @@ as you know there's a whole bunch of unix commands that perform a task:
 uptime #server uptime
 free -m #amount of free memory
 ```
-uptime on ansible controller:
+uptime on Node1:
 ```
 ansible 10.0.0.2 -m shell -a "uptime"
 ```
@@ -38,7 +38,7 @@ ansible-doc -l | grep shell
 ```
 check disk space on our Nodes:
 ```
-ansible multi -a "df -h"
+ansible all -a "df -h"
 ```
 
   > ansible module information: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
