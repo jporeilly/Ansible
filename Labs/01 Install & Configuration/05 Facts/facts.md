@@ -207,6 +207,10 @@ run the playbook and observe Ansible retrieving information saved on the fact fi
 ```
 ansible-playbook samba_custom_facts.yml
 ```
+verify custom facts:
+```
+ansible 10.0.0.2 -m setup -a "filter=ansible_local"
+```
 
 
 ---
