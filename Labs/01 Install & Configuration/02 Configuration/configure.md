@@ -70,7 +70,7 @@ restart service:
 service sshd restart
 ```
 
-</br>
+---
 
 
 #### <font color='red'>Ansible Node(s) Configuration</font>
@@ -143,20 +143,24 @@ repeat workflow for all nodes, i.e 10.0.0.3 & 10.0.0.4
 
 **ensure that you're logged with ansadmin credentials, on the Ansible Controller**  
 
- 
-
 you have a choice here..!  if you have loads of screens then keep the Lab Guide open in centos account.  If you need to download the Lab Guide to the ansadmin account then:
 ```
 mkdir Course-Materials
 cd Course-Materials
-sudo git clone http://github.com/jporeilly/Ansible.git
-sudo chown -R ansadmin Ansible
+git clone --filter=blob:none --sparse https://github.com/hv-support/customer-training.git
+cd customer-training
+git sparse-checkout add  dst/ansible
+cd dst
+mv ansible ~/Course-Materials
+cd ..
+cd ..
+rm -rf customer-training
 ```
 in virtual Workspace 1, open a Terminal and enter:
 ```
 code
 ```
-select a color scheme and select Course-Materials/Ansible folder...  
+select a color scheme and select Course-Materials/ansible folder...  
 
 </br>
 
@@ -178,12 +182,11 @@ ls -lrt
 ```
 Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
 
-copy key over to nodes:
+copy public key over to nodes:
 
 ```
 ssh-copy-id 10.0.0.2
 ssh-copy-id 10.0.0.3
-ssh-copy-id 10.0.0.4
 ```
 
 password: ansadmin123
@@ -193,14 +196,13 @@ now check you can log in:
 ```
 ssh 10.0.0.2
 ssh 10.0.0.3
-ssh 10.0.0.4
 ```
 Note: passwordless authenticated connection.
 
 </br>
 
 if you wish to include localhost in your list of managed nodes:
-remove authorized keys (only if present :)
+remove authorized keys:
 ```
 cd  .ssh/
 ls -l
@@ -233,7 +235,6 @@ add the node IP:
 [all]
 10.0.0.2
 10.0.0.3
-10.0.0.4
 
 [Group1]
 10.0.0.2
@@ -259,7 +260,7 @@ ansible 10.0.0.2:10.0.0.3 -m ping
 ```
 if you want to list your Nodes:
 ```
-ansible group1 -m ping --list-hosts
+ansible Group1 -m ping --list-hosts
 ```
 
 ---
