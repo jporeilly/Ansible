@@ -146,4 +146,67 @@ Note: a bit over engineer'd but you hopefully get the idea..!
 Also you will need to switch to Python3..
 There's one more arg to add..  around ownership, so I'll leave you to try that one..
 
+
+
+here's another example that uses custom fcats to install a samba file server.
+
+from the Ansible Controller SSH into Node1:
+```
+ssh 10.0.0.2
+```
+create a script script to show date & time:
+```
+cd /etc/ansible/facts.d
+sudo nano samba.fact
+```
+add the following:
+```
+[localfacts]
+pkgname = samba
+srvc = smb
+```
+create a playbook on the Ansible Controller:
+```
+nano samba_custom_facts.yml
+```
+add the following:
+```
+---
+- name: Install custom facts
+  hosts: 10.0.0.2
+  vars:
+    remote_dir: /etc/ansible/facts.d
+    facts_file: customfacts.fact
+  tasks:
+  - name: Create Facts Dir on Managed Hosts
+    file:
+      path: "{{ remote_dir }}"
+      state: directory
+      recurse: yes
+  - name: Copy Contents to Facts file
+    copy:
+      src: "{{ facts_file }}"
+      dest: "{{ remote_dir }}"
+
+- name: Install Samba Server with Custom Facts
+  hosts: 10.0.0.2
+  tasks:
+  - name: Install SMB
+    package:
+      name: "{{ ansible_local.customfacts.localfacts.pkgname }}"
+      state: present
+  - name: Start SMB Service
+    service:
+      name: "{{ ansible_local.customfacts.localfacts.srvc }}"
+      state: started
+      enabled: yes
+```
+
+save..
+run the playbook and observe Ansible retrieving information saved on the fact file:
+```
+ansible-playbook samba_custom_facts.yml
+```
+
+
 ---
