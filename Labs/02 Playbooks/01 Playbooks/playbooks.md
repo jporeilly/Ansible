@@ -33,7 +33,6 @@ copy the following:
 ---
 - name: Simple Playbook
   hosts: 10.0.0.2
-  gather_facts: false
   become: false
   vars:
     - username: ansadmin
