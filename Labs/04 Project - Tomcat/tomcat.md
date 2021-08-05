@@ -6,7 +6,7 @@ For added flexibility, we'll use a custom server.xml.
 
 copy the server.xml.j2 to the demo/playbooks directory:
 ```
-cd Course-Materials/Labs/04 Project - Tomcat
+cd Course-Materials/ansible/Labs/04 Project - Tomcat
 cp -rpP server.xml.j2 /home/ansadmin/ansible_projects/demo/playbooks
 ```
 create playbook:
@@ -65,5 +65,7 @@ run the playbook:
 ansible-playbook tomcat.yaml
 ```
 Note: this approach can become complex and error prone.  Best practice is to install based on defined 'Roles', which you'll cover in the next section.
+
+  > test the installation: http://10.0.0.2:8090
 
 ---
