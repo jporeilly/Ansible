@@ -49,7 +49,8 @@ sudo mkdir -p /etc/ansible/facts.d
 ```
 create the following file:
 ```
-cd facts.d
+cd /etc/ansible/clear
+facts.d
 sudo nano custom_facts.fact
 ```
 Note: Custom Facts file end with the extension .fact
