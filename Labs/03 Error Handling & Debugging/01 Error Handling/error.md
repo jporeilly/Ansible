@@ -21,7 +21,7 @@ add the following:
     tasks:
       - command: "ls /homee"  # spelling mistake will generate error and stop playbook.
         register: home_out
-        ignore_errors: no     # change the value. If "yes" then will ignore error and execute the other tasks.
+        ignore_errors: false     # change the value. If "true" then will ignore error and execute the other tasks.
       - debug: var=home_out
       - command: "ls /tmp"
         register: tmp_out
@@ -37,34 +37,6 @@ Note: change the ignore_errors value to: yes
 ---
 
 #### <font color='red'>Error Handling - fail on return codes</font>
-create playbook:
-```
-nano error_nginx.yaml
-```
-add the following:
-```
----
-  - hosts: localhost
-    gather_facts: fasle
-    become: yes
-    tasks:
-      - name: starting nginx
-        service:
-          name: nginx
-          state: started
-        ignore_errors: no      # change the value. If "yes" then will ignore error and execute the other tasks.
-      - name: starting httpd
-        service:
-          name: httpd
-          state: started
-```
-save..
-run the playbook:
-```
-ansible-playbook error_nginx.yaml
-```
-
----
 
 create playbook:
 ```
