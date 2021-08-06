@@ -22,7 +22,7 @@ Note: returns all the facts about Node1..
 
 to return Facts / Variable just on mounts:
 ```
-ansible 10.0.0.2 -m setp -a "filter=ansible_mounts"
+ansible 10.0.0.2 -m setup -a "filter=ansible_mounts"
 ```
 you can also display a 'variable' value:
 ```
