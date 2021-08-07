@@ -96,6 +96,7 @@ yamllint .
 ./ansible-lint.yaml 
 ansible-lint ansible-lint.yaml
 ```
+Again it should pass the yaml lint, but there should be suggestions for the playbook.
 
   > for further info: https://ansible-lint.readthedocs.io/en/latest/
 
