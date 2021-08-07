@@ -108,3 +108,7 @@ Everything up to this point is focused on static testing.  You cant really test 
 Molecule is a lightweight Ansible-based tool to help the developement and testing of Ansuble playbooks, roles and collections.  
 
 Molecule uses Galaxy under the hood to generate conventional role layouts. If you’ve ever worked with Ansible roles before, you’ll be right at home. If not, please review the Roles module to see what each folder is responsible for.
+
+
+
+  > for further info: https://molecule.readthedocs.io/en/latest/getting-started.html
