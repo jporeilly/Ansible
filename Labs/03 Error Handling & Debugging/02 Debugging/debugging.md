@@ -12,9 +12,9 @@ In this lab were going to cover:
 
 yamllint is a simple YAML lint tool.
 
-install YAMLlint:
+install YAMLlint & Ansible-lint:
 ```
-
+pip3 install yamllint ansible-lint
 ```
 create playbook:
 ```
@@ -63,12 +63,12 @@ rules:
 ```
 if you've fixed the other errrors, then running yamllint again should be fine.
 
+  > for further info: https://yamllint.readthedocs.io/en/stable/quickstart.html
+
 ---
 
 #### <font color='red'>Ansible lint</font>
 In addition to linting structural YAMl issues, Ansible tasks and playbooks can be linted using ansible-lint.
-
-
 
 create playbook:
 ```
@@ -97,6 +97,8 @@ yamllint .
 ansible-lint ansible-lint.yaml
 ```
 
-  > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
+  > for further info: https://ansible-lint.readthedocs.io/en/latest/
 
 ---
+
+#### <font color='red'>Molecule</font>
