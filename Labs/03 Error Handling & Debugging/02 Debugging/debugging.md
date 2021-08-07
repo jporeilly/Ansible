@@ -13,9 +13,9 @@ In this lab were going to cover:
 yamllint is a simple YAML lint tool.
 
 install YAMLlint:
+```
 
-
-
+```
 create playbook:
 ```
 nano yaml-lint.yaml
@@ -65,69 +65,36 @@ if you've fixed the other errrors, then running yamllint again should be fine.
 
 ---
 
-#### <font color='red'>Error Handling - fail on return codes</font>
-create playbook:
-```
-nano error_nginx.yaml
-```
-add the following:
-```
----
-  - hosts: localhost
-    gather_facts: fasle
-    become: yes
-    tasks:
-      - name: starting nginx
-        service:
-          name: nginx
-          state: started
-        ignore_errors: no      # change the value. If "yes" then will ignore error and execute the other tasks.
-      - name: starting httpd
-        service:
-          name: httpd
-          state: started
-```
-save..
-run the playbook:
-```
-ansible-playbook error_nginx.yaml
-```
+#### <font color='red'>Ansible lint</font>
+In addition to linting structural YAMl issues, Ansible tasks and playbooks can be linted using ansible-lint.
 
----
+
 
 create playbook:
 ```
-nano error_return_code.yaml
+nano ansible-lint.yaml
 ```
 add the following:
 ```
 ---
   - hosts: localhost
     gather_facts: false
+    connection: local
+
     tasks:
-     - command: "ls /home"
-       register: out
-       failed_when: out.rc==0  # purposely fail the task..
-     - debug: var=out
-``` 
+      - shell: uptime
+        register: system_uptime
 
-or another way to fail the task.
-
+      - name: Print the registered output of the 'uptime' command.
+        debug: 
+         var: system_uptime.stout
 ```
----
-  - hosts: localhost
-    gather_facts: false
-    tasks:
-     - command: "ls /home"
-       register: out
-     - fail:
-        msg: "Failed because rc is 0"
-        when: out.rc==0
-```       
 save..
 run the playbook:
 ```
-ansible-playbook error_return_code.yaml
+yamllint .
+./ansible-lint.yaml 
+ansible-lint ansible-lint.yaml
 ```
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
