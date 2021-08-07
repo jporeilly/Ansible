@@ -1,38 +1,67 @@
 ## <font color='red'> 3.2 Debugging </font>
-When Ansible receives a non-zero return code from a command or a failure from a module, by default it stops executing on that host and continues on other hosts. However, in some circumstances you may want different behavior. Sometimes a non-zero return code indicates success. Sometimes you want a failure on one host to stop execution on all hosts. Ansible provides tools and settings to handle these situations and help you get the behavior, output, and reporting you want.
+We've already had a look at the debug module and seen how its to print variables or messages during playbook execution.
 
 In this lab were going to cover:
-* ignore_error variable
-* return codes
+* YAML lint
+* Ansible lint
+* Molecule
 
 ---
 
-#### <font color='red'>Debugging</font>
+#### <font color='red'>YAML lint</font>
+
+yamllint is a simple YAML lint tool.
+
+install YAMLlint:
+
+
 
 create playbook:
 ```
-nano ignore_errors.yaml
+nano yaml-lint.yaml
+```
+add the following:
+```
+  - hosts: localhost
+    gather_facts: no
+    tasks:
+      - name: Register the output of the 'uptime' command.
+        command: uptime
+        register: system_uptime  # comment
+
+      - name: Print the registered output of the 'uptime' command.
+        debug: "ls /tmp"
+         var: system_uptime.stout
+```
+save..
+run the yamllint:
+```
+cd playbooks
+yamllint .
+./yaml-lint.yaml 
+```
+Note: the output helps pinpoint errors..
+
+you can configure YAML lint, to allow for example 'yes' / 'no' values.
+
+create a file in the same directory named .yamllint:
+```
+nano .yamllint
 ```
 add the following:
 ```
 ---
-  - hosts: localhost
-    gather_facts: false
-    tasks:
-      - command: "ls /homee"  # spelling mistake will generate error and stop playbook.
-        register: home_out
-        ignore_errors: no     # change the value. If "yes" then will ignore error and execute the other tasks.
-      - debug: var=home_out
-      - command: "ls /tmp"
-        register: tmp_out
-      - debug: var=tmp_out
+extends: default
+
+rules:
+  truthy:
+    allowed-values:
+      - 'true'
+      - 'false'
+      - 'yes'
+      - 'no'
 ```
-save..
-run the playbook:
-```
-ansible-playbook ignore_errors.yaml  
-```
-Note: change the ignore_errors value to: yes
+if you've fixed the other errrors, then running yamllint again should be fine.
 
 ---
 
