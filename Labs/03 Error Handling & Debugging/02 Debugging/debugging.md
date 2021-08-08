@@ -109,6 +109,6 @@ Molecule is a lightweight Ansible-based tool to help the developement and testin
 
 Molecule uses Galaxy under the hood to generate conventional role layouts. If you’ve ever worked with Ansible roles before, you’ll be right at home. If not, please review the Roles module to see what each folder is responsible for.
 
-
-
   > for further info: https://molecule.readthedocs.io/en/latest/getting-started.html
+
+---
