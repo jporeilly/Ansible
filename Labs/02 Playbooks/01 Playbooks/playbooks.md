@@ -69,7 +69,7 @@ to run the playbook:
 ```
 ansible-playbook playbook.yaml
 ```
-can also run multiple tasks against different hosts:
+can also run multiple tasks against different hosts (ensure you're running Python 2 on the Nodes otherwise switch to Python 3 and run dnf version):
 ```
 nano wget.yaml
 ```
