@@ -25,7 +25,8 @@ A playbook runs in order from top to bottom. Within each play, tasks also run in
 
 create a playbook on the Ansible Controller:
 ```
-cd ansible_projects/demo/playbooks
+mkdir ansible_projects/demo/playbooks
+cd playbooks
 nano playbook.yaml
 ```
 copy the following:
