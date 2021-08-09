@@ -145,7 +145,7 @@ copy the following:
 
    tasks:
    name: install httpd
-   yum: name=httpd state=latest
+     yum: name=httpd state=latest
 ```
 save..
 
