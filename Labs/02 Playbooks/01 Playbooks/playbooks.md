@@ -110,7 +110,7 @@ copy the following:
    name: uninstall httpd
 
    tasks:
-   -name: uninstall httpd
+   - name: uninstall httpd
     yum: name=httpd state=absent 
  
  - hosts: 10.0.0.3
@@ -118,8 +118,8 @@ copy the following:
    name: uninstall wget
 
    tasks:
-   -name: uninstall wget
-    yum: name=wget state=absent
+   - name: uninstall wget
+     yum: name=wget state=absent
 ```
 save..
 
