@@ -6,7 +6,7 @@ For added flexibility, we'll use a custom server.xml.
 
 copy the server.xml.j2 to the demo/playbooks directory:
 ```
-cd Course-Materials/ansible/Labs/04 Project - Tomcat
+cd Course-Materials/ansible/Labs/04\ Project\ -\ Tomcat/
 cp -rpP server.xml.j2 /home/ansadmin/ansible_projects/demo/playbooks
 ```
 create playbook:
@@ -25,6 +25,7 @@ add the following:
       req_tomcat_ver: 10.0.8
       tomcat_url: https://apache.mirrors.nublue.co.uk/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
       tomcat_http_port: 8090
+      remote_user: ansadmin
     become: yes
     tasks:
       - name: Check connection to Node
@@ -53,12 +54,18 @@ add the following:
           remote_src: yes
       - name: Renaming Tomcat Home
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
+<<<<<<< Updated upstream
       - name: Change ownership to ansadmin
         file:
           path: /usr/local/latest
           state: directory
           recurse: yes
           owner: ansadmin
+=======
+        state: directory
+        recurse: yes
+        owner: ansadmin
+>>>>>>> Stashed changes
       - name: Replacing default Port with required Port
         template:
           src: server.xml.j2
