@@ -14,7 +14,7 @@ yamllint is a simple YAML lint tool.
 
 install YAMLlint & Ansible-lint:
 ```
-pip3 install yamllint ansible-lint molecule
+pip  install --user yamllint
 ```
 create playbook:
 ```
@@ -69,6 +69,11 @@ if you've fixed the other errrors, then running yamllint again should be fine.
 
 #### <font color='red'>Ansible lint</font>
 In addition to linting structural YAMl issues, Ansible tasks and playbooks can be linted using ansible-lint.
+
+install Ansible-lint:
+```
+pip  install --user yamllint
+```
 
 create playbook:
 ```
