@@ -27,6 +27,8 @@ add the following:
       tomcat_http_port: 8090
     become: yes
     tasks:
+      - name: Check connection to Node
+        ping: 10.0.0.2
       - name: Updating Repos
         yum:
           name: "*"
@@ -51,6 +53,12 @@ add the following:
           remote_src: yes
       - name: Renaming Tomcat Home
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
+      - name: Change ownership to ansadmin
+        file:
+          path: /usr/local/latest
+          state: directory
+          recurse: yes
+          owner: ansadmin
       - name: Replacing default Port with required Port
         template:
           src: server.xml.j2
