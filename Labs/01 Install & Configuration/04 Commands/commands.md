@@ -115,7 +115,7 @@ ansible 10.0.0.2 -m copy -a "src=~/ansible_projects/demo/source_files/transfer_f
 Note: look at the response on the Ansible Controller for Node1:
 check the dest_files directory on Node1:
 ```
-cd dest_files
+cd ansible_assets/dest_files
 cat transfer_file.txt
 ```
 
