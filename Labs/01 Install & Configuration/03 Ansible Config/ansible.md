@@ -109,7 +109,7 @@ ansible Group1:Group2 -m ping
 ```
 you can also use --list-hosts to check:
 ```
-ansible --list-hosts group
+ansible --list-hosts Group
 ```
 
   > for further information: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
