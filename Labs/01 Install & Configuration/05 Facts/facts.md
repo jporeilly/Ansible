@@ -49,8 +49,7 @@ sudo mkdir -p /etc/ansible/facts.d
 ```
 create the following file:
 ```
-cd /etc/ansible/clear
-facts.d
+cd /etc/ansible/facts.d
 sudo nano custom_facts.fact
 ```
 Note: Custom Facts file end with the extension .fact
@@ -63,7 +62,7 @@ foo=bar
 Note: this is just data. If you wish to execute a script then change the file permissions - chmod +x
 save file..
 
-test the custom fact:
+test the custom fact (from Ansible Controller):
 ```
 ansible 10.0.0.2 -m setup -a "filter=ansible_local"
 ```
@@ -91,7 +90,7 @@ save..
 
 assign execute permissions:
 ```
-chmod +x /etc/ansible/facts.d/date_time.fact
+sudo chmod +x /etc/ansible/facts.d/date_time.fact
 ```
 
 </br>
