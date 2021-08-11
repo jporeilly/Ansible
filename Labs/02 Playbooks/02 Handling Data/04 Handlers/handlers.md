@@ -26,7 +26,7 @@ add the following:
         notify:
           - start httpd
     handlers:
-      - name: Start httpd
+      - name: start httpd
         service:
           name: httpd
           state: started
