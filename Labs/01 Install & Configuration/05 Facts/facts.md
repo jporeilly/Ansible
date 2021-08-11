@@ -149,4 +149,6 @@ you may wish to dynamically add the custom fact.
 ```
 Note: a bit over engineer'd but you hopefully get the idea..!
 
+Please delete the /etc/ansible/facts.d directory if you have run into problems..
+
 ---
