@@ -98,30 +98,6 @@ run the playbook:
 ansible-playbook practice_arithmetic.yaml
 ```
 
-create playbook:
-```
-nano file_arithmetic.yaml
-```
-add the following:
-```
----
- - name: Practice on Arithmetic Operators
-   hosts: localhost
-   gather_facts: false
-   vars_files:
-    - arithmetic.yaml
-   tasks:
-   - debug:
-       msg:
-       - "The value of x is: {{x}}"
-       - "The value of y is: {{y}}"
-```
-save..
-run the playbook:
-```
-ansible-playbook file_arithmetic.yaml
-```
-
 ---
 
 #### <font color='red'>Methods and Filters</font>
