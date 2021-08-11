@@ -131,7 +131,7 @@ tree demo
 ```
 to flatten the directory run the command on the ansible controller:
 ```
-ansible 10.0.0.2 -m fetch -a "src=~/dest_files/transfer_file.txt dest=./dest_files flat=yes"
+ansible 10.0.0.2 -m fetch -a "src=~/ansible_assets/dest_files/transfer_file.txt dest=./dest_files flat=yes"
 ```
 but..!!   what happens if I have the same filename on serveral servers (could also )..  then it will fail..  so you could use a variable based on inventory hostname.
 
