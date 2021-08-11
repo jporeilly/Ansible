@@ -120,7 +120,7 @@ cat transfer_file.txt
 ```
 
 **fetch**    
-on the ansible controller:
+on the ansible controller:  
 ensure you're in the ansible_projects/demo directory:
 ```
 ansible 10.0.0.2 -m fetch -a "src=~/ansible_assets/dest_files/transfer_file.txt dest=./dest_files/"
