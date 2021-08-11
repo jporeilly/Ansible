@@ -234,9 +234,6 @@ sudo nano hosts
 ```
 add the node IP:
 ```
-10.0.0.2
-10.0.0.3
-
 [all]
 10.0.0.2
 10.0.0.3
