@@ -77,8 +77,8 @@ edit the hosts file:
 10.0.0.3
 
 [Group:children]
-group1
-group2
+Group1
+Group2
 ```
 save..
 Note: the inventory file be called anything..  its referenced in the ansible.cfg  
