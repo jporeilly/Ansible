@@ -65,6 +65,9 @@ sudo nano hosts
 ```
 edit the hosts file:
 ```
+10.0.0.2
+10.0.0.3
+
 [all]
 10.0.0.2
 10.0.0.3
