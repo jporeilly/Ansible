@@ -101,7 +101,7 @@ cd ansible_projects/demo
 mkdir source_files
 cd source_files
 touch transfer_file.txt
-nano tranfer.txt
+nano transfer_file.txt
 # just add some stuff to the file - hello world ..!
 cat transfer_file.txt
 ```
