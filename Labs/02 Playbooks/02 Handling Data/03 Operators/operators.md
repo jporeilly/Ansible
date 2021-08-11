@@ -92,7 +92,7 @@ Tests in Jinja are a way of evaluating template expressions and returning True o
 
 create playbook:
 ```
-nano membership_operators.yaml
+nano test_operators.yaml
 ```
 add the following:
 ```
@@ -103,8 +103,8 @@ add the following:
     vars:
       x: 40
       my_name: 'ansible'
-      my_path: '/home/ansadmin/ansible_projects/demo/playbooks/membership_operators.yml'
-      my_link_path: '/home/ansadmin/ansible_projects/demo/playbooks/operators.yml'
+      my_path: '/home/ansadmin/ansible_projects/demo/playbooks/membership_operators.yaml'
+      my_link_path: '/home/ansadmin/ansible_projects/demo/playbooks/operators.yaml'
     tasks:
       - debug:
           msg:
