@@ -109,7 +109,7 @@ add the following:
    hosts: localhost
    gather_facts: false
    vars_files:
-    - arithmetic.yml
+    - arithmetic.yaml
    tasks:
    - debug:
        msg:
