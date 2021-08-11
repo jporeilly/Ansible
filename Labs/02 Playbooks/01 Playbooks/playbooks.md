@@ -111,7 +111,7 @@ copy the following:
 
    tasks:
    - name: uninstall httpd
-    yum: name=httpd state=absent 
+     yum: name=httpd state=absent 
  
  - hosts: 10.0.0.3
    become: true
