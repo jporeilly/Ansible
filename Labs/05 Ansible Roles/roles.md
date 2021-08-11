@@ -66,10 +66,13 @@ This role contains tasks to:
 - Clone the Project:
 
 ```
-cd tomcat-ansible
-git clone https://github.com/hv-spport/customer-training.git
-cd .. (back up to roles)
 sudo chown -R ansadmin ansible-tomcat
+git clone --filter=blob:none --sparse https://github.com/hv-support/customer-training.git
+cd customer-training
+git sparse-checkout add  dst/ansible
+cd dst
+mv ansible-tomcat ~/Course-Materials
+
 ```
 Note: important to take ownership otherwise the 'tomcat' group will have the incorrect inherited permissions.
 
@@ -77,7 +80,7 @@ Note: important to take ownership otherwise the 'tomcat' group will have the inc
 - Update your inventory, e.g:
 ```
 nano hosts
-[tomcat-nodes]
+[Group1]
 10.0.0.2       # Node1 IP
 ```
 
@@ -88,7 +91,7 @@ nano tomcat-setup.yml
 ```
 ---
 - name: Tomcat deployment playbook
-  hosts: tomcat-nodes       # Inventory hosts group / server to act on
+  hosts: Group1       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
   remote_user: ansadmin     # Update username for remote server
