@@ -190,7 +190,7 @@ Note: look at the response..  check that hello.txt has been deleted from 10.0.0.
 ---
 
 #### <font color='red'>Managing Packages
-PLEASE DO NOT ATTEMPT</font>
+PLEASE DO NOT ATTEMPT - you dont want to uninstall these packages.  This is just for illustrative purposes....</font>
 
 The Ad-hoc commands are available for yum and apt.
 
