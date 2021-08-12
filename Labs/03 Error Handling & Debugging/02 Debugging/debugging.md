@@ -9,10 +9,13 @@ In this lab were going to cover:
 ---
 
 #### <font color='red'>YAML lint</font>
-
 yamllint is a simple YAML lint tool.
-
-install YAMLlint & Ansible-lint:
+you will need to install pip, as root user:
+```
+yum -y update
+yum -y install python-pip
+```
+install YAMLlint:
 ```
 pip  install --user yamllint
 ```
