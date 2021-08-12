@@ -91,7 +91,7 @@ nano tomcat-setup.yml
 ```
 ---
 - name: Tomcat deployment playbook
-  hosts: Group1             # Inventory hosts group / server to act on
+  hosts: tomcat-nodes       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
   remote_user: ansadmin     # Update username for remote server
