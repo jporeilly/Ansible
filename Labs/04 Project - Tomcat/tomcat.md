@@ -3,7 +3,7 @@ Roles are ways of automatically loading certain vars_files, tasks, and handlers 
 
 #### <font color='red'>Tomcat</font>
 Take a look at the Tomcat playbook.
-```
+
 create playbook:
 ```
 nano tomcat.yaml
@@ -55,10 +55,10 @@ run the playbook:
 ansible-playbook tomcat.yaml
 ```
 Note: this approach can become complex and error prone.  Best practice is to install based on defined 'Roles', which you'll cover in the next section.
-This installs Tomcat in the root..  so you'll need to log into:
-Username: Centos
-Pasword: centos
-not ideal  can you modify so that it gets installed under ansadmin account:
+This installs Tomcat in the root..  so you'll need to log into:  
+Username: Centos  
+Pasword: centos  
+not ideal  can you modify so that it gets installed under ansadmin account:  
 
   > test the installation: http://localhost:8080
 
