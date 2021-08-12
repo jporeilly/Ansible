@@ -25,7 +25,6 @@ add the following:
       req_tomcat_ver: 10.0.8
       tomcat_url: https://apache.mirrors.nublue.co.uk/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
       tomcat_http_port: 8090
-      remote_user: ansadmin
     become: yes
     tasks:
       - name: Updating Repos
