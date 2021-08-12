@@ -2,7 +2,7 @@
 Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. Grouping content by roles also allows easy sharing of roles with other users.
 
 #### <font color='red'>Tomcat</font>
-Take a look at the playbook..
+Take a look at the Tomcat playbook.
 ```
 create playbook:
 ```
@@ -12,15 +12,18 @@ add the following:
 ```
 ---
   - name: Install and Configure Tomcat
-    hosts: 10.0.0.3
+    hosts: 10.0.0.2
     gather_facts: false
     vars:
       req_java: java-1.8.0-openjdk
       set_java: jre-1.8.0-openjdk
-      req_tomcat_ver: 9.0.52
+      req_tomcat_ver: 10.0.8
       tomcat_url: https://apache.mirrors.nublue.co.uk/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
+      tomcat_http_port: 8090
     become: yes
     tasks:
+      - name: Check connection to Node
+        ping: 10.0.0.2
       - name: Updating Repos
         yum:
           name: "*"
@@ -43,8 +46,19 @@ add the following:
           src: "/usr/local/apache-tomcat-{{req_tomcat_ver}}.tar.gz"
           dest: /usr/local
           remote_src: yes
-      - name: Moving Tomcat
-        command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest    
+      - name: Renaming Tomcat Home
+        command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
+      - name: Change ownership to ansadmin
+        file:
+          path: /usr/local/latest
+          state: directory
+          recurse: yes
+          owner: ansadmin
+          group: ansadmin
+      - name: Replacing default Port with required Port
+        template:
+          src: server.xml.j2
+          dest: /usr/local/latest/conf/server.xml
       - name: Starting Tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
 ```
@@ -56,12 +70,6 @@ ansible-playbook tomcat.yaml
 ```
 Note: this approach can become complex and error prone.  Best practice is to install based on defined 'Roles', which you'll cover in the next section.
 
-This has installed Tomcat as root.. so you'll need to switch to:
-Username: Centos
-Password: centos
-
-not ideal..  can you modify the playbook so it gets installed under ansadmin?
-
-  > test the installation: http://localhost:8090  on Node2
+  > test the installation: http://10.0.0.2:8090
 
 ---
