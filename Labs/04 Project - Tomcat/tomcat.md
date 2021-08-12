@@ -49,12 +49,12 @@ add the following:
           src: "/usr/local/apache-tomcat-{{req_tomcat_ver}}.tar.gz"
           dest: /usr/local
           remote_src: yes
+      - name: Moving Tomcat
+        command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest    
       - name: Replacing default Port with required Port
         template:
           src: server.xml.j2
           dest: /usr/local/latest/conf/server.xml
-      - name: Moving Tomcat
-        command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
       - name: Starting Tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
 ```
@@ -66,7 +66,11 @@ ansible-playbook tomcat.yaml
 ```
 Note: this approach can become complex and error prone.  Best practice is to install based on defined 'Roles', which you'll cover in the next section.
 
-This has installed Tomcat as root..  not ideal..  can you modify the playbook so it gets installed under ansadmin?
+This has installed Tomcat as root.. so you'll need to switch to:
+Username: Centos
+Password: centos
+
+not ideal..  can you modify the playbook so it gets installed under ansadmin?
 
   > test the installation: http://localhost:8090  on Node2
 
