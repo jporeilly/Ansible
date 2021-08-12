@@ -42,7 +42,7 @@ So lets set the scope..   we want to install Tomcat on CentOS, RedHat Debian and
 
   > browse to: https://github.com/hv-support/customer-training/tree/master/dst/ansible-tomcat
 
------------------------------------
+----
 
 ## <font color='red'>Role Info</font>
 > Ansible Role to Install Tomcat 9 on CentOS, Fedora, Debian and Ubuntu Linux.
@@ -134,13 +134,9 @@ ansible-playbook -i hosts tomcat-setup.yml --ask-become-pass
 ```
 Execution should be successful without errors :)
 
--------------------------------
-
-
   > to check the installation: http://localhost:8080  obviously on Node 1..!
 
   > for further info: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
-
 
 ---
 
@@ -151,3 +147,5 @@ Ansible roles are consists of many playbooks which are way to group multiple tas
 
 
 > for further info: https://galaxy.ansible.com/
+
+---
