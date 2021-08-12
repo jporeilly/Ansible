@@ -54,18 +54,6 @@ add the following:
           remote_src: yes
       - name: Renaming Tomcat Home
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
-<<<<<<< Updated upstream
-      - name: Change ownership to ansadmin
-        file:
-          path: /usr/local/latest
-          state: directory
-          recurse: yes
-          owner: ansadmin
-=======
-        state: directory
-        recurse: yes
-        owner: ansadmin
->>>>>>> Stashed changes
       - name: Replacing default Port with required Port
         template:
           src: server.xml.j2
