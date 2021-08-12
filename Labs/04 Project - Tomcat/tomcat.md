@@ -17,7 +17,7 @@ add the following:
 ```
 ---
   - name: Install and Configure Tomcat
-    hosts: 10.0.0.2
+    hosts: 10.0.0.3
     gather_facts: false
     vars:
       req_java: java-1.8.0-openjdk
