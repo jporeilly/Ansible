@@ -12,18 +12,15 @@ add the following:
 ```
 ---
   - name: Install and Configure Tomcat
-    hosts: 10.0.0.2
+    hosts: 10.0.0.3
     gather_facts: false
     vars:
       req_java: java-1.8.0-openjdk
       set_java: jre-1.8.0-openjdk
-      req_tomcat_ver: 10.0.8
+      req_tomcat_ver: 9.0.52
       tomcat_url: https://apache.mirrors.nublue.co.uk/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
-      tomcat_http_port: 8090
     become: yes
     tasks:
-      - name: Check connection to Node
-        ping: 10.0.0.2
       - name: Updating Repos
         yum:
           name: "*"
@@ -46,19 +43,8 @@ add the following:
           src: "/usr/local/apache-tomcat-{{req_tomcat_ver}}.tar.gz"
           dest: /usr/local
           remote_src: yes
-      - name: Renaming Tomcat Home
+      - name: Moving Tomcat - Latest
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
-      - name: Change ownership to ansadmin
-        file:
-          path: /usr/local/latest
-          state: directory
-          recurse: yes
-          owner: ansadmin
-          group: ansadmin
-      - name: Replacing default Port with required Port
-        template:
-          src: server.xml.j2
-          dest: /usr/local/latest/conf/server.xml
       - name: Starting Tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
 ```
@@ -69,7 +55,11 @@ run the playbook:
 ansible-playbook tomcat.yaml
 ```
 Note: this approach can become complex and error prone.  Best practice is to install based on defined 'Roles', which you'll cover in the next section.
+This installs Tomcat in the root..  so you'll need to log into:
+Username: Centos
+Pasword: centos
+not ideal  can you modify so that it gets installed under ansadmin account:
 
-  > test the installation: http://10.0.0.2:8090
+  > test the installation: http://localhost:8080
 
 ---
