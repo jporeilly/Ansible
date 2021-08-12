@@ -22,7 +22,7 @@ add the following:
     vars:
       req_java: java-1.8.0-openjdk
       set_java: jre-1.8.0-openjdk
-      req_tomcat_ver: 10.0.8
+      req_tomcat_ver: 10.0.10
       tomcat_url: https://apache.mirrors.nublue.co.uk/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
       tomcat_http_port: 8090
     become: yes
