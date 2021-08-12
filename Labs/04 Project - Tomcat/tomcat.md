@@ -51,10 +51,6 @@ add the following:
           remote_src: yes
       - name: Moving Tomcat
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest    
-      - name: Replacing default Port with required Port
-        template:
-          src: server.xml.j2
-          dest: /usr/local/latest/conf/server.xml
       - name: Starting Tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
 ```
