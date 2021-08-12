@@ -11,9 +11,13 @@ In this lab were going to cover:
 #### <font color='red'>YAML lint</font>
 yamllint is a simple YAML lint tool.
 pre-requiste steps:
-* installed Python 3.6  
+* installed Python 3.6 
 
-as root user
+switch to python 3.6:
+```
+alternatives --config python
+```
+as root user:
 ```
 sudo -i
 yum -y update
@@ -49,7 +53,6 @@ run the yamllint:
 ```
 cd playbooks
 yamllint .
-./yaml-lint.yaml 
 ```
 Note: the output helps pinpoint errors..
 
@@ -80,13 +83,14 @@ if you've fixed the other errrors, then running yamllint again should be fine.
 
 #### <font color='red'>Ansible lint</font>
 In addition to linting structural YAMl issues, Ansible tasks and playbooks can be linted using ansible-lint.
+pre-requiste steps:
+* configure Ansible Python to version 3.6
 
 install Ansible-lint:
 ```
-pip  install --user yamllint
+pip3  install --user ansible-lint
 ```
-
-create playbook:
+create a playbook:
 ```
 nano ansible-lint.yaml
 ```
