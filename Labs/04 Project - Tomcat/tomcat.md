@@ -50,7 +50,7 @@ add the following:
           src: "/usr/local/apache-tomcat-{{req_tomcat_ver}}.tar.gz"
           dest: /usr/local
           remote_src: yes
-      - name: Renaming Tomcat Home
+      - name: Moving Tomcat
         command: mv /usr/local/apache-tomcat-{{req_tomcat_ver}} /usr/local/latest
       - name: Starting Tomcat
         shell:  nohup /usr/local/latest/bin/startup.sh &
