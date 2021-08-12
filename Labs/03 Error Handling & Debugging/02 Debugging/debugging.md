@@ -22,6 +22,7 @@ as root user:
 sudo -i
 yum -y update
 yum -y install python-pip3
+pip3 install requests
 ```
 check your version of pip3 (ansadmin user):
 ```
