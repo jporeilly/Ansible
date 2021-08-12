@@ -10,16 +10,24 @@ In this lab were going to cover:
 
 #### <font color='red'>YAML lint</font>
 yamllint is a simple YAML lint tool.
-you will need to install pip, as root user:
+pre-requiste steps:
+* installed Python 3.6  
+
+as root user
 ```
+sudo -i
 yum -y update
-yum -y install python-pip
+yum -y install python-pip3
+```
+check your version of pip3 (ansadmin user):
+```
+pip3 -V
 ```
 install YAMLlint:
 ```
-pip  install --user yamllint
+pip3  install --user yamllint
 ```
-create playbook:
+create a playbook:
 ```
 nano yaml-lint.yaml
 ```
