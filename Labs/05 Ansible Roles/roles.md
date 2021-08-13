@@ -18,17 +18,16 @@ An Ansible role has a defined directory structure with eight main standard direc
 
 on the ansible controller:
 ```
-cd ansible_projects/demo
-mkdir roles
+cd ansible_projects/demo/roles
 ```
 create a role:
 ```
-ansible-galaxy init tomcat
+ansible-galaxy init tomcat-init
 ```
 Note: By default Ansible will look in each directory within a role for a main.yml file for relevant content (also main.yaml and main):
 lets take a look at the structure:
 ```
-tree roles
+tree
 ```
 - defaults: contains default variables for the role. Variables in default have the lowest priority so they are easy to override.
 - vars: contains variables for the role. Variables in vars have higher priority than variables in defaults directory.
@@ -38,7 +37,9 @@ tree roles
 - meta: contains metadata of role like an author, support platforms, dependencies.
 - handlers: contains handlers which can be invoked by “notify” directives and are associated with service.
 
-So lets set the scope..   we want to install Tomcat on CentOS, RedHat Debian and Ubuntu.
+So we're going to add another pre-configured role: tomcat  - which installs Tomcat on CentOS, RedHat Debian and Ubuntu.
+
+If you want to take a look:
 
   > browse to: https://github.com/hv-support/customer-training/tree/master/dst/ansible-tomcat
 
@@ -66,31 +67,32 @@ This role contains tasks to:
 - Clone the Project:
 
 ```
-cd ansible-projects/demo/roles
+cd ansible_projects/demo
 git clone --filter=blob:none --sparse https://github.com/hv-support/customer-training.git
 cd customer-training
 git sparse-checkout add  dst/ansible-tomcat
-cd dst
-mv ansible-tomcat ~/ansible-projects/demo/roles/tomcat
-
+cd dst/ansible-tomcat/roles
+cp -rpP tomcat ~/ansible_projects/demo/roles
+cd ~/ansible_projects/demo/roles
+tree tomcat
 ```
-Note: important to take ownership otherwise the 'tomcat' group will have the incorrect inherited permissions.
+Note: important check ownership otherwise the 'tomcat' group will have the incorrect inherited permissions.
 
 
 - Update your inventory, e.g:
 ```
 nano hosts
-[Group1]
-10.0.0.2       # Node1 IP
+[tomcat-nodes]
+10.0.0.2   # Node1 IP
 ```
 
 - Update variables in playbook file - Set Tomcat version, remote user and Tomcat UI access credentials
 ```
+cd ansible_projects/demo/roles
 nano tomcat-setup.yml
 ```
-```
 ---
-- name: Tomcat deployment playbook
+- name: Tomcat Deployment - Role
   hosts: tomcat-nodes       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
@@ -102,7 +104,7 @@ nano tomcat-setup.yml
     ui_admin_username: admin                    # User who can access bpth manager and admin UI sections
     ui_admin_pass: Str0ngAdminP@ssw3rd          # UI admin password
   roles:
-    - tomcat
+    - roles/tomcat
 ```
 If you are using non root remote user, then set username and enable sudo:
 ```
@@ -114,7 +116,7 @@ become_method: sudo
 Once all values are updated, you can then run the playbook against your nodes.
 Playbook executed as <ansadmin> user - with ssh key:
 ```
-ansible-playbook -i hosts tomcat-setup.yml
+ansible-playbook tomcat-setup.yml
 ```
 Playbook executed as ansadmin user - with password:
 ```
