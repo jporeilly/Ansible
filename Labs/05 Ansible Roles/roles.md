@@ -37,7 +37,7 @@ tree
 - meta: contains metadata of role like an author, support platforms, dependencies.
 - handlers: contains handlers which can be invoked by “notify” directives and are associated with service.
 
-So we're going to add another pre-configured role: tomcat  - which installs Tomcat on CentOS, RedHat Debian and Ubuntu.
+So we're going to add another pre-configured role: tomcat  - which installs Tomcat on CentOS, RedHat Debian and Ubuntu to the root.
 
 If you want to take a look:
 
@@ -82,7 +82,7 @@ Note: important check ownership otherwise the 'tomcat' group will have the incor
 - Update your inventory, e.g:
 ```
 nano hosts
-[tomcat-nodes]
+[Group1]
 10.0.0.2   # Node1 IP
 ```
 
@@ -91,12 +91,14 @@ nano hosts
 cd ansible_projects/demo/roles
 nano tomcat-setup.yml
 ```
+add the following:
+```
 ---
 - name: Tomcat Deployment - Role
-  hosts: tomcat-nodes       # Inventory hosts group / server to act on
+  hosts: Group1             # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
-  remote_user: ansadmin     # Update username for remote server
+  remote_user: root         # Update username for remote server
   vars:
     tomcat_ver: 9.0.52                          # Tomcat version to install
     ui_manager_user: manager                    # User who can access the UI manager section only
