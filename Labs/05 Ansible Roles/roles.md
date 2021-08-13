@@ -37,7 +37,7 @@ tree
 - meta: contains metadata of role like an author, support platforms, dependencies.
 - handlers: contains handlers which can be invoked by “notify” directives and are associated with service.
 
-So we're going to add another pre-configured role: tomcat  - which installs Tomcat on CentOS, RedHat Debian and Ubuntu to the root.
+So we're going to add another pre-configured role: tomcat  - which installs Tomcat on CentOS, RedHat Debian and Ubuntu on localhost.
 
 If you want to take a look:
 
@@ -51,6 +51,7 @@ If you want to take a look:
 #### <font color='red'>Tested on the following operating systems</font>
 - CentOS 8
 - CentOS 7
+- Centos 9
 - Fedora 31
 - Ubuntu 18.04
 - Debian 10
@@ -76,15 +77,6 @@ cp -rpP tomcat ~/ansible_projects/demo/roles
 cd ~/ansible_projects/demo/roles
 tree tomcat
 ```
-Note: important check ownership otherwise the 'tomcat' group will have the incorrect inherited permissions.
-
-
-- Update your inventory, e.g:
-```
-nano hosts
-[Group1]
-10.0.0.2   # Node1 IP
-```
 
 - Update variables in playbook file - Set Tomcat version, remote user and Tomcat UI access credentials
 ```
@@ -95,7 +87,7 @@ add the following:
 ```
 ---
 - name: Tomcat Deployment - Role
-  hosts: Group1             # Inventory hosts group / server to act on
+  hosts: localhost          # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
   remote_user: root         # Update username for remote server
@@ -106,7 +98,7 @@ add the following:
     ui_admin_username: admin                    # User who can access bpth manager and admin UI sections
     ui_admin_pass: Str0ngAdminP@ssw3rd          # UI admin password
   roles:
-    - roles/tomcat
+    - tomcat
 ```
 If you are using non root remote user, then set username and enable sudo:
 ```
