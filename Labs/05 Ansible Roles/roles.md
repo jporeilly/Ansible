@@ -63,6 +63,7 @@ This role contains tasks to:
 - Add tomcat user and group
 - Download tomcat and install - configure systemd
 - Configure firewall
+- Set UI access credentials
 
 #### <font color='red'> Instructions </font>
 - Clone the Project:
