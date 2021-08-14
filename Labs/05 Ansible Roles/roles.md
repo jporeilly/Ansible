@@ -91,7 +91,7 @@ add the following:
   hosts: localhost          # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
-  remote_user: root         # Update username for remote server
+  remote_user: ansadmin     # Update username for remote server
   vars:
     tomcat_ver: 9.0.52                          # Tomcat version to install
     ui_manager_user: manager                    # User who can access the UI manager section only
