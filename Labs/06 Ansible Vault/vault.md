@@ -106,7 +106,7 @@ lets encrypt:
 ```
 ansible-vault encrypt secrets_file.enc
 ```
-Note: enter a password.
+Note: enter a password.  
 check the file has been encrypted:
 ```
 cat secrets_file.enc
