@@ -120,6 +120,7 @@ before you execute the playbook, you will need to create the dest file, configur
 cd /etc
 sudo mkdir app
 sudo chown -R ansadmin app
+cd app
 touch configuration.ini
 ```
 
