@@ -26,7 +26,7 @@ Note: it will ask you to enter a password twice, then you can enter some text..
 ```
 password: lumada  
 text: they're coming to take me away..
-:wq
+ esc + :wq
 ```
 to encrypt an existing file:
 ```
@@ -102,7 +102,11 @@ add the following:
 ```
 api_key: SuperSecretPassword
 ```
-lets encrypt:
+then lets take ownership:
+```
+sudo chown -R ansadmin secrets_file.enc
+```
+then encrypt:
 ```
 ansible-vault encrypt secrets_file.enc
 ```
