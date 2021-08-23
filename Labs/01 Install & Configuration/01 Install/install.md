@@ -33,7 +33,7 @@ yum groupinstall -y "Development Tools" && yum install gcc openssl-devel bzip2-d
 
 
 **Python 3** 
-It is recommended to install Python3 to ensure that your tasks and commands are executed correctly.  Howvere, there will be times when you need to switch bewteen the 2 versions due to using an old version of CentOS.  
+It is recommended to install Python3 to ensure that your tasks and commands are executed correctly.  However, there will be times when you need to switch bewteen the 2 versions due to using an old version of CentOS. For the majority of the course we will be using the pre-installed Python 2.75  
 
 check python version:
 ```
