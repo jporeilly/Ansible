@@ -25,6 +25,7 @@ Node 3 & 4 are not required, so once configured..  suspend.
 </br>
 
 **add ansadmin**  
+Its best practice to create a user - with admin priviledges to run your playbooks instead of using root.
 ensure you're root:
 ```
 sudo su -
