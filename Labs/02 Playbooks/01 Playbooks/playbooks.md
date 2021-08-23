@@ -20,7 +20,7 @@ In this lab we're going to:
 Playbooks are expressed in YAML format with a minimum of syntax. A playbook is composed of one or more ‘plays’ in an ordered list. The terms ‘playbook’ and ‘play’ are sports analogies. Each play executes part of the overall goal of the playbook, running one or more tasks. Each task calls an Ansible module.
 
 A playbook runs in order from top to bottom. Within each play, tasks also run in order from top to bottom. Playbooks with multiple ‘plays’ can orchestrate multi-machine deployments, running one play on your webservers, then another play on your database servers, then a third play on your network infrastructure, and so on. At a minimum, each play defines two things:
-* the managed nodes to target, using a pattern
+* the managed Nodes to target, using a pattern
 * at least one task to execute
 
 create a playbook on the Ansible Controller:

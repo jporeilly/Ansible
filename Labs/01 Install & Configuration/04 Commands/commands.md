@@ -1,5 +1,5 @@
 ## <font color='red'>1.4 Ansible Commands</font>
-An Ansible ad-hoc command uses the /usr/bin/ansible command-line tool to automate a single task on one or more managed nodes. Ad-hoc commands are quick and easy, but they are not reusable.  
+An Ansible ad-hoc command uses the /usr/bin/ansible command-line tool to automate a single task on one or more managed Nodes. Ad-hoc commands are quick and easy, but they are not reusable.  
 
 In this lab we're going to:
 * ad-hoc commands
@@ -91,7 +91,7 @@ Note: will overide default and reboot 12 [Group] servers at a time..
 ---
 
 #### <font color='red'>Download / Copy file from Node to Controller</font>
-Transfer a file using ansible ad-hoc commands. Copy uses SCP (Secure Copy Protocol) to copy files to multiple nodes in parallel.
+Transfer a file using ansible ad-hoc commands. Copy uses SCP (Secure Copy Protocol) to copy files to multiple Nodes in parallel.
 </br>
 Syntax: ansible [-i inventory file] <servers> -m ce/file/path  dest=/dest/location arguments"
 

@@ -4,7 +4,7 @@ Ansible is an open source IT Configuration Management, Deployment & Orchestratio
 
 In this lab we're going to:
 * configure ansible controller
-* configure ansible nodes
+* configure ansible Nodes
 
 * configure PasswordAuthentication
 * create SSH-keys
@@ -20,7 +20,7 @@ Node 3 & 4 are not required, so once configured..  suspend.
 * set PasswordAuthentication yes
 * switch to ansadmin user to generate ssh keys
 
-* update inventory file with IPs on nodes
+* update inventory file with IPs on Nodes
 
 </br>
 
@@ -59,7 +59,7 @@ save..
 </br>
 
 **PasswordAuthentication**  
-implement password authentication across the nodes:
+implement password authentication across the Nodes:
 ```
 nano /etc/ssh/sshd_config
 ```
@@ -74,7 +74,7 @@ service sshd restart
 
 
 #### <font color='red'>Ansible Node(s) Configuration</font>
-* add ansadmin to nodes
+* add ansadmin to all Nodes
 * ensure it has root priviledges
 
 * set PasswordAuthentication yes
@@ -82,14 +82,14 @@ service sshd restart
 </br>
 
 **add ansadmin**  
-ensure that you're logged with CentOS credentials.
-SSH into ansible node from controller:
+ensure that you're logged with CentOS credentials on the Ansible Controller.
+SSH into Node 1 from Ansible Controller:
 ```
 ssh 10.0.0.2
 username: centos
 password: centos
 ```
-ensure you're root:
+ensure you're root on Node 1:
 ```
 sudo su -
 ```
@@ -124,7 +124,7 @@ save..
 </br>
 
 **PasswordAuthentication**  
-implement password authentication across all the nodes:
+implement password authentication across all the Nodes:
 ```
 nano /etc/ssh/sshd_config
 ```
@@ -135,7 +135,7 @@ restart service:
 service sshd restart
 ```
 
-repeat workflow for all nodes, i.e 10.0.0.3 & 10.0.0.4
+repeat workflow for all Nodes, i.e 10.0.0.3 & 10.0.0.4
 
 ---
 
@@ -184,7 +184,7 @@ ls -lrt
 ```
 Note: you know have 2 keys: id_rsa (private) id_rsa.pub (public)
 
-copy public key over to nodes:
+copy public key over to Nodes:
 
 ```
 ssh-copy-id 10.0.0.2
@@ -203,7 +203,7 @@ Note: passwordless authenticated connection.
 
 </br>
 
-if you wish to include localhost in your list of managed nodes:
+if you wish to include localhost in your list of managed Nodes:
 remove authorized keys:
 ```
 cd  .ssh/

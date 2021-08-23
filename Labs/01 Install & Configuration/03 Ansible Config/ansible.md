@@ -82,7 +82,7 @@ Group2
 ```
 save..
 Note: the inventory file be called anything..  its referenced in the ansible.cfg  
-you can 'group' the nodes to you're required configuration.
+you can 'group' the Nodes to you're required configuration.
 
 edit the ansible_projects/demo/ansible.cfg:
 ```
@@ -95,7 +95,7 @@ inventory   = ./hosts
 Note: paths to directories
 save..
 
-ping your nodes:
+ping your Nodes:
 ```
 ansible all -m ping
 ```
@@ -119,7 +119,7 @@ ansible --list-hosts Group
 </br>
 
 #### <font color='red'>Disable Host checking</font>
-This will help automate the process of logging authenticated users onto the nodes.  
+This will help automate the process of logging authenticated users onto the Nodes.  
 * temporary disable HOST checking
   - uncomment host_key_checking in ansible.cfg
 
