@@ -5,8 +5,8 @@ Ansible is an open source IT Configuration Management, Deployment & Orchestratio
 In this lab we're going to:
 * Install ansible controller
 
-Note: Yum doesn't support Python3
-You are also going to find some minor differences between the videos and the Lab due to updates being released. Usually some patch or Firefox..!
+#### Note: Yum doesn't support Python3
+#### You are also going to find some minor differences between the videos and the Lab due to updates being released. Usually some patch or Firefox..!
 ---
 
 #### <font color='red'>Pre-requisties</font> 
