@@ -64,7 +64,7 @@ implement password authentication across the Nodes:
 ```
 nano /etc/ssh/sshd_config
 ```
-uncomment: PasswordAuthentication yes
+check that: PasswordAuthentication yes is uncommented.
 
 restart service:
 ```
@@ -85,9 +85,10 @@ service sshd restart
 **add ansadmin**
 
 
-**ensure that you're logged with ansadmin credentials, on the Ansible Controller**   
+**ensure that you're logged with CentOS credentials, on the Ansible Controller**   
 
-SSH into Node 1 from Ansible Controller:
+SSH into Node 1 from Ansible Controller:  
+in a new terminal window: [centos@centos7 ~]$
 ```
 ssh 10.0.0.2
 username: centos
