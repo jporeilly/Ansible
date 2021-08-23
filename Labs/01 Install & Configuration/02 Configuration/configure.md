@@ -81,8 +81,11 @@ service sshd restart
 
 </br>
 
-**add ansadmin**  
-ensure that you're logged with CentOS credentials on the Ansible Controller.
+**add ansadmin**
+
+
+**ensure that you're logged with ansadmin credentials, on the Ansible Controller**   
+
 SSH into Node 1 from Ansible Controller:
 ```
 ssh 10.0.0.2
@@ -165,7 +168,7 @@ select a color scheme and select Course-Materials/ansible folder...
 </br>
 
 **generate ssh keys**
-ensure your in home directory. 
+ensure your in home directory.   
 next create keys:
 ```
 cd
