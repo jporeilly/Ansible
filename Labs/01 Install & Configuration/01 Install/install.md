@@ -15,7 +15,8 @@ The following pre-requisties have to be installed and confifgured for Ansible on
 * Python 3.5+
 * Git 2.x
 * Check SSH
-These pre-requisite checks have to be completed on all Nodes.
+<font color='red'>These pre-requisite checks have to be completed on all Nodes.</font>
+
 </br>
 
 **Development Tools**  
