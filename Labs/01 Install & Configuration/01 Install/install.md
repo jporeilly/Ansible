@@ -6,11 +6,11 @@ In this lab we're going to:
 * Install ansible controller
 
 Note: Yum doesn't support Python3
-
+You are also going to find some minor differences between the videos and the Lab due to updates being released. Usually some patch or Firefox..!
 ---
 
 #### <font color='red'>Pre-requisties</font> 
-The following pre-requisties have to be installed for Ansible Controller on CentOS 7:
+The following pre-requisties have to be installed and confifgured for Ansible on CentOS 7:
 * Development Tools
 * Python 3.5+
 * Git 2.x
@@ -31,7 +31,9 @@ yum groupinstall -y "Development Tools" && yum install gcc openssl-devel bzip2-d
 ```
 
 
-**Python 3**  
+**Python 3** 
+It is recommended to install Python3 to ensure that your tasks and commands are executed correctly.  Howvere, there will be times when you need to switch bewteen the 2 versions due to using an old version of CentOS.  
+
 check python version:
 ```
 python --version
@@ -73,7 +75,7 @@ Note: this may have  already be done with the upgrade to CentOS 7.9
 </br>
 
 **Git 2.x**  
-Ensure you have Git version 2.x installed.
+Git version 2.30.1 has already been installed. There's no need to 
 check Git Version:
 ```
 git --version
