@@ -108,7 +108,7 @@ sudo systemctl status sshd
 
 **Ansible Nodes**  
 ensure you have the following information:
-* Ansible Node IP address - 10.0.0.2, 10.0.0.3, 10.0.0.4
+* Ansible Node IP address - 10.0.0.2 & 10.0.0.3
 * Account credentials to SSH
   - user: centos  
   - password: centos  
