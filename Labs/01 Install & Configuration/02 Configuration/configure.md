@@ -9,7 +9,7 @@ In this lab we're going to:
 * configure PasswordAuthentication
 * create SSH-keys
 
-Node 3 & 4 are not required, so once configured..  suspend.
+Node 3 is not required, so once configured..  suspend.
 
 ---
 
@@ -20,7 +20,7 @@ Node 3 & 4 are not required, so once configured..  suspend.
 * set PasswordAuthentication yes
 * switch to ansadmin user to generate ssh keys
 
-* update inventory file with IPs on Nodes
+* update inventory file with the Node IPs 
 
 </br>
 
@@ -140,7 +140,7 @@ restart service:
 service sshd restart
 ```
 
-repeat workflow for all Nodes, i.e 10.0.0.3 & 10.0.0.4
+repeat the workflow for Node 10.0.0.3 
 
 ---
 
@@ -233,11 +233,11 @@ change directory:
 cd /etc/ansible
 ls -al
 ```
-edit hosts file:
+edit the hosts file:
 ```
 sudo nano hosts
 ```
-add the node IP:
+add the node IPs:
 ```
 [all]
 10.0.0.2
