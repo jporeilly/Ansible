@@ -9,7 +9,7 @@ In this lab we're going to:
 * configure PasswordAuthentication
 * create SSH-keys
 
-Node 3 is not required, so once configured..  suspend.
+Node 2 is not required, so once configured..  suspend.
 
 ---
 
