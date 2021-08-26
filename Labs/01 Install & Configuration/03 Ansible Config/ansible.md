@@ -80,7 +80,7 @@ edit the hosts file:
 Group1
 Group2
 ```
-save..
+save..  
 Note: the inventory file be called anything..  its referenced in the ansible.cfg  
 you can 'group' the Nodes to you're required configuration.
 
