@@ -14,7 +14,7 @@ Node 2 is not required, so once configured..  suspend.
 ---
 
 #### <font color='red'>Ansible Controller Configuration</font>
-* add an ansadmin user to ansible controller
+* add an ansadmin user to ansible controller + all other Nodes
 * ensure it has root priviledges
 
 * set PasswordAuthentication yes
