@@ -14,7 +14,6 @@ In this lab we're going to:
 
 * transfer copy a file
 * create / delete files & directories on Nodes
-* root priviledges
 
 </br>
 
