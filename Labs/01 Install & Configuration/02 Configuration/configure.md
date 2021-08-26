@@ -169,9 +169,9 @@ select a color scheme and select Course-Materials/ansible folder...
 
 </br>
 
-**generate ssh keys**  
-ensure your in home directory for the ansadmin account.   
-next create keys:
+**generate ssh keys**    
+ensure your in home directory for the ansadmin account.     
+next create keys:  
 ```mkdir Course-Materials
 cd
 ssh-keygen
