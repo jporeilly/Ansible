@@ -208,7 +208,7 @@ Note: passwordless authenticated connection.
 
 </br>
 
-if you wish to include localhost in your list of managed Nodes:
+if you wish to include localhost in your list of managed Nodes:  
 remove authorized keys:
 ```
 cd  .ssh/
