@@ -227,7 +227,7 @@ ssh-copy-id localhost
 </br>
 
 **update Inventory file**  
-ensure that you're logged with ansadmin credentials, on Ansible Controller.
+ensure that you're logged with ansadmin credentials, on Ansible Controller.  
 change directory:
 ```
 cd /etc/ansible
